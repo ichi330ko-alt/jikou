@@ -79,3 +79,164 @@ main{padding:20px}
 section{padding:70px 0}
 .list{grid-template-columns:1fr}
 }
+
+
+/* =========================================================
+   解析ページ
+   ========================================================= */
+
+body.analysis-page{
+  min-height:100vh;
+  background:
+    linear-gradient(
+      rgba(255,255,255,.12),
+      rgba(255,255,255,.12)
+    ),
+    url("../img/analysis-bg.png") center top / cover fixed no-repeat;
+}
+
+.analysis-main{
+  max-width:760px;
+  margin:0 auto;
+  padding:40px 28px 120px;
+}
+
+.analysis-intro{
+  text-align:center;
+  margin-bottom:54px;
+}
+
+.analysis-intro p{
+  margin-bottom:.45em;
+}
+
+.analysis-form{
+  width:100%;
+}
+
+.form-section{
+  padding:34px 0;
+  border-top:1px solid rgba(169,143,92,.38);
+}
+
+.form-section:last-of-type{
+  border-bottom:1px solid rgba(169,143,92,.38);
+}
+
+.form-label{
+  display:block;
+  margin-bottom:14px;
+  font-size:1.05rem;
+  color:#5e5140;
+  letter-spacing:.08em;
+}
+
+.required{
+  margin-left:8px;
+  color:#9b6e59;
+  font-size:.78rem;
+}
+
+.optional{
+  margin-left:8px;
+  color:#877f76;
+  font-size:.78rem;
+}
+
+.form-control{
+  width:100%;
+  border:1px solid rgba(169,143,92,.5);
+  border-radius:10px;
+  background:rgba(255,255,255,.38);
+  color:#423d3b;
+  font:inherit;
+  font-size:1rem;
+  letter-spacing:.05em;
+  padding:13px 15px;
+  outline:none;
+  transition:border-color .25s ease, background .25s ease;
+}
+
+.form-control:focus{
+  border-color:#9b7d47;
+  background:rgba(255,255,255,.58);
+}
+
+.form-help{
+  margin-top:12px;
+  color:#6d665f;
+  font-size:.84rem;
+  line-height:1.9;
+}
+
+.form-note{
+  margin-top:12px;
+  color:#786955;
+  font-size:.8rem;
+  line-height:1.85;
+}
+
+.radio-group{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px 24px;
+}
+
+.radio-option{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  cursor:pointer;
+}
+
+.radio-option input{
+  accent-color:#9b7d47;
+}
+
+.analysis-submit{
+  text-align:center;
+  margin-top:50px;
+}
+
+.analysis-submit button{
+  min-width:240px;
+  padding:14px 36px;
+  border:1px solid #a98f5c;
+  border-radius:999px;
+  background:rgba(255,255,255,.22);
+  color:#4d463f;
+  font:inherit;
+  letter-spacing:.12em;
+  cursor:pointer;
+  transition:background .25s ease, color .25s ease, transform .25s ease;
+}
+
+.analysis-submit button:hover,
+.analysis-submit button:focus-visible{
+  background:#a98f5c;
+  color:#fff;
+  transform:translateY(-1px);
+}
+
+@media(max-width:768px){
+  body.analysis-page{
+    background-attachment:scroll;
+  }
+
+  .analysis-main{
+    padding:24px 20px 90px;
+  }
+
+  .analysis-intro{
+    margin-bottom:36px;
+  }
+
+  .form-section{
+    padding:28px 0;
+  }
+
+  .radio-group{
+    flex-direction:column;
+    gap:10px;
+  }
+}
