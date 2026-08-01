@@ -1,1 +1,264 @@
-
+{
+  "meta": {
+    "name": "カバラ秘数→12座変換",
+    "version": "0.3",
+    "status": "仮説",
+    "sourceSheet": "12_カバラ秘数"
+  },
+  "rules": {
+    "masterNumbers": [
+      11,
+      22,
+      33
+    ],
+    "baseNumbers": {
+      "11": 2,
+      "22": 4,
+      "33": 6
+    },
+    "keepSeparateFromEarthHeavenIntegration": true,
+    "note": "カバラは原型列として別保持し、西洋・東洋の平均で消さない。"
+  },
+  "numbers": [
+    {
+      "number": 1,
+      "archetype": "存在｜「私はここに在る」という一点の座",
+      "treatment": "ケテル（第1セフィラ）との比較仮説",
+      "scores": {
+        "intuition": 4,
+        "expression": 4,
+        "relationship": 1,
+        "trust": 3,
+        "understanding": 2,
+        "action": 5,
+        "boundary": 5,
+        "release": 2,
+        "safety": 3,
+        "acceptance": 1,
+        "time": 4,
+        "emotion": 2
+      },
+      "primaryResonance": "行動／境界"
+    },
+    {
+      "number": 2,
+      "archetype": "感応｜「私は、あなたが在ることを感じる」座",
+      "treatment": "コクマー（第2セフィラ）との比較仮説",
+      "scores": {
+        "intuition": 5,
+        "expression": 2,
+        "relationship": 5,
+        "trust": 5,
+        "understanding": 3,
+        "action": 1,
+        "boundary": 4,
+        "release": 3,
+        "safety": 4,
+        "acceptance": 5,
+        "time": 3,
+        "emotion": 5
+      },
+      "primaryResonance": "直感／関係／信頼／受容／感情"
+    },
+    {
+      "number": 3,
+      "archetype": "顕現｜「内にあるものを形にして世界へ生み出す」座",
+      "treatment": "ビナー（第3セフィラ）との比較仮説",
+      "scores": {
+        "intuition": 3,
+        "expression": 5,
+        "relationship": 4,
+        "trust": 3,
+        "understanding": 5,
+        "action": 3,
+        "boundary": 4,
+        "release": 3,
+        "safety": 2,
+        "acceptance": 4,
+        "time": 3,
+        "emotion": 5
+      },
+      "primaryResonance": "表現／理解／感情"
+    },
+    {
+      "number": 4,
+      "archetype": "定着｜「生まれたものが根を張り、在り続けられる場所をつくる」座",
+      "treatment": "ケセド（第4セフィラ）との比較仮説",
+      "scores": {
+        "intuition": 1,
+        "expression": 2,
+        "relationship": 3,
+        "trust": 5,
+        "understanding": 4,
+        "action": 4,
+        "boundary": 5,
+        "release": 1,
+        "safety": 5,
+        "acceptance": 3,
+        "time": 5,
+        "emotion": 2
+      },
+      "primaryResonance": "信頼／境界／安心／時"
+    },
+    {
+      "number": 5,
+      "archetype": "変化｜「変化する世界へ自分を開き、動いて確かめる」座",
+      "treatment": "ゲブラー（第5セフィラ）との比較仮説",
+      "scores": {
+        "intuition": 4,
+        "expression": 4,
+        "relationship": 3,
+        "trust": 2,
+        "understanding": 4,
+        "action": 5,
+        "boundary": 4,
+        "release": 5,
+        "safety": 1,
+        "acceptance": 3,
+        "time": 5,
+        "emotion": 3
+      },
+      "primaryResonance": "行動／手放し／時"
+    },
+    {
+      "number": 6,
+      "archetype": "調和・養育｜「大切なものと共に在り、それを育む」座",
+      "treatment": "ティファレト（第6セフィラ）との比較仮説",
+      "scores": {
+        "intuition": 3,
+        "expression": 3,
+        "relationship": 5,
+        "trust": 5,
+        "understanding": 4,
+        "action": 3,
+        "boundary": 4,
+        "release": 3,
+        "safety": 5,
+        "acceptance": 5,
+        "time": 4,
+        "emotion": 5
+      },
+      "primaryResonance": "関係／信頼／安心／受容／感情"
+    },
+    {
+      "number": 7,
+      "archetype": "探究｜「現れているものの奥にある真実を知ろうとする」座",
+      "treatment": "ネツァク（第7セフィラ）との比較仮説",
+      "scores": {
+        "intuition": 5,
+        "expression": 2,
+        "relationship": 2,
+        "trust": 3,
+        "understanding": 5,
+        "action": 2,
+        "boundary": 5,
+        "release": 4,
+        "safety": 3,
+        "acceptance": 3,
+        "time": 5,
+        "emotion": 4
+      },
+      "primaryResonance": "直感／理解／境界／時"
+    },
+    {
+      "number": 8,
+      "archetype": "作用｜「自らの力を現実に働かせ、その結果を引き受ける」座",
+      "treatment": "ホド（第8セフィラ）との比較仮説",
+      "scores": {
+        "intuition": 2,
+        "expression": 4,
+        "relationship": 3,
+        "trust": 4,
+        "understanding": 5,
+        "action": 5,
+        "boundary": 5,
+        "release": 4,
+        "safety": 3,
+        "acceptance": 3,
+        "time": 5,
+        "emotion": 3
+      },
+      "primaryResonance": "理解／行動／境界／時"
+    },
+    {
+      "number": 9,
+      "archetype": "還元｜「満ちたものを受け取り、手放し、全体へ還す」座",
+      "treatment": "イェソド（第9セフィラ）との比較仮説",
+      "scores": {
+        "intuition": 4,
+        "expression": 3,
+        "relationship": 4,
+        "trust": 4,
+        "understanding": 5,
+        "action": 2,
+        "boundary": 3,
+        "release": 5,
+        "safety": 4,
+        "acceptance": 5,
+        "time": 5,
+        "emotion": 5
+      },
+      "primaryResonance": "理解／手放し／受容／時／感情"
+    },
+    {
+      "number": 11,
+      "archetype": "媒介｜「まだ形になっていないものを感じ取り、この世界へ通す」座",
+      "treatment": "還元数2を基底。第11セフィラとは対応させない",
+      "scores": {
+        "intuition": 5,
+        "expression": 5,
+        "relationship": 4,
+        "trust": 4,
+        "understanding": 4,
+        "action": 2,
+        "boundary": 5,
+        "release": 4,
+        "safety": 2,
+        "acceptance": 5,
+        "time": 5,
+        "emotion": 5
+      },
+      "primaryResonance": "直感／表現／境界／受容／時／感情"
+    },
+    {
+      "number": 22,
+      "archetype": "構築｜「多くのものがそれぞれの場所で在れる世界を形にする」座",
+      "treatment": "還元数4を基底。生命の樹へ無理な番号対応をしない",
+      "scores": {
+        "intuition": 4,
+        "expression": 4,
+        "relationship": 5,
+        "trust": 5,
+        "understanding": 5,
+        "action": 5,
+        "boundary": 5,
+        "release": 4,
+        "safety": 5,
+        "acceptance": 4,
+        "time": 5,
+        "emotion": 3
+      },
+      "primaryResonance": "関係／信頼／理解／行動／境界／安心／時"
+    },
+    {
+      "number": 33,
+      "archetype": "祝福｜「存在するものが本来の形で在り、育つことを認める」座",
+      "treatment": "還元数6を基底。ティファレト的調和を基礎仮説とする",
+      "scores": {
+        "intuition": 4,
+        "expression": 5,
+        "relationship": 5,
+        "trust": 5,
+        "understanding": 5,
+        "action": 4,
+        "boundary": 5,
+        "release": 5,
+        "safety": 5,
+        "acceptance": 5,
+        "time": 5,
+        "emotion": 5
+      },
+      "primaryResonance": "表現／関係／信頼／理解／境界／手放し／安心／受容／時／感情"
+    }
+  ]
+}
