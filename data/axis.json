@@ -1,1 +1,143 @@
-
+{
+  "meta": {
+    "name": "時光 12座定義",
+    "version": "0.9",
+    "sourceSheet": "01_12共鳴軸"
+  },
+  "axes": [
+    {
+      "id": "intuition",
+      "no": 1,
+      "name": "直感",
+      "short": "感",
+      "color": "レッド",
+      "fourNature": "響",
+      "question": "私が本当に感じた事はなんだろう？"
+    },
+    {
+      "id": "expression",
+      "no": 2,
+      "name": "表現",
+      "short": "現",
+      "color": "レッドオレンジ",
+      "fourNature": "波",
+      "question": "私の本心は何を伝えたいんだろう？"
+    },
+    {
+      "id": "relationship",
+      "no": 3,
+      "name": "関係",
+      "short": "関",
+      "color": "イエローオレンジ",
+      "fourNature": "波",
+      "question": "私は何と共に在りたいんだろう？"
+    },
+    {
+      "id": "trust",
+      "no": 4,
+      "name": "信頼",
+      "short": "信",
+      "color": "イエロー",
+      "fourNature": "在",
+      "question": "私が不安に思っているものは何だろう？"
+    },
+    {
+      "id": "understanding",
+      "no": 5,
+      "name": "理解",
+      "short": "理",
+      "color": "イエローグリーン",
+      "fourNature": "鑑",
+      "question": "私が受け入れられないものはなんだろう？"
+    },
+    {
+      "id": "action",
+      "no": 6,
+      "name": "行動",
+      "short": "動",
+      "color": "グリーン",
+      "fourNature": "波",
+      "question": "私が行動に移せない理由はあるだろうか？"
+    },
+    {
+      "id": "boundary",
+      "no": 7,
+      "name": "境界",
+      "short": "境",
+      "color": "ブルーグリーン",
+      "fourNature": "鑑",
+      "question": "私は私以外の重荷や責任を負っていないだろうか？"
+    },
+    {
+      "id": "release",
+      "no": 8,
+      "name": "手放し",
+      "short": "放",
+      "color": "ブルー",
+      "fourNature": "在",
+      "question": "今手放せるとしたら、この手には何を握っているだろう？"
+    },
+    {
+      "id": "safety",
+      "no": 9,
+      "name": "安心",
+      "short": "安",
+      "color": "ディープブルー",
+      "fourNature": "響",
+      "question": "心からの安堵は、何から解放された時だろうか？"
+    },
+    {
+      "id": "acceptance",
+      "no": 10,
+      "name": "受容",
+      "short": "受",
+      "color": "ブルーバイオレット",
+      "fourNature": "在",
+      "question": "受け入れたほうがいいと思っているができないことはあるだろうか？"
+    },
+    {
+      "id": "time",
+      "no": 11,
+      "name": "時",
+      "short": "時",
+      "color": "バイオレット",
+      "fourNature": "鑑",
+      "question": "私が待っているものはなんだろう。"
+    },
+    {
+      "id": "emotion",
+      "no": 12,
+      "name": "感情",
+      "short": "情",
+      "color": "レッドバイオレット",
+      "fourNature": "響",
+      "question": "子どもの時のような素直な感情を自分が受け入れているだろうか？"
+    }
+  ],
+  "oppositePairs": [
+    [
+      "intuition",
+      "time"
+    ],
+    [
+      "expression",
+      "safety"
+    ],
+    [
+      "relationship",
+      "boundary"
+    ],
+    [
+      "trust",
+      "understanding"
+    ],
+    [
+      "action",
+      "acceptance"
+    ],
+    [
+      "emotion",
+      "release"
+    ]
+  ]
+}
