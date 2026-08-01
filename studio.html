@@ -24,8 +24,15 @@
       line-height: 1.6;
     }
 
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
     .studio {
-      width: min(1100px, 100%);
+      width: min(1180px, 100%);
       margin: 0 auto;
     }
 
@@ -53,8 +60,14 @@
     }
 
     .panel h2 {
-      margin: 0 0 18px;
+      margin: 0 0 8px;
       font-size: 1.15rem;
+    }
+
+    .panel-description {
+      margin: 0 0 18px;
+      color: #68707a;
+      font-size: 0.88rem;
     }
 
     .form-grid {
@@ -63,10 +76,17 @@
       gap: 18px;
     }
 
+    .input-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
     .field {
       display: flex;
       flex-direction: column;
       gap: 7px;
+      min-width: 0;
     }
 
     .field.full {
@@ -81,15 +101,9 @@
 
     input,
     select,
-    textarea,
-    button {
-      font: inherit;
-    }
-
-    input,
-    select,
     textarea {
       width: 100%;
+      min-width: 0;
       border: 1px solid #c9ced6;
       border-radius: 8px;
       background: #fff;
@@ -140,22 +154,72 @@
     }
 
     .seat-box {
-      min-height: 86px;
-      padding: 12px;
+      min-height: 160px;
+      padding: 14px;
       border: 1px solid #d7dbe0;
-      border-radius: 8px;
+      border-radius: 9px;
       background: #fafafa;
     }
 
-    .seat-name {
+    .seat-heading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .seat-heading strong,
+    .seat-heading small {
       display: block;
-      margin-bottom: 8px;
+    }
+
+    .seat-heading small {
+      color: #747b84;
+      font-size: 0.75rem;
+    }
+
+    .seat-short {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border: 1px solid #bfc5cd;
+      border-radius: 50%;
+      background: #fff;
       font-weight: 700;
     }
 
-    .seat-value {
-      color: #6b7280;
-      font-size: 0.9rem;
+    .seat-main-value {
+      margin: 12px 0;
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+
+    .seat-details {
+      margin: 0;
+      font-size: 0.78rem;
+    }
+
+    .seat-details div {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      border-top: 1px solid #e5e7eb;
+      padding: 4px 0;
+    }
+
+    .seat-details dt,
+    .seat-details dd {
+      margin: 0;
+    }
+
+    .summary {
+      display: grid;
+      gap: 4px;
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 8px;
+      background: #f4f5f7;
+      font-size: 0.88rem;
     }
 
     .tarot-grid {
@@ -194,6 +258,11 @@
       cursor: pointer;
     }
 
+    button:disabled {
+      cursor: wait;
+      opacity: 0.55;
+    }
+
     .button-secondary {
       background: #e5e7eb;
       color: #222;
@@ -205,35 +274,35 @@
     }
 
     .status {
-      margin-top: 14px;
+      margin: 12px 0 0;
       min-height: 1.5em;
       color: #4b5563;
       font-size: 0.9rem;
     }
 
-    .preview {
-      display: none;
+    #candidate-text {
       margin-top: 18px;
-      padding: 16px;
-      border: 1px solid #d7dbe0;
-      border-radius: 8px;
-      background: #fafafa;
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
+      min-height: 230px;
+      background: #fbfbfc;
     }
 
-    @media (max-width: 800px) {
+    @media (max-width: 900px) {
+      .input-grid,
+      .seat-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 700px) {
       body {
         padding: 14px;
       }
 
       .form-grid,
+      .input-grid,
+      .seat-grid,
       .tarot-grid {
         grid-template-columns: 1fr;
-      }
-
-      .seat-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .actions {
@@ -251,7 +320,8 @@
   <main class="studio">
     <header class="studio-header">
       <h1>時光解析スタジオ</h1>
-      <p>解析に必要な情報とタロットカードを入力する管理用ページです。</p>
+      <p>西洋と東洋の出生要素を選択し、12座へ自動変換します。</p>
+      <p class="status" id="engine-status" aria-live="polite"></p>
     </header>
 
     <form id="studio-form">
@@ -279,7 +349,9 @@
               placeholder="例：そのこ"
               pattern="[ぁ-ゖー\s]*"
             >
-            <p class="help">未入力でも解析可能です。入力した場合はカタカムナ解析に使用します。</p>
+            <p class="help">
+              未入力でも解析可能です。入力した場合は名前音の加点を表示します。
+            </p>
           </div>
 
           <fieldset class="field">
@@ -295,25 +367,44 @@
       </section>
 
       <section class="panel">
-        <h2>12座の算定結果</h2>
+        <h2>西洋出生要素</h2>
+        <p class="panel-description">
+          10天体をすべて選択してください。出生時間が不明な場合、ASCとMCは空欄で算定できます。
+        </p>
 
-        <div class="seat-grid" id="seat-grid">
-          <div class="seat-box"><span class="seat-name">感</span><span class="seat-value">未算定</span></div>
-          <div class="seat-box"><span class="seat-name">現</span><span class="seat-value">未算定</span></div>
-          <div class="seat-box"><span class="seat-name">関</span><span class="seat-value">未算定</span></div>
-          <div class="seat-box"><span class="seat-name">信</span><span class="seat-value">未算定</span></div>
-          <div class="seat-box"><span class="seat-name">理</span><span class="seat-value">未算定</span></div>
-          <div class="seat-box"><span class="seat-name">動</span><span class="seat-value">未算定</span></div>
-          <div class="seat-box"><span class="seat-name">境</span><span class="seat-value">未算定</span></div>
-          <div class="seat-box"><span class="seat-name">放</span><span class="seat-value">未算定</span></div>
-          <div class="seat-box"><span class="seat-name">安</span><span class="seat-value">未算定</span></div>
-          <div class="seat-box"><span class="seat-name">受</span><span class="seat-value">未算定</span></div>
-          <div class="seat-box"><span class="seat-name">時</span><span class="seat-value">未算定</span></div>
-          <div class="seat-box"><span class="seat-name">情</span><span class="seat-value">未算定</span></div>
+        <div class="input-grid" id="western-grid"></div>
+      </section>
+
+      <section class="panel">
+        <h2>東洋出生要素</h2>
+        <p class="panel-description">
+          算命学で算出した十大主星を5つ選択してください。同じ星を複数選択できます。
+        </p>
+
+        <div class="input-grid" id="eastern-grid"></div>
+      </section>
+
+      <section class="panel">
+        <h2>12座の算定結果</h2>
+        <p class="panel-description">
+          大きな数値は西洋と東洋を50：50で統合した値です。カバラと名前音は別列で残します。
+        </p>
+
+        <div class="seat-grid" id="seat-grid"></div>
+
+        <div class="summary">
+          <span id="ranking-summary">天地統合の上位：未算定</span>
+          <span id="kabbalah-summary">カバラ4秘数：未算定</span>
+          <span id="katakamuna-summary">名前音：未算定</span>
         </div>
 
         <div class="actions" style="margin-top:18px;">
-          <button type="button" class="button-secondary" id="calculate-seats">
+          <button
+            type="button"
+            class="button-secondary"
+            id="calculate-seats"
+            disabled
+          >
             12座を算定
           </button>
         </div>
@@ -404,103 +495,28 @@
 
       <section class="panel">
         <div class="actions">
-          <button type="button" class="button-primary" id="create-result">
+          <button
+            type="button"
+            class="button-primary"
+            id="create-result"
+            disabled
+          >
             解析結果を作成する
           </button>
         </div>
 
         <p class="status" id="result-status" aria-live="polite"></p>
-        <div class="preview" id="preview"></div>
+
+        <textarea
+          id="candidate-text"
+          aria-label="解析候補文"
+          hidden
+        ></textarea>
       </section>
 
     </form>
   </main>
 
-  <script>
-    const tarotCards = [
-      "愚者",
-      "魔術師",
-      "女教皇",
-      "女帝",
-      "皇帝",
-      "法王",
-      "恋人",
-      "戦車",
-      "力",
-      "隠者",
-      "運命の輪",
-      "正義",
-      "吊るされた男",
-      "死神",
-      "節制",
-      "悪魔",
-      "塔",
-      "星",
-      "月",
-      "太陽",
-      "審判",
-      "世界"
-    ];
-
-    const tarotSelectIds = [
-      "tarot-current-card",
-      "tarot-challenge-card",
-      "tarot-key-card"
-    ];
-
-    tarotSelectIds.forEach((id) => {
-      const select = document.getElementById(id);
-
-      tarotCards.forEach((card) => {
-        const option = document.createElement("option");
-        option.value = card;
-        option.textContent = card;
-        select.appendChild(option);
-      });
-    });
-
-    const calculateSeatsButton = document.getElementById("calculate-seats");
-    const seatStatus = document.getElementById("seat-status");
-
-    calculateSeatsButton.addEventListener("click", () => {
-      const birthDate = document.getElementById("birth-date").value;
-
-      if (!birthDate) {
-        seatStatus.textContent = "生年月日を入力してください。";
-        return;
-      }
-
-      seatStatus.textContent =
-        "入力内容を受け取りました。12座の正式な算定ロジックは、次の工程で接続します。";
-    });
-
-    const createResultButton = document.getElementById("create-result");
-    const resultStatus = document.getElementById("result-status");
-    const preview = document.getElementById("preview");
-
-    createResultButton.addEventListener("click", () => {
-      const form = document.getElementById("studio-form");
-
-      if (!form.reportValidity()) {
-        resultStatus.textContent = "入力内容を確認してください。";
-        return;
-      }
-
-      const data = new FormData(form);
-      const result = {};
-
-      data.forEach((value, key) => {
-        result[key] = value;
-      });
-
-      sessionStorage.setItem("jikouStudioData", JSON.stringify(result));
-
-      preview.style.display = "block";
-      preview.textContent = JSON.stringify(result, null, 2);
-
-      resultStatus.textContent =
-        "入力内容を保存しました。解析ロジックと result.html を接続すると、結果作成へ進めます。";
-    });
-  </script>
+  <script src="js/analysis.js"></script>
 </body>
 </html>
