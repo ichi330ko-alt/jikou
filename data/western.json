@@ -1,1 +1,251 @@
 
+{
+  "meta": {
+    "name": "西洋占星術12サイン→12座変換",
+    "version": "0.4",
+    "sourceSheet": "13_西洋変換表"
+  },
+  "scoring": {
+    "symbols": {
+      "◎": 5,
+      "○": 3,
+      "△": 1,
+      "—": 0
+    },
+    "pointsPerElement": 20
+  },
+  "normalization": {
+    "targetTotal": 400,
+    "formula": "normalizedAxis = rawAxis * (400 / rawTotal)"
+  },
+  "elements": [
+    {
+      "name": "牡羊座",
+      "theme": "始動・自己確立",
+      "scores": {
+        "intuition": 3,
+        "expression": 3,
+        "relationship": 1,
+        "trust": 1,
+        "understanding": 1,
+        "action": 5,
+        "boundary": 3,
+        "release": 1,
+        "safety": 0,
+        "acceptance": 0,
+        "time": 1,
+        "emotion": 1
+      },
+      "total": 20
+    },
+    {
+      "name": "牡牛座",
+      "theme": "安定・価値・五感",
+      "scores": {
+        "intuition": 0,
+        "expression": 1,
+        "relationship": 1,
+        "trust": 3,
+        "understanding": 0,
+        "action": 0,
+        "boundary": 3,
+        "release": 1,
+        "safety": 5,
+        "acceptance": 0,
+        "time": 3,
+        "emotion": 3
+      },
+      "total": 20
+    },
+    {
+      "name": "双子座",
+      "theme": "伝達・交換・好奇心",
+      "scores": {
+        "intuition": 1,
+        "expression": 5,
+        "relationship": 5,
+        "trust": 0,
+        "understanding": 3,
+        "action": 1,
+        "boundary": 1,
+        "release": 0,
+        "safety": 0,
+        "acceptance": 0,
+        "time": 1,
+        "emotion": 3
+      },
+      "total": 20
+    },
+    {
+      "name": "蟹座",
+      "theme": "保護・帰属・情緒",
+      "scores": {
+        "intuition": 1,
+        "expression": 0,
+        "relationship": 3,
+        "trust": 5,
+        "understanding": 0,
+        "action": 0,
+        "boundary": 1,
+        "release": 0,
+        "safety": 5,
+        "acceptance": 1,
+        "time": 1,
+        "emotion": 3
+      },
+      "total": 20
+    },
+    {
+      "name": "獅子座",
+      "theme": "自己表現・創造",
+      "scores": {
+        "intuition": 0,
+        "expression": 5,
+        "relationship": 3,
+        "trust": 1,
+        "understanding": 1,
+        "action": 3,
+        "boundary": 1,
+        "release": 0,
+        "safety": 1,
+        "acceptance": 1,
+        "time": 1,
+        "emotion": 3
+      },
+      "total": 20
+    },
+    {
+      "name": "乙女座",
+      "theme": "分析・識別・調整",
+      "scores": {
+        "intuition": 0,
+        "expression": 1,
+        "relationship": 1,
+        "trust": 1,
+        "understanding": 5,
+        "action": 3,
+        "boundary": 5,
+        "release": 0,
+        "safety": 1,
+        "acceptance": 0,
+        "time": 3,
+        "emotion": 0
+      },
+      "total": 20
+    },
+    {
+      "name": "天秤座",
+      "theme": "関係・均衡・対話",
+      "scores": {
+        "intuition": 0,
+        "expression": 3,
+        "relationship": 5,
+        "trust": 3,
+        "understanding": 0,
+        "action": 0,
+        "boundary": 5,
+        "release": 0,
+        "safety": 0,
+        "acceptance": 3,
+        "time": 0,
+        "emotion": 1
+      },
+      "total": 20
+    },
+    {
+      "name": "蠍座",
+      "theme": "深化・変容・再生",
+      "scores": {
+        "intuition": 0,
+        "expression": 0,
+        "relationship": 0,
+        "trust": 0,
+        "understanding": 5,
+        "action": 0,
+        "boundary": 1,
+        "release": 5,
+        "safety": 0,
+        "acceptance": 3,
+        "time": 3,
+        "emotion": 3
+      },
+      "total": 20
+    },
+    {
+      "name": "射手座",
+      "theme": "探究・拡大・信念",
+      "scores": {
+        "intuition": 3,
+        "expression": 1,
+        "relationship": 1,
+        "trust": 1,
+        "understanding": 5,
+        "action": 5,
+        "boundary": 0,
+        "release": 1,
+        "safety": 0,
+        "acceptance": 0,
+        "time": 3,
+        "emotion": 0
+      },
+      "total": 20
+    },
+    {
+      "name": "山羊座",
+      "theme": "構築・責任・時間",
+      "scores": {
+        "intuition": 0,
+        "expression": 0,
+        "relationship": 0,
+        "trust": 3,
+        "understanding": 3,
+        "action": 5,
+        "boundary": 3,
+        "release": 0,
+        "safety": 1,
+        "acceptance": 0,
+        "time": 5,
+        "emotion": 0
+      },
+      "total": 20
+    },
+    {
+      "name": "水瓶座",
+      "theme": "革新・普遍・自由",
+      "scores": {
+        "intuition": 5,
+        "expression": 3,
+        "relationship": 3,
+        "trust": 0,
+        "understanding": 3,
+        "action": 0,
+        "boundary": 1,
+        "release": 5,
+        "safety": 0,
+        "acceptance": 0,
+        "time": 0,
+        "emotion": 0
+      },
+      "total": 20
+    },
+    {
+      "name": "魚座",
+      "theme": "融合・受容・超越",
+      "scores": {
+        "intuition": 5,
+        "expression": 0,
+        "relationship": 0,
+        "trust": 1,
+        "understanding": 0,
+        "action": 0,
+        "boundary": 3,
+        "release": 5,
+        "safety": 0,
+        "acceptance": 3,
+        "time": 0,
+        "emotion": 3
+      },
+      "total": 20
+    }
+  ]
+}
