@@ -1,1 +1,953 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
 
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="時光は、生まれ持った12の座と現在の流れを重ね、本来の自分の光の通り道を読む共鳴解析です。"
+  >
+
+  <title>時光｜共鳴解析</title>
+
+  <style>
+    /* ========================================
+       基本設定
+    ======================================== */
+
+    :root {
+      --text-main: #403a43;
+      --text-soft: #625b69;
+      --text-light: #f9f5ef;
+
+      --gold: #ad8c54;
+      --gold-light: #d8c294;
+
+      --blue-deep: #20243f;
+      --purple-deep: #39314f;
+
+      --paper: #f8f5f0;
+      --paper-soft: #eee8e7;
+
+      --border: rgba(160, 133, 88, 0.38);
+
+      --shadow:
+        0 18px 45px rgba(34, 31, 50, 0.17);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      color: var(--text-main);
+      background:
+        linear-gradient(
+          180deg,
+          #f5f1f3 0%,
+          #f9f7f3 50%,
+          #eee9ee 100%
+        );
+      font-family:
+        "Yu Mincho",
+        "Hiragino Mincho ProN",
+        "Hiragino Mincho Pro",
+        "Noto Serif JP",
+        serif;
+      line-height: 1.9;
+      letter-spacing: 0.08em;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+
+    /* ========================================
+       ヘッダー
+    ======================================== */
+
+    .site-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 20;
+      width: 100%;
+      padding: 26px 5%;
+    }
+
+    .header-inner {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .site-logo {
+      color: rgba(255, 255, 255, 0.94);
+      font-size: 1.12rem;
+      letter-spacing: 0.34em;
+      text-shadow:
+        0 1px 8px rgba(38, 31, 53, 0.4);
+    }
+
+    .header-link {
+      position: relative;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-shadow:
+        0 1px 8px rgba(38, 31, 53, 0.45);
+    }
+
+    .header-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -7px;
+      width: 100%;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.65);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.35s ease;
+    }
+
+    .header-link:hover::after,
+    .header-link:focus-visible::after {
+      transform: scaleX(1);
+    }
+
+
+    /* ========================================
+       メインビジュアル
+    ======================================== */
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+
+      background-image:
+        linear-gradient(
+          180deg,
+          rgba(34, 30, 55, 0.05) 0%,
+          rgba(48, 41, 68, 0.03) 48%,
+          rgba(38, 34, 54, 0.16) 100%
+        ),
+        url("img/top.png");
+
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(255, 255, 255, 0.12) 0%,
+          rgba(255, 255, 255, 0) 44%
+        );
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 22%;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(246, 242, 244, 0) 0%,
+          rgba(246, 242, 244, 0.88) 100%
+        );
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      width: min(760px, 88%);
+      padding: 165px 20px 105px;
+      text-align: center;
+      animation: heroAppear 1.6s ease both;
+    }
+
+    .hero-mark {
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 25px;
+      border: 1px solid rgba(96, 74, 68, 0.48);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .hero-mark::before,
+    .hero-mark::after {
+      content: "";
+      position: absolute;
+      background: rgba(96, 74, 68, 0.4);
+    }
+
+    .hero-mark::before {
+      width: 38px;
+      height: 1px;
+    }
+
+    .hero-mark::after {
+      width: 1px;
+      height: 38px;
+    }
+
+    .hero-mark-inner {
+      width: 10px;
+      height: 10px;
+      border: 1px solid rgba(96, 74, 68, 0.62);
+      transform: rotate(45deg);
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    .hero-title {
+      color: #463e43;
+      font-size: clamp(4rem, 9vw, 7rem);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: 0.27em;
+      padding-left: 0.27em;
+      text-shadow:
+        0 2px 15px rgba(255, 255, 255, 0.75);
+    }
+
+    .hero-subtitle {
+      margin-top: 18px;
+      color: #50474c;
+      font-size: clamp(0.92rem, 2vw, 1.25rem);
+      font-weight: 400;
+      letter-spacing: 0.32em;
+      padding-left: 0.32em;
+      text-shadow:
+        0 1px 12px rgba(255, 255, 255, 0.88);
+    }
+
+    .hero-line {
+      width: min(300px, 68%);
+      height: 1px;
+      margin: 29px auto 27px;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(137, 105, 63, 0),
+          rgba(137, 105, 63, 0.8),
+          rgba(137, 105, 63, 0)
+        );
+      position: relative;
+    }
+
+    .hero-line::before {
+      content: "◇";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      padding: 0 10px;
+      color: #957448;
+      background: rgba(241, 228, 218, 0.38);
+      font-size: 0.72rem;
+      transform: translate(-50%, -50%);
+    }
+
+    .hero-concept {
+      max-width: 580px;
+      margin: 0 auto;
+      color: #554d55;
+      font-size: clamp(0.92rem, 1.8vw, 1.05rem);
+      line-height: 2.1;
+      letter-spacing: 0.13em;
+      text-shadow:
+        0 1px 10px rgba(255, 255, 255, 0.9);
+    }
+
+    .hero-actions {
+      margin-top: 39px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .main-button {
+      min-width: 230px;
+      padding: 14px 30px;
+      border: 1px solid rgba(94, 75, 77, 0.54);
+      border-radius: 100px;
+      color: #4a4148;
+      background: rgba(255, 255, 255, 0.34);
+      box-shadow:
+        0 8px 25px rgba(56, 44, 62, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.26);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      font-size: 0.92rem;
+      letter-spacing: 0.19em;
+      transition:
+        transform 0.35s ease,
+        background 0.35s ease,
+        box-shadow 0.35s ease;
+    }
+
+    .main-button:hover,
+    .main-button:focus-visible {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.54);
+      box-shadow:
+        0 12px 30px rgba(56, 44, 62, 0.15);
+    }
+
+    .about-link {
+      position: relative;
+      color: #554a52;
+      font-size: 0.78rem;
+      letter-spacing: 0.19em;
+    }
+
+    .about-link::after {
+      content: "⌄";
+      display: block;
+      margin-top: 3px;
+      font-size: 1rem;
+      animation: arrowMove 2s ease-in-out infinite;
+    }
+
+
+    /* ========================================
+       時光とは
+    ======================================== */
+
+    .about-section {
+      position: relative;
+      padding: 135px 24px;
+      background:
+        radial-gradient(
+          circle at 50% 25%,
+          rgba(222, 208, 229, 0.38),
+          rgba(255, 255, 255, 0) 43%
+        ),
+        linear-gradient(
+          180deg,
+          #f6f2f4 0%,
+          #fbf9f5 100%
+        );
+      overflow: hidden;
+    }
+
+    .about-section::before {
+      content: "";
+      position: absolute;
+      top: 55px;
+      left: 50%;
+      width: min(720px, 82vw);
+      height: min(720px, 82vw);
+      border: 1px solid rgba(170, 144, 100, 0.13);
+      border-radius: 50%;
+      transform: translateX(-50%);
+    }
+
+    .about-section::after {
+      content: "";
+      position: absolute;
+      top: 105px;
+      left: 50%;
+      width: min(620px, 68vw);
+      height: min(620px, 68vw);
+      border: 1px solid rgba(170, 144, 100, 0.1);
+      border-radius: 50%;
+      transform: translateX(-50%);
+    }
+
+    .section-inner {
+      position: relative;
+      z-index: 2;
+      width: min(810px, 100%);
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .section-small-title {
+      margin-bottom: 13px;
+      color: var(--gold);
+      font-size: 0.69rem;
+      letter-spacing: 0.31em;
+      padding-left: 0.31em;
+    }
+
+    .section-title {
+      margin-bottom: 50px;
+      color: #443e47;
+      font-size: clamp(1.8rem, 4vw, 2.65rem);
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      padding-left: 0.22em;
+    }
+
+    .about-text {
+      color: var(--text-soft);
+      font-size: clamp(0.93rem, 2vw, 1.05rem);
+      line-height: 2.4;
+      letter-spacing: 0.1em;
+    }
+
+    .about-text + .about-text {
+      margin-top: 25px;
+    }
+
+    .twelve-seats {
+      width: min(560px, 100%);
+      margin: 65px auto 0;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      align-items: center;
+      gap: 9px;
+    }
+
+    .seat-dot {
+      aspect-ratio: 1;
+      border: 1px solid rgba(152, 123, 82, 0.55);
+      border-radius: 50%;
+      background:
+        radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.96) 0%,
+          rgba(218, 202, 221, 0.6) 48%,
+          rgba(186, 161, 191, 0.18) 100%
+        );
+      box-shadow:
+        0 2px 8px rgba(63, 53, 73, 0.08);
+    }
+
+    .about-more {
+      display: inline-block;
+      margin-top: 47px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--border);
+      color: #6e5c58;
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      transition:
+        color 0.3s ease,
+        border-color 0.3s ease;
+    }
+
+    .about-more:hover,
+    .about-more:focus-visible {
+      color: #9a7848;
+      border-color: #9a7848;
+    }
+
+
+    /* ========================================
+       解析への導線
+    ======================================== */
+
+    .invitation-section {
+      position: relative;
+      min-height: 620px;
+      padding: 130px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-light);
+      text-align: center;
+      overflow: hidden;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(27, 32, 64, 0.98),
+          rgba(64, 50, 83, 0.97)
+        );
+    }
+
+    .invitation-section::before {
+      content: "";
+      position: absolute;
+      inset: -15%;
+      background:
+        radial-gradient(
+          circle at 50% 45%,
+          rgba(225, 205, 170, 0.19),
+          rgba(120, 101, 155, 0.08) 34%,
+          rgba(31, 33, 64, 0) 64%
+        );
+    }
+
+    .invitation-section::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: min(500px, 72vw);
+      height: min(500px, 72vw);
+      border: 1px solid rgba(223, 204, 161, 0.2);
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .invitation-inner {
+      position: relative;
+      z-index: 2;
+      width: min(680px, 100%);
+    }
+
+    .invitation-symbol {
+      margin-bottom: 35px;
+      color: var(--gold-light);
+      font-size: 1.5rem;
+      letter-spacing: 0.4em;
+      padding-left: 0.4em;
+    }
+
+    .invitation-title {
+      margin-bottom: 30px;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 400;
+      line-height: 1.8;
+      letter-spacing: 0.15em;
+    }
+
+    .invitation-text {
+      color: rgba(250, 247, 241, 0.76);
+      font-size: clamp(0.88rem, 1.9vw, 1rem);
+      line-height: 2.35;
+      letter-spacing: 0.1em;
+    }
+
+    .light-button {
+      display: inline-block;
+      min-width: 245px;
+      margin-top: 45px;
+      padding: 14px 30px;
+      border: 1px solid rgba(232, 216, 180, 0.54);
+      border-radius: 100px;
+      color: #fcf8ee;
+      background: rgba(255, 255, 255, 0.05);
+      font-size: 0.9rem;
+      letter-spacing: 0.18em;
+      transition:
+        transform 0.35s ease,
+        background 0.35s ease,
+        border-color 0.35s ease;
+    }
+
+    .light-button:hover,
+    .light-button:focus-visible {
+      transform: translateY(-2px);
+      border-color: rgba(240, 224, 190, 0.86);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+
+    /* ========================================
+       フッター
+    ======================================== */
+
+    .site-footer {
+      padding: 48px 24px;
+      color: #766c76;
+      background: #f4f0f1;
+      text-align: center;
+    }
+
+    .footer-title {
+      font-size: 0.9rem;
+      letter-spacing: 0.32em;
+      padding-left: 0.32em;
+    }
+
+    .footer-subtitle {
+      margin-top: 8px;
+      color: #9b929b;
+      font-size: 0.63rem;
+      letter-spacing: 0.25em;
+      padding-left: 0.25em;
+    }
+
+    .copyright {
+      margin-top: 24px;
+      color: #a59da4;
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+    }
+
+
+    /* ========================================
+       スクロール表示
+    ======================================== */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition:
+        opacity 1s ease,
+        transform 1s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+    /* ========================================
+       アニメーション
+    ======================================== */
+
+    @keyframes heroAppear {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes arrowMove {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(5px);
+      }
+    }
+
+
+    /* ========================================
+       スマートフォン
+    ======================================== */
+
+    @media (max-width: 700px) {
+      .site-header {
+        padding: 21px 22px;
+      }
+
+      .site-logo {
+        font-size: 0.97rem;
+      }
+
+      .header-link {
+        font-size: 0.68rem;
+      }
+
+      .hero {
+        min-height: 100svh;
+        background-position: center center;
+      }
+
+      .hero-content {
+        width: 92%;
+        padding: 145px 16px 90px;
+      }
+
+      .hero-mark {
+        width: 62px;
+        height: 62px;
+        margin-bottom: 19px;
+      }
+
+      .hero-title {
+        font-size: clamp(3.6rem, 20vw, 5.4rem);
+        letter-spacing: 0.18em;
+        padding-left: 0.18em;
+      }
+
+      .hero-subtitle {
+        margin-top: 15px;
+        font-size: 0.83rem;
+        letter-spacing: 0.21em;
+        padding-left: 0.21em;
+      }
+
+      .hero-line {
+        margin-top: 24px;
+        margin-bottom: 23px;
+      }
+
+      .hero-concept {
+        font-size: 0.88rem;
+        line-height: 2;
+        letter-spacing: 0.08em;
+      }
+
+      .main-button {
+        min-width: 220px;
+      }
+
+      .about-section {
+        padding: 110px 23px;
+      }
+
+      .section-title {
+        margin-bottom: 39px;
+      }
+
+      .about-text {
+        font-size: 0.89rem;
+        line-height: 2.3;
+        text-align: left;
+      }
+
+      .twelve-seats {
+        grid-template-columns: repeat(6, 1fr);
+        width: min(310px, 100%);
+        gap: 13px;
+      }
+
+      .invitation-section {
+        min-height: 580px;
+        padding: 105px 23px;
+      }
+
+      .invitation-text {
+        text-align: left;
+      }
+    }
+
+
+    /* ========================================
+       動きを減らす設定
+    ======================================== */
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ヘッダー -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="site-logo">
+        時光
+      </a>
+
+      <a href="#about" class="header-link">
+        時光とは
+      </a>
+    </div>
+  </header>
+
+
+  <!-- メインビジュアル -->
+  <main>
+
+    <section class="hero" aria-labelledby="main-title">
+      <div class="hero-content">
+
+        <div class="hero-mark" aria-hidden="true">
+          <span class="hero-mark-inner"></span>
+        </div>
+
+        <h1 class="hero-title" id="main-title">
+          時光
+        </h1>
+
+        <p class="hero-subtitle">
+          ― 共鳴解析 ―
+        </p>
+
+        <div class="hero-line" aria-hidden="true"></div>
+
+        <p class="hero-concept">
+          あなたには、あなたの光の通り道がある。
+        </p>
+
+        <div class="hero-actions">
+          <a href="分析.html" class="main-button">
+            解析を始める
+          </a>
+
+          <a href="#about" class="about-link">
+            時光とは
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 時光とは -->
+    <section class="about-section" id="about">
+      <div class="section-inner reveal">
+
+        <p class="section-small-title">
+          ABOUT JIKOU
+        </p>
+
+        <h2 class="section-title">
+          時光とは
+        </h2>
+
+        <p class="about-text">
+          時光は、人を良い・悪いで分類するための<br>
+          占いではありません。
+        </p>
+
+        <p class="about-text">
+          生まれ持った12の座を可視化し、<br>
+          タロットで現在の流れを重ねながら、<br>
+          本来の自分の光の通り道を読む解析です。
+        </p>
+
+        <div
+          class="twelve-seats"
+          aria-label="生まれ持った12の座を表す12個の円"
+        >
+          <span class="seat-dot"></span>
+          <span class="seat-dot"></span>
+          <span class="seat-dot"></span>
+          <span class="seat-dot"></span>
+          <span class="seat-dot"></span>
+          <span class="seat-dot"></span>
+          <span class="seat-dot"></span>
+          <span class="seat-dot"></span>
+          <span class="seat-dot"></span>
+          <span class="seat-dot"></span>
+          <span class="seat-dot"></span>
+          <span class="seat-dot"></span>
+        </div>
+
+        <a href="about.html" class="about-more">
+          時光について詳しく見る
+        </a>
+
+      </div>
+    </section>
+
+
+    <!-- 解析への入口 -->
+    <section class="invitation-section">
+      <div class="invitation-inner reveal">
+
+        <div class="invitation-symbol" aria-hidden="true">
+          ◇
+        </div>
+
+        <h2 class="invitation-title">
+          光は、すでにあなたの中にある。
+        </h2>
+
+        <p class="invitation-text">
+          新しい光を与えるのではなく、<br>
+          あなたの中にある光が、<br>
+          どこを通ろうとしているのかを読みます。
+        </p>
+
+        <a href="分析.html" class="light-button">
+          時光解析を始める
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- フッター -->
+  <footer class="site-footer">
+    <p class="footer-title">
+      時光
+    </p>
+
+    <p class="footer-subtitle">
+      JIKOU RESONANCE ANALYSIS
+    </p>
+
+    <p class="copyright">
+      © 2026 JIKOU
+    </p>
+  </footer>
+
+
+  <script>
+    /*
+      スクロールすると文章が静かに現れます。
+    */
+
+    const revealElements = document.querySelectorAll(".reveal");
+
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.18
+      }
+    );
+
+    revealElements.forEach((element) => {
+      revealObserver.observe(element);
+    });
+  </script>
+
+</body>
+</html>
