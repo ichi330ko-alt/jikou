@@ -1,1 +1,66 @@
-
+{
+  "meta": {
+    "name": "時光 12座算定ルール",
+    "version": "0.9",
+    "sourceWorkbook": "共鳴解析_検証・算定マスター_Ver0.9_2026年8月週予報.xlsx"
+  },
+  "dataFiles": {
+    "axes": "axis.json",
+    "western": "western.json",
+    "eastern": "eastern.json",
+    "kabbalah": "kabbalah.json",
+    "katakamuna": "katakamuna.json"
+  },
+  "birthCalculation": {
+    "western": {
+      "input": "10天体＋ASC＋MC（出生時間不明時はASC・MCを除外）",
+      "lookup": "各要素のサインをwestern.jsonへ照合して加算",
+      "normalizeTo": 400
+    },
+    "eastern": {
+      "input": "十大主星5点",
+      "lookup": "各主星をeastern.jsonへ照合して加算",
+      "normalizeTo": 400
+    },
+    "heavenEarthIntegration": {
+      "formula": "(westernNormalized + easternNormalized) / 2",
+      "ratio": {
+        "western": 0.5,
+        "eastern": 0.5
+      },
+      "targetTotal": 400
+    },
+    "kabbalah": {
+      "input": "月・日・年・総数の4秘数",
+      "lookup": "各秘数をkabbalah.jsonへ照合して加算",
+      "normalization": {
+        "targetPerNumber": 100,
+        "formula": "axisRaw / 20 * 100"
+      },
+      "integration": "原型列として別保持"
+    },
+    "katakamuna": {
+      "input": "ひらがなの呼び名",
+      "lookup": "カタカナへ正規化しkatakamuna.jsonへ照合",
+      "integration": "源泉バフとして別保持"
+    }
+  },
+  "output": {
+    "preserveColumns": [
+      "westernRaw",
+      "western400",
+      "easternRaw",
+      "eastern400",
+      "heavenEarth",
+      "kabbalahRaw",
+      "kabbalah100",
+      "katakamunaRaw"
+    ],
+    "interpretationRules": [
+      "三体系は平均だけで消さず、一致・差・ねじれを情報として残す",
+      "座の強度は能力や優劣を意味しない",
+      "強い座と主座は同一とは限らない",
+      "点数だけで人物像を断定せず、回路として読む"
+    ]
+  }
+}
