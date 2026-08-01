@@ -1,1 +1,780 @@
-
+{
+  "meta": {
+    "name": "カタカムナ48音算定表",
+    "version": "1",
+    "sourceSheet": "20_カタカムナ48音算定表"
+  },
+  "rules": {
+    "numerology": "No.（1～48）を各音の固有数霊として使用",
+    "weights": {
+      "primary": 0.5555555555555556,
+      "secondary": 0.3333333333333333,
+      "special": 0.1111111111111111
+    },
+    "formula": "各座加点 = 数霊 × 対応比率",
+    "nRule": "ンは直前音をもう一度加算する仮ルール",
+    "contractedSounds": "48音へ分解。例：ショウ→シ＋ヨ＋ウ",
+    "position": "出生三体系に加算する源泉バフ。第四の出生体系として同列には置かない"
+  },
+  "sounds": [
+    {
+      "no": 1,
+      "sound": "ヒ",
+      "thought": "根源から出・入",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "intuition",
+        "secondary": "acceptance",
+        "special": "release"
+      },
+      "distribution": {
+        "intuition": 0.5555555555555556,
+        "acceptance": 0.3333333333333333,
+        "release": 0.1111111111111111
+      }
+    },
+    {
+      "no": 2,
+      "sound": "フ",
+      "thought": "増える・負・振動",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "expression",
+        "secondary": "emotion",
+        "special": "relationship"
+      },
+      "distribution": {
+        "expression": 1.1111111111111112,
+        "emotion": 0.6666666666666666,
+        "relationship": 0.2222222222222222
+      }
+    },
+    {
+      "no": 3,
+      "sound": "ミ",
+      "thought": "実体・光",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "expression",
+        "secondary": "action",
+        "special": "intuition"
+      },
+      "distribution": {
+        "expression": 1.6666666666666667,
+        "action": 1.0,
+        "intuition": 0.3333333333333333
+      }
+    },
+    {
+      "no": 4,
+      "sound": "ヨ",
+      "thought": "新しい・陽",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "action",
+        "secondary": "time",
+        "special": "intuition"
+      },
+      "distribution": {
+        "action": 2.2222222222222223,
+        "time": 1.3333333333333333,
+        "intuition": 0.4444444444444444
+      }
+    },
+    {
+      "no": 5,
+      "sound": "イ",
+      "thought": "伝わるもの・陰",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "expression",
+        "secondary": "relationship",
+        "special": "acceptance"
+      },
+      "distribution": {
+        "expression": 2.7777777777777777,
+        "relationship": 1.6666666666666667,
+        "acceptance": 0.5555555555555556
+      }
+    },
+    {
+      "no": 6,
+      "sound": "マ",
+      "thought": "受容・需要",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "acceptance",
+        "secondary": "relationship",
+        "special": "trust"
+      },
+      "distribution": {
+        "acceptance": 3.3333333333333335,
+        "relationship": 2.0,
+        "trust": 0.6666666666666666
+      }
+    },
+    {
+      "no": 7,
+      "sound": "ワ",
+      "thought": "調和",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "relationship",
+        "secondary": "acceptance",
+        "special": "safety"
+      },
+      "distribution": {
+        "relationship": 3.888888888888889,
+        "acceptance": 2.3333333333333335,
+        "safety": 0.7777777777777778
+      }
+    },
+    {
+      "no": 8,
+      "sound": "リ",
+      "thought": "離れる",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "release",
+        "secondary": "boundary",
+        "special": "action"
+      },
+      "distribution": {
+        "release": 4.444444444444445,
+        "boundary": 2.6666666666666665,
+        "action": 0.8888888888888888
+      }
+    },
+    {
+      "no": 9,
+      "sound": "テ",
+      "thought": "発信・放射",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "expression",
+        "secondary": "action",
+        "special": "relationship"
+      },
+      "distribution": {
+        "expression": 5.0,
+        "action": 3.0,
+        "relationship": 1.0
+      }
+    },
+    {
+      "no": 10,
+      "sound": "メ",
+      "thought": "指向・思考・芽",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "understanding",
+        "secondary": "intuition",
+        "special": "action"
+      },
+      "distribution": {
+        "understanding": 5.555555555555555,
+        "intuition": 3.3333333333333335,
+        "action": 1.1111111111111112
+      }
+    },
+    {
+      "no": 11,
+      "sound": "ク",
+      "thought": "引き寄る",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "relationship",
+        "secondary": "trust",
+        "special": "acceptance"
+      },
+      "distribution": {
+        "relationship": 6.111111111111111,
+        "trust": 3.6666666666666665,
+        "acceptance": 1.2222222222222223
+      }
+    },
+    {
+      "no": 12,
+      "sound": "ル",
+      "thought": "留まる・止まる",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "safety",
+        "secondary": "boundary",
+        "special": "time"
+      },
+      "distribution": {
+        "safety": 6.666666666666667,
+        "boundary": 4.0,
+        "time": 1.3333333333333333
+      }
+    },
+    {
+      "no": 13,
+      "sound": "ム",
+      "thought": "広がり",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "release",
+        "secondary": "expression",
+        "special": "acceptance"
+      },
+      "distribution": {
+        "release": 7.222222222222222,
+        "expression": 4.333333333333333,
+        "acceptance": 1.4444444444444444
+      }
+    },
+    {
+      "no": 14,
+      "sound": "ナ",
+      "thought": "核・重要なもの",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "trust",
+        "secondary": "safety",
+        "special": "boundary"
+      },
+      "distribution": {
+        "trust": 7.777777777777778,
+        "safety": 4.666666666666667,
+        "boundary": 1.5555555555555556
+      }
+    },
+    {
+      "no": 15,
+      "sound": "ヤ",
+      "thought": "飽和する",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "safety",
+        "secondary": "acceptance",
+        "special": "release"
+      },
+      "distribution": {
+        "safety": 8.333333333333334,
+        "acceptance": 5.0,
+        "release": 1.6666666666666667
+      }
+    },
+    {
+      "no": 16,
+      "sound": "コ",
+      "thought": "転がり入る・出る",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "action",
+        "secondary": "release",
+        "special": "relationship"
+      },
+      "distribution": {
+        "action": 8.88888888888889,
+        "release": 5.333333333333333,
+        "relationship": 1.7777777777777777
+      }
+    },
+    {
+      "no": 17,
+      "sound": "ト",
+      "thought": "統合",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "relationship",
+        "secondary": "acceptance",
+        "special": "safety"
+      },
+      "distribution": {
+        "relationship": 9.444444444444445,
+        "acceptance": 5.666666666666667,
+        "safety": 1.8888888888888888
+      }
+    },
+    {
+      "no": 18,
+      "sound": "ア",
+      "thought": "感じる・生命",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "emotion",
+        "secondary": "intuition",
+        "special": "acceptance"
+      },
+      "distribution": {
+        "emotion": 10.0,
+        "intuition": 6.0,
+        "acceptance": 2.0
+      }
+    },
+    {
+      "no": 19,
+      "sound": "ウ",
+      "thought": "生まれ出る",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "action",
+        "secondary": "expression",
+        "special": "time"
+      },
+      "distribution": {
+        "action": 10.555555555555555,
+        "expression": 6.333333333333333,
+        "time": 2.111111111111111
+      }
+    },
+    {
+      "no": 20,
+      "sound": "ノ",
+      "thought": "時間をかける",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "time",
+        "secondary": "trust",
+        "special": "safety"
+      },
+      "distribution": {
+        "time": 11.11111111111111,
+        "trust": 6.666666666666667,
+        "safety": 2.2222222222222223
+      }
+    },
+    {
+      "no": 21,
+      "sound": "ス",
+      "thought": "一方方向へ進む",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "action",
+        "secondary": "time",
+        "special": "intuition"
+      },
+      "distribution": {
+        "action": 11.666666666666666,
+        "time": 7.0,
+        "intuition": 2.3333333333333335
+      }
+    },
+    {
+      "no": 22,
+      "sound": "ヘ",
+      "thought": "縁",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "relationship",
+        "secondary": "trust",
+        "special": "boundary"
+      },
+      "distribution": {
+        "relationship": 12.222222222222221,
+        "trust": 7.333333333333333,
+        "boundary": 2.4444444444444446
+      }
+    },
+    {
+      "no": 23,
+      "sound": "シ",
+      "thought": "示し・現象",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "expression",
+        "secondary": "understanding",
+        "special": "intuition"
+      },
+      "distribution": {
+        "expression": 12.777777777777779,
+        "understanding": 7.666666666666667,
+        "intuition": 2.5555555555555554
+      }
+    },
+    {
+      "no": 24,
+      "sound": "レ",
+      "thought": "消失する",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "release",
+        "secondary": "time",
+        "special": "boundary"
+      },
+      "distribution": {
+        "release": 13.333333333333334,
+        "time": 8.0,
+        "boundary": 2.6666666666666665
+      }
+    },
+    {
+      "no": 25,
+      "sound": "カ",
+      "thought": "力",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "action",
+        "secondary": "expression",
+        "special": "trust"
+      },
+      "distribution": {
+        "action": 13.88888888888889,
+        "expression": 8.333333333333334,
+        "trust": 2.7777777777777777
+      }
+    },
+    {
+      "no": 26,
+      "sound": "タ",
+      "thought": "分れる",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "boundary",
+        "secondary": "release",
+        "special": "relationship"
+      },
+      "distribution": {
+        "boundary": 14.444444444444445,
+        "release": 8.666666666666666,
+        "relationship": 2.888888888888889
+      }
+    },
+    {
+      "no": 27,
+      "sound": "チ",
+      "thought": "凝縮する",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "safety",
+        "secondary": "boundary",
+        "special": "trust"
+      },
+      "distribution": {
+        "safety": 15.0,
+        "boundary": 9.0,
+        "trust": 3.0
+      }
+    },
+    {
+      "no": 28,
+      "sound": "サ",
+      "thought": "遮り・差",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "boundary",
+        "secondary": "understanding",
+        "special": "relationship"
+      },
+      "distribution": {
+        "boundary": 15.555555555555555,
+        "understanding": 9.333333333333334,
+        "relationship": 3.111111111111111
+      }
+    },
+    {
+      "no": 29,
+      "sound": "キ",
+      "thought": "エネルギー・気",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "action",
+        "secondary": "intuition",
+        "special": "expression"
+      },
+      "distribution": {
+        "action": 16.11111111111111,
+        "intuition": 9.666666666666666,
+        "expression": 3.2222222222222223
+      }
+    },
+    {
+      "no": 30,
+      "sound": "ソ",
+      "thought": "外れる",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "release",
+        "secondary": "boundary",
+        "special": "action"
+      },
+      "distribution": {
+        "release": 16.666666666666668,
+        "boundary": 10.0,
+        "action": 3.3333333333333335
+      }
+    },
+    {
+      "no": 31,
+      "sound": "ラ",
+      "thought": "場",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "safety",
+        "secondary": "boundary",
+        "special": "relationship"
+      },
+      "distribution": {
+        "safety": 17.22222222222222,
+        "boundary": 10.333333333333334,
+        "relationship": 3.4444444444444446
+      }
+    },
+    {
+      "no": 32,
+      "sound": "ニ",
+      "thought": "圧力",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "action",
+        "secondary": "boundary",
+        "special": "emotion"
+      },
+      "distribution": {
+        "action": 17.77777777777778,
+        "boundary": 10.666666666666666,
+        "emotion": 3.5555555555555554
+      }
+    },
+    {
+      "no": 33,
+      "sound": "モ",
+      "thought": "漂う",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "release",
+        "secondary": "acceptance",
+        "special": "time"
+      },
+      "distribution": {
+        "release": 18.333333333333332,
+        "acceptance": 11.0,
+        "time": 3.6666666666666665
+      }
+    },
+    {
+      "no": 34,
+      "sound": "ロ",
+      "thought": "空間",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "boundary",
+        "secondary": "safety",
+        "special": "acceptance"
+      },
+      "distribution": {
+        "boundary": 18.88888888888889,
+        "safety": 11.333333333333334,
+        "acceptance": 3.7777777777777777
+      }
+    },
+    {
+      "no": 35,
+      "sound": "ケ",
+      "thought": "放出する",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "expression",
+        "secondary": "release",
+        "special": "action"
+      },
+      "distribution": {
+        "expression": 19.444444444444443,
+        "release": 11.666666666666666,
+        "action": 3.888888888888889
+      }
+    },
+    {
+      "no": 36,
+      "sound": "セ",
+      "thought": "引き受ける",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "acceptance",
+        "secondary": "trust",
+        "special": "relationship"
+      },
+      "distribution": {
+        "acceptance": 20.0,
+        "trust": 12.0,
+        "relationship": 4.0
+      }
+    },
+    {
+      "no": 37,
+      "sound": "ユ",
+      "thought": "湧き出る",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "expression",
+        "secondary": "emotion",
+        "special": "intuition"
+      },
+      "distribution": {
+        "expression": 20.555555555555557,
+        "emotion": 12.333333333333334,
+        "intuition": 4.111111111111111
+      }
+    },
+    {
+      "no": 38,
+      "sound": "ヱ",
+      "thought": "届いたもの",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "acceptance",
+        "secondary": "relationship",
+        "special": "safety"
+      },
+      "distribution": {
+        "acceptance": 21.11111111111111,
+        "relationship": 12.666666666666666,
+        "safety": 4.222222222222222
+      }
+    },
+    {
+      "no": 39,
+      "sound": "ヌ",
+      "thought": "突き抜く・貫く",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "action",
+        "secondary": "boundary",
+        "special": "release"
+      },
+      "distribution": {
+        "action": 21.666666666666668,
+        "boundary": 13.0,
+        "release": 4.333333333333333
+      }
+    },
+    {
+      "no": 40,
+      "sound": "オ",
+      "thought": "奥深く",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "understanding",
+        "secondary": "intuition",
+        "special": "emotion"
+      },
+      "distribution": {
+        "understanding": 22.22222222222222,
+        "intuition": 13.333333333333334,
+        "emotion": 4.444444444444445
+      }
+    },
+    {
+      "no": 41,
+      "sound": "ヲ",
+      "thought": "奥に出現する",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "intuition",
+        "secondary": "understanding",
+        "special": "expression"
+      },
+      "distribution": {
+        "intuition": 22.77777777777778,
+        "understanding": 13.666666666666666,
+        "expression": 4.555555555555555
+      }
+    },
+    {
+      "no": 42,
+      "sound": "ハ",
+      "thought": "引き合う",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "relationship",
+        "secondary": "trust",
+        "special": "acceptance"
+      },
+      "distribution": {
+        "relationship": 23.333333333333332,
+        "trust": 14.0,
+        "acceptance": 4.666666666666667
+      }
+    },
+    {
+      "no": 43,
+      "sound": "エ",
+      "thought": "届く",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "relationship",
+        "secondary": "expression",
+        "special": "trust"
+      },
+      "distribution": {
+        "relationship": 23.88888888888889,
+        "expression": 14.333333333333334,
+        "trust": 4.777777777777778
+      }
+    },
+    {
+      "no": 44,
+      "sound": "ツ",
+      "thought": "集まる",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "relationship",
+        "secondary": "acceptance",
+        "special": "safety"
+      },
+      "distribution": {
+        "relationship": 24.444444444444443,
+        "acceptance": 14.666666666666666,
+        "safety": 4.888888888888889
+      }
+    },
+    {
+      "no": 45,
+      "sound": "ヰ",
+      "thought": "存在",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "safety",
+        "secondary": "trust",
+        "special": "boundary"
+      },
+      "distribution": {
+        "safety": 25.0,
+        "trust": 15.0,
+        "boundary": 5.0
+      }
+    },
+    {
+      "no": 46,
+      "sound": "ネ",
+      "thought": "充電する・充たす",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "safety",
+        "secondary": "acceptance",
+        "special": "trust"
+      },
+      "distribution": {
+        "safety": 25.555555555555557,
+        "acceptance": 15.333333333333334,
+        "trust": 5.111111111111111
+      }
+    },
+    {
+      "no": 47,
+      "sound": "ホ",
+      "thought": "引き離す",
+      "status": "正式表Ver.1",
+      "mapping": {
+        "primary": "release",
+        "secondary": "boundary",
+        "special": "relationship"
+      },
+      "distribution": {
+        "release": 26.11111111111111,
+        "boundary": 15.666666666666666,
+        "relationship": 5.222222222222222
+      }
+    },
+    {
+      "no": 48,
+      "sound": "ン",
+      "thought": "画像上では独立した思念を確認しづらい",
+      "status": "保留",
+      "mapping": null
+    }
+  ]
+}
