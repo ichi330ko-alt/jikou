@@ -1,1 +1,506 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>時光解析スタジオ</title>
 
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        sans-serif;
+      color: #2f2f2f;
+      background: #f3f4f6;
+      line-height: 1.6;
+    }
+
+    .studio {
+      width: min(1100px, 100%);
+      margin: 0 auto;
+    }
+
+    .studio-header {
+      margin-bottom: 24px;
+    }
+
+    .studio-header h1 {
+      margin: 0 0 6px;
+      font-size: 1.8rem;
+    }
+
+    .studio-header p {
+      margin: 0;
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    .panel {
+      margin-bottom: 20px;
+      padding: 22px;
+      border: 1px solid #d7dbe0;
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    .panel h2 {
+      margin: 0 0 18px;
+      font-size: 1.15rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label,
+    legend {
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    input,
+    select,
+    textarea,
+    button {
+      font: inherit;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid #c9ced6;
+      border-radius: 8px;
+      background: #fff;
+      padding: 11px 12px;
+      color: #222;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: 2px solid #93a4b8;
+      outline-offset: 1px;
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .help {
+      margin: 0;
+      color: #6b7280;
+      font-size: 0.8rem;
+    }
+
+    .radio-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 22px;
+      padding-top: 6px;
+    }
+
+    .radio-row label {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-weight: 400;
+    }
+
+    .radio-row input {
+      width: auto;
+    }
+
+    .seat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .seat-box {
+      min-height: 86px;
+      padding: 12px;
+      border: 1px solid #d7dbe0;
+      border-radius: 8px;
+      background: #fafafa;
+    }
+
+    .seat-name {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .seat-value {
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+
+    .tarot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .tarot-card {
+      padding: 16px;
+      border: 1px solid #d7dbe0;
+      border-radius: 10px;
+      background: #fafafa;
+    }
+
+    .tarot-card h3 {
+      margin: 0 0 12px;
+      font-size: 1rem;
+    }
+
+    .tarot-card .field + .field {
+      margin-top: 12px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
+    button {
+      border: 0;
+      border-radius: 8px;
+      padding: 12px 20px;
+      cursor: pointer;
+    }
+
+    .button-secondary {
+      background: #e5e7eb;
+      color: #222;
+    }
+
+    .button-primary {
+      background: #374151;
+      color: #fff;
+    }
+
+    .status {
+      margin-top: 14px;
+      min-height: 1.5em;
+      color: #4b5563;
+      font-size: 0.9rem;
+    }
+
+    .preview {
+      display: none;
+      margin-top: 18px;
+      padding: 16px;
+      border: 1px solid #d7dbe0;
+      border-radius: 8px;
+      background: #fafafa;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 800px) {
+      body {
+        padding: 14px;
+      }
+
+      .form-grid,
+      .tarot-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .seat-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .actions {
+        justify-content: stretch;
+      }
+
+      .actions button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="studio">
+    <header class="studio-header">
+      <h1>時光解析スタジオ</h1>
+      <p>解析に必要な情報とタロットカードを入力する管理用ページです。</p>
+    </header>
+
+    <form id="studio-form">
+
+      <section class="panel">
+        <h2>基本情報</h2>
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="birth-date">生年月日</label>
+            <input type="date" id="birth-date" name="birthDate" required>
+          </div>
+
+          <div class="field">
+            <label for="birth-time">出生時間</label>
+            <input type="time" id="birth-time" name="birthTime">
+          </div>
+
+          <div class="field">
+            <label for="nickname">呼び名（ひらがな）</label>
+            <input
+              type="text"
+              id="nickname"
+              name="nickname"
+              placeholder="例：そのこ"
+              pattern="[ぁ-ゖー\s]*"
+            >
+            <p class="help">未入力でも解析可能です。入力した場合はカタカムナ解析に使用します。</p>
+          </div>
+
+          <fieldset class="field">
+            <legend>性別</legend>
+            <div class="radio-row">
+              <label><input type="radio" name="gender" value="女性">女性</label>
+              <label><input type="radio" name="gender" value="男性">男性</label>
+              <label><input type="radio" name="gender" value="その他">その他</label>
+              <label><input type="radio" name="gender" value="回答しない">回答しない</label>
+            </div>
+          </fieldset>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>12座の算定結果</h2>
+
+        <div class="seat-grid" id="seat-grid">
+          <div class="seat-box"><span class="seat-name">感</span><span class="seat-value">未算定</span></div>
+          <div class="seat-box"><span class="seat-name">現</span><span class="seat-value">未算定</span></div>
+          <div class="seat-box"><span class="seat-name">関</span><span class="seat-value">未算定</span></div>
+          <div class="seat-box"><span class="seat-name">信</span><span class="seat-value">未算定</span></div>
+          <div class="seat-box"><span class="seat-name">理</span><span class="seat-value">未算定</span></div>
+          <div class="seat-box"><span class="seat-name">動</span><span class="seat-value">未算定</span></div>
+          <div class="seat-box"><span class="seat-name">境</span><span class="seat-value">未算定</span></div>
+          <div class="seat-box"><span class="seat-name">放</span><span class="seat-value">未算定</span></div>
+          <div class="seat-box"><span class="seat-name">安</span><span class="seat-value">未算定</span></div>
+          <div class="seat-box"><span class="seat-name">受</span><span class="seat-value">未算定</span></div>
+          <div class="seat-box"><span class="seat-name">時</span><span class="seat-value">未算定</span></div>
+          <div class="seat-box"><span class="seat-name">情</span><span class="seat-value">未算定</span></div>
+        </div>
+
+        <div class="actions" style="margin-top:18px;">
+          <button type="button" class="button-secondary" id="calculate-seats">
+            12座を算定
+          </button>
+        </div>
+
+        <p class="status" id="seat-status" aria-live="polite"></p>
+      </section>
+
+      <section class="panel">
+        <h2>タロット3枚</h2>
+
+        <div class="tarot-grid">
+
+          <div class="tarot-card">
+            <h3>現在</h3>
+
+            <div class="field">
+              <label for="tarot-current-card">カード</label>
+              <select id="tarot-current-card" name="tarotCurrentCard">
+                <option value="">選択してください</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="tarot-current-direction">向き</label>
+              <select id="tarot-current-direction" name="tarotCurrentDirection">
+                <option value="">選択してください</option>
+                <option value="正位置">正位置</option>
+                <option value="逆位置">逆位置</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="tarot-card">
+            <h3>課題</h3>
+
+            <div class="field">
+              <label for="tarot-challenge-card">カード</label>
+              <select id="tarot-challenge-card" name="tarotChallengeCard">
+                <option value="">選択してください</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="tarot-challenge-direction">向き</label>
+              <select id="tarot-challenge-direction" name="tarotChallengeDirection">
+                <option value="">選択してください</option>
+                <option value="正位置">正位置</option>
+                <option value="逆位置">逆位置</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="tarot-card">
+            <h3>鍵</h3>
+
+            <div class="field">
+              <label for="tarot-key-card">カード</label>
+              <select id="tarot-key-card" name="tarotKeyCard">
+                <option value="">選択してください</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="tarot-key-direction">向き</label>
+              <select id="tarot-key-direction" name="tarotKeyDirection">
+                <option value="">選択してください</option>
+                <option value="正位置">正位置</option>
+                <option value="逆位置">逆位置</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>補足メモ</h2>
+
+        <div class="field">
+          <label for="notes">メモ</label>
+          <textarea
+            id="notes"
+            name="notes"
+            placeholder="本人から聞いたこと、確認したい点、リーディングの補足など"
+          ></textarea>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="actions">
+          <button type="button" class="button-primary" id="create-result">
+            解析結果を作成する
+          </button>
+        </div>
+
+        <p class="status" id="result-status" aria-live="polite"></p>
+        <div class="preview" id="preview"></div>
+      </section>
+
+    </form>
+  </main>
+
+  <script>
+    const tarotCards = [
+      "愚者",
+      "魔術師",
+      "女教皇",
+      "女帝",
+      "皇帝",
+      "法王",
+      "恋人",
+      "戦車",
+      "力",
+      "隠者",
+      "運命の輪",
+      "正義",
+      "吊るされた男",
+      "死神",
+      "節制",
+      "悪魔",
+      "塔",
+      "星",
+      "月",
+      "太陽",
+      "審判",
+      "世界"
+    ];
+
+    const tarotSelectIds = [
+      "tarot-current-card",
+      "tarot-challenge-card",
+      "tarot-key-card"
+    ];
+
+    tarotSelectIds.forEach((id) => {
+      const select = document.getElementById(id);
+
+      tarotCards.forEach((card) => {
+        const option = document.createElement("option");
+        option.value = card;
+        option.textContent = card;
+        select.appendChild(option);
+      });
+    });
+
+    const calculateSeatsButton = document.getElementById("calculate-seats");
+    const seatStatus = document.getElementById("seat-status");
+
+    calculateSeatsButton.addEventListener("click", () => {
+      const birthDate = document.getElementById("birth-date").value;
+
+      if (!birthDate) {
+        seatStatus.textContent = "生年月日を入力してください。";
+        return;
+      }
+
+      seatStatus.textContent =
+        "入力内容を受け取りました。12座の正式な算定ロジックは、次の工程で接続します。";
+    });
+
+    const createResultButton = document.getElementById("create-result");
+    const resultStatus = document.getElementById("result-status");
+    const preview = document.getElementById("preview");
+
+    createResultButton.addEventListener("click", () => {
+      const form = document.getElementById("studio-form");
+
+      if (!form.reportValidity()) {
+        resultStatus.textContent = "入力内容を確認してください。";
+        return;
+      }
+
+      const data = new FormData(form);
+      const result = {};
+
+      data.forEach((value, key) => {
+        result[key] = value;
+      });
+
+      sessionStorage.setItem("jikouStudioData", JSON.stringify(result));
+
+      preview.style.display = "block";
+      preview.textContent = JSON.stringify(result, null, 2);
+
+      resultStatus.textContent =
+        "入力内容を保存しました。解析ロジックと result.html を接続すると、結果作成へ進めます。";
+    });
+  </script>
+</body>
+</html>
