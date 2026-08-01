@@ -1,1 +1,212 @@
-
+{
+  "meta": {
+    "name": "算命学十大主星→12座変換",
+    "version": "0.4",
+    "sourceSheet": "14_東洋変換表"
+  },
+  "scoring": {
+    "symbols": {
+      "◎": 5,
+      "○": 3,
+      "△": 1,
+      "—": 0
+    },
+    "pointsPerElement": 20
+  },
+  "normalization": {
+    "targetTotal": 400,
+    "formula": "normalizedAxis = rawAxis * (400 / rawTotal)"
+  },
+  "elements": [
+    {
+      "name": "貫索星",
+      "theme": "自己・独立・守り",
+      "scores": {
+        "intuition": 1,
+        "expression": 0,
+        "relationship": 1,
+        "trust": 3,
+        "understanding": 1,
+        "action": 3,
+        "boundary": 5,
+        "release": 1,
+        "safety": 3,
+        "acceptance": 1,
+        "time": 1,
+        "emotion": 0
+      },
+      "total": 20
+    },
+    {
+      "name": "石門星",
+      "theme": "協調・仲間・集団",
+      "scores": {
+        "intuition": 0,
+        "expression": 3,
+        "relationship": 5,
+        "trust": 3,
+        "understanding": 0,
+        "action": 0,
+        "boundary": 3,
+        "release": 0,
+        "safety": 1,
+        "acceptance": 3,
+        "time": 1,
+        "emotion": 1
+      },
+      "total": 20
+    },
+    {
+      "name": "鳳閣星",
+      "theme": "自然な伝達・開放",
+      "scores": {
+        "intuition": 1,
+        "expression": 5,
+        "relationship": 1,
+        "trust": 1,
+        "understanding": 0,
+        "action": 1,
+        "boundary": 0,
+        "release": 3,
+        "safety": 3,
+        "acceptance": 1,
+        "time": 1,
+        "emotion": 3
+      },
+      "total": 20
+    },
+    {
+      "name": "調舒星",
+      "theme": "繊細な表現・内面",
+      "scores": {
+        "intuition": 3,
+        "expression": 5,
+        "relationship": 1,
+        "trust": 1,
+        "understanding": 3,
+        "action": 0,
+        "boundary": 3,
+        "release": 1,
+        "safety": 0,
+        "acceptance": 1,
+        "time": 1,
+        "emotion": 1
+      },
+      "total": 20
+    },
+    {
+      "name": "禄存星",
+      "theme": "愛情・引力・信用",
+      "scores": {
+        "intuition": 0,
+        "expression": 0,
+        "relationship": 5,
+        "trust": 5,
+        "understanding": 0,
+        "action": 1,
+        "boundary": 1,
+        "release": 0,
+        "safety": 3,
+        "acceptance": 3,
+        "time": 1,
+        "emotion": 1
+      },
+      "total": 20
+    },
+    {
+      "name": "司禄星",
+      "theme": "蓄積・家庭・堅実",
+      "scores": {
+        "intuition": 0,
+        "expression": 0,
+        "relationship": 3,
+        "trust": 5,
+        "understanding": 0,
+        "action": 1,
+        "boundary": 1,
+        "release": 1,
+        "safety": 5,
+        "acceptance": 1,
+        "time": 3,
+        "emotion": 0
+      },
+      "total": 20
+    },
+    {
+      "name": "車騎星",
+      "theme": "前進・実行・突破",
+      "scores": {
+        "intuition": 1,
+        "expression": 3,
+        "relationship": 1,
+        "trust": 1,
+        "understanding": 1,
+        "action": 5,
+        "boundary": 5,
+        "release": 1,
+        "safety": 0,
+        "acceptance": 0,
+        "time": 1,
+        "emotion": 1
+      },
+      "total": 20
+    },
+    {
+      "name": "牽牛星",
+      "theme": "責任・役割・秩序",
+      "scores": {
+        "intuition": 0,
+        "expression": 1,
+        "relationship": 1,
+        "trust": 3,
+        "understanding": 3,
+        "action": 5,
+        "boundary": 3,
+        "release": 0,
+        "safety": 1,
+        "acceptance": 0,
+        "time": 3,
+        "emotion": 0
+      },
+      "total": 20
+    },
+    {
+      "name": "龍高星",
+      "theme": "体験学習・改革・冒険",
+      "scores": {
+        "intuition": 3,
+        "expression": 1,
+        "relationship": 1,
+        "trust": 1,
+        "understanding": 5,
+        "action": 3,
+        "boundary": 1,
+        "release": 3,
+        "safety": 0,
+        "acceptance": 1,
+        "time": 1,
+        "emotion": 0
+      },
+      "total": 20
+    },
+    {
+      "name": "玉堂星",
+      "theme": "学習・伝統・知恵",
+      "scores": {
+        "intuition": 0,
+        "expression": 1,
+        "relationship": 1,
+        "trust": 3,
+        "understanding": 5,
+        "action": 0,
+        "boundary": 1,
+        "release": 0,
+        "safety": 3,
+        "acceptance": 3,
+        "time": 3,
+        "emotion": 0
+      },
+      "total": 20
+    }
+  ]
+}
