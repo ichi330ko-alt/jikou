@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <meta
     name="description"
-    content="生年月日や呼び名を入力して、時光解析を始めるページです。"
+    content="生年月日・出生時間・出生地・呼び名を入力して、時光解析を始めるページです。"
   >
+
   <title>時光解析 | 時光</title>
+
   <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -78,6 +81,27 @@
 
         <p class="form-help">
           出生時間が分かる場合は、より詳細な解析に使用します。
+        </p>
+      </div>
+
+      <div class="form-section">
+        <label class="form-label" for="birth-place">
+          出生地
+          <span class="required">必須</span>
+        </label>
+
+        <input
+          class="form-control"
+          type="text"
+          id="birth-place"
+          name="birthPlace"
+          placeholder="例：千葉県君津市"
+          autocomplete="address-level2"
+          required
+        >
+
+        <p class="form-help">
+          都道府県と市区町村まで入力してください。
         </p>
       </div>
 
@@ -177,7 +201,9 @@
       if (value === "" || /^[ぁ-ゖー\s]+$/.test(value)) {
         nickname.setCustomValidity("");
       } else {
-        nickname.setCustomValidity("呼び名は、ひらがなで入力してください。");
+        nickname.setCustomValidity(
+          "呼び名は、ひらがなで入力してください。"
+        );
       }
     });
   </script>
