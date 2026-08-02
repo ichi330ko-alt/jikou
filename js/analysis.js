@@ -1,5 +1,3 @@
-analysis.js
-
 (() => {
   "use strict";
 
@@ -148,13 +146,18 @@ analysis.js
   }
 
   async function loadJson(path) {
-    const response = await fetch(path, { cache: "no-store" });
+    const url = new URL(path, document.baseURI);
+    const response = await fetch(url, { cache: "no-store" });
 
     if (!response.ok) {
-      throw new Error(`${path} を読み込めませんでした。`);
+      throw new Error(`${path}（HTTP ${response.status}）を読み込めませんでした。`);
     }
 
-    return response.json();
+    try {
+      return await response.json();
+    } catch (error) {
+      throw new Error(`${path} のJSON形式を確認してください。`);
+    }
   }
 
   async function loadData() {
@@ -244,14 +247,6 @@ analysis.js
       field.append(label, select);
       container.appendChild(field);
     });
-  }
-
-  function buildTarotInputs() {
-    [
-      "tarot-current-card",
-      "tarot-challenge-card",
-      "tarot-key-card"
-    ].forEach((id) => appendOptions(byId(id), TAROT_CARDS));
   }
 
   function buildSeatGrid() {
@@ -579,6 +574,30 @@ analysis.js
     return lines.join("\n");
   }
 
+  async function ensureDataLoaded() {
+    if (state.data) {
+      return;
+    }
+
+    const status = byId("engine-status");
+    status.textContent = "算定データを読み込んでいます…";
+    await loadData();
+
+    if (!byId("western-grid").children.length) {
+      buildWesternInputs();
+    }
+
+    if (!byId("eastern-grid").children.length) {
+      buildEasternInputs();
+    }
+
+    if (!byId("seat-grid").children.length) {
+      buildSeatGrid();
+    }
+
+    status.textContent = "算定データを読み込みました。";
+  }
+
   function saveStudioResult(result) {
     sessionStorage.setItem("jikouStudioData", JSON.stringify(result));
   }
@@ -587,27 +606,19 @@ analysis.js
     const status = byId("engine-status");
 
     try {
-      status.textContent = "算定データを読み込んでいます…";
-      await loadData();
-
-      buildWesternInputs();
-      buildEasternInputs();
-      buildTarotInputs();
-      buildSeatGrid();
-
-      byId("calculate-seats").disabled = false;
-      byId("create-result").disabled = false;
-      status.textContent = "算定データを読み込みました。";
+      await ensureDataLoaded();
     } catch (error) {
       console.error(error);
       status.textContent =
-        "算定データの読み込みに失敗しました。GitHub Pages上で開き、dataフォルダの配置を確認してください。";
+        `算定データを読み込めませんでした：${error.message}`;
     }
 
-    byId("calculate-seats").addEventListener("click", () => {
+    byId("calculate-seats").addEventListener("click", async () => {
       const seatStatus = byId("seat-status");
 
       try {
+        await ensureDataLoaded();
+
         const form = byId("studio-form");
 
         if (!form.reportValidity()) {
@@ -623,14 +634,17 @@ analysis.js
         seatStatus.textContent =
           "12座を算定しました。天地統合・カバラ・名前音は別列で表示しています。";
       } catch (error) {
+        console.error(error);
         seatStatus.textContent = error.message;
       }
     });
 
-    byId("create-result").addEventListener("click", () => {
+    byId("create-result").addEventListener("click", async () => {
       const resultStatus = byId("result-status");
 
       try {
+        await ensureDataLoaded();
+
         const form = byId("studio-form");
 
         if (!form.reportValidity()) {
@@ -652,6 +666,7 @@ analysis.js
         resultStatus.textContent =
           "候補文を作成し、解析データを一時保存しました。";
       } catch (error) {
+        console.error(error);
         resultStatus.textContent = error.message;
       }
     });
