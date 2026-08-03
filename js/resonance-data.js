@@ -40,6 +40,8 @@ window.RESONANCE_DATA = Object.freeze({
 
     image: "img/card-kan.png",
 
+    icon: "img/icon-kan.png",
+
     cycles: Object.freeze({
 
       1: Object.freeze({
@@ -99,6 +101,8 @@ window.RESONANCE_DATA = Object.freeze({
     name: "表現",
 
     image: "img/card-gen.png",
+
+    icon: "img/icon-gen.png",
 
     cycles: Object.freeze({
 
@@ -160,6 +164,8 @@ window.RESONANCE_DATA = Object.freeze({
 
     image: "img/card-seki.png",
 
+    icon: "img/icon-seki.png",
+
     cycles: Object.freeze({
 
       1: Object.freeze({
@@ -219,6 +225,8 @@ window.RESONANCE_DATA = Object.freeze({
     name: "信頼",
 
     image: "img/card-shin.png",
+
+    icon: "img/icon-shin.png",
 
     cycles: Object.freeze({
 
@@ -284,6 +292,8 @@ window.RESONANCE_DATA = Object.freeze({
 
     image: "img/card-ri.png",
 
+    icon: "img/icon-ri.png",
+
     cycles: Object.freeze({
 
       1: Object.freeze({
@@ -347,6 +357,8 @@ window.RESONANCE_DATA = Object.freeze({
     name: "行動",
 
     image: "img/card-dou.png",
+
+    icon: "img/icon-dou.png",
 
     cycles: Object.freeze({
 
@@ -412,6 +424,8 @@ window.RESONANCE_DATA = Object.freeze({
 
     image: "img/card-kyou.png",
 
+    icon: "img/icon-kyou.png",
+
     cycles: Object.freeze({
 
       1: Object.freeze({
@@ -471,6 +485,8 @@ window.RESONANCE_DATA = Object.freeze({
     name: "手放し",
 
     image: "img/card-hou.png",
+
+    icon: "img/icon-hou.png",
 
     cycles: Object.freeze({
 
@@ -540,6 +556,8 @@ window.RESONANCE_DATA = Object.freeze({
 
     image: "img/card-an.png",
 
+    icon: "img/icon-an.png",
+
     cycles: Object.freeze({
 
       1: Object.freeze({
@@ -600,6 +618,8 @@ window.RESONANCE_DATA = Object.freeze({
 
     image: "img/card-ju.png",
 
+    icon: "img/icon-ju.png",
+
     cycles: Object.freeze({
 
       1: Object.freeze({
@@ -659,6 +679,8 @@ window.RESONANCE_DATA = Object.freeze({
     name: "時",
 
     image: "img/card-toki.png",
+
+    icon: "img/icon-toki.png",
 
     cycles: Object.freeze({
 
@@ -723,6 +745,8 @@ window.RESONANCE_DATA = Object.freeze({
     name: "感情",
 
     image: "img/card-jou.png",
+
+    icon: "img/icon-jou.png",
 
     cycles: Object.freeze({
 
