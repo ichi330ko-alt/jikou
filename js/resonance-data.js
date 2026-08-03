@@ -68,7 +68,7 @@ window.RESONANCE_DATA = Object.freeze({
 
         romaji: "Koko no Za",
 
-        text: `その感覚を大切にすることで、自分らしい選択が少しずつできるようになります。
+        text: `また、その感覚を大切にすることで、自分らしい選択が少しずつできるようになります。
 
  
 
@@ -84,7 +84,7 @@ window.RESONANCE_DATA = Object.freeze({
 
         romaji: "Tokai no Za",
 
-        text: `自分の直感を信じ、従った時、その選択はあなたにとって思いがけないプラスに働く経験をするでしょう。`
+        text: `そして、自分の直感を信じ、従った時、その選択はあなたにとって思いがけないプラスに働く経験をするでしょう。`
 
       })
 
@@ -130,7 +130,7 @@ window.RESONANCE_DATA = Object.freeze({
 
         romaji: "Eisho no Za",
 
-        text: `そのやり取りを通し理解することで、さらに自分の内面と向き合うことが増えるかもしれません。
+        text: `また、そのやり取りを通し理解することで、さらに自分の内面と向き合うことが増えるかもしれません。
 
  
 
@@ -146,7 +146,7 @@ window.RESONANCE_DATA = Object.freeze({
 
         romaji: "Genshin no Za",
 
-        text: `あなたが感じたことを素直に表現出来た時、その言葉や行動は、誰かの心を震わせることもあるでしょう。`
+        text: `そして、あなたが感じたことを素直に表現出来た時、その言葉や行動は、誰かの心を震わせることもあるでしょう。`
 
       })
 
@@ -192,7 +192,7 @@ window.RESONANCE_DATA = Object.freeze({
 
         romaji: "Banko no Za",
 
-        text: `人との関わりは、一方通行ではありません。
+        text: `また、人との関わりは、一方通行ではありません。
 
  
 
@@ -208,7 +208,7 @@ window.RESONANCE_DATA = Object.freeze({
 
         romaji: "Kyoho no Za",
 
-        text: `人との関わりを大切に育ててきたことは、あなたにとって大きな財産となります。`
+        text: `そして、人との関わりを大切に育ててきたことは、あなたにとって大きな財産となります。`
 
       })
 
@@ -254,7 +254,7 @@ window.RESONANCE_DATA = Object.freeze({
 
         romaji: "Michishirube no Za",
 
-        text: `育まれた信頼は、あなた自身だけでなく、周りとの関係にも良い影響を与えていきます。
+        text: `また、育まれた信頼は、あなた自身だけでなく、周りとの関係にも良い影響を与えていきます。
 
  
 
@@ -270,7 +270,7 @@ window.RESONANCE_DATA = Object.freeze({
 
         romaji: "Shinsen no Za",
 
-        text: `信頼から生まれた関係は、お互いを支え合える強い繋がりになり得ます。
+        text: `そして、信頼から生まれた関係は、お互いを支え合える強い繋がりになり得ます。
 
  
 
@@ -320,7 +320,7 @@ window.RESONANCE_DATA = Object.freeze({
 
         romaji: "Meikyo no Za",
 
-        text: `理解を深めることで、今まで見えなかった物事の繋がりが見えてきます。
+        text: `また、理解を深めることで、今まで見えなかった物事の繋がりが見えてきます。
 
  
 
@@ -336,7 +336,7 @@ window.RESONANCE_DATA = Object.freeze({
 
         romaji: "Chisen no Za",
 
-        text: `積み重ねてきた理解は、あなた自身の言葉や考え方となって現れていきます。
+        text: `そして、積み重ねてきた理解は、あなた自身の言葉や考え方となって現れていきます。
 
  
 
@@ -386,7 +386,7 @@ window.RESONANCE_DATA = Object.freeze({
 
         romaji: "Genka no Za",
 
-        text: `実際に行動を起こすことで、今まで見えなかった景色が見られるでしょう。
+        text: `また、実際に行動を起こすことで、今まで見えなかった景色が見られるでしょう。
 
  
 
@@ -402,7 +402,7 @@ window.RESONANCE_DATA = Object.freeze({
 
         romaji: "Kaiyo no Za",
 
-        text: `これまで積み重ねてきた経験は、新しい行動へと繋がっていきます。
+        text: `そして、これまで積み重ねてきた経験は、新しい行動へと繋がっていきます。
 
  
 
@@ -452,7 +452,7 @@ window.RESONANCE_DATA = Object.freeze({
 
         romaji: "Seikai no Za",
 
-        text: `お互いを尊重するためには、適切な距離感も大切です。`
+        text: `また、お互いを尊重するためには、適切な距離感も大切です。`
 
       }),
 
@@ -464,7 +464,7 @@ window.RESONANCE_DATA = Object.freeze({
 
         romaji: "Kyobetsu no Za",
 
-        text: `健全な境界は、人との関係を制限するものではありません。
+        text: `そして、健全な境界は、人との関係を制限するものではありません。
 
  
 
@@ -514,7 +514,7 @@ window.RESONANCE_DATA = Object.freeze({
 
         romaji: "Kangen no Za",
 
-        text: `手放していくことで、新しい考え方や価値観が自然と入ってくるようになります。
+        text: `また、手放していくことで、新しい考え方や価値観が自然と入ってくるようになります。
 
  
 
@@ -530,7 +530,7 @@ window.RESONANCE_DATA = Object.freeze({
 
         romaji: "Shinmeguri no Za",
 
-        text: `手放した後は、新しく次のものを掴める状況になっています。
+        text: `そして、手放した後は、新しく次のものを掴める状況になっています。
 
  
 
@@ -584,7 +584,7 @@ window.RESONANCE_DATA = Object.freeze({
 
         romaji: "Kando no Za",
 
-        text: `安心できる場所では、自分らしさを発揮することができるでしょう。
+        text: `また、安心できる場所では、自分らしさを発揮することができるでしょう。
 
  
 
@@ -600,7 +600,7 @@ window.RESONANCE_DATA = Object.freeze({
 
         romaji: "Tomoshibi no Za",
 
-        text: `あなたの中にある安心は、自分だけでなく周りにも影響を与え、居心地のよさとなって現れるかもしれません。`
+        text: `そして、あなたの中にある安心は、自分だけでなく周りにも影響を与え、居心地のよさとなって現れるかもしれません。`
 
       })
 
@@ -646,7 +646,7 @@ window.RESONANCE_DATA = Object.freeze({
 
         romaji: "Yoshin no Za",
 
-        text: `相手を受け入れることで、自分とは違う考え方や価値観にも気付けるようになります。
+        text: `また、相手を受け入れることで、自分とは違う考え方や価値観にも気付けるようになります。
 
  
 
@@ -662,7 +662,7 @@ window.RESONANCE_DATA = Object.freeze({
 
         romaji: "Shoshin no Za",
 
-        text: `お互いの違いを認め合えた時、そこには自然な調和が生まれていくでしょう。`
+        text: `そして、お互いの違いを認め合えた時、そこには自然な調和が生まれていくでしょう。`
 
       })
 
@@ -708,7 +708,7 @@ window.RESONANCE_DATA = Object.freeze({
 
         romaji: "Jikyoku no Za",
 
-        text: `理解できるようになると、焦らず今できることへ意識を向けられるようになります。
+        text: `また、理解できるようになると、焦らず今できることへ意識を向けられるようになります。
 
  
 
@@ -724,7 +724,7 @@ window.RESONANCE_DATA = Object.freeze({
 
         romaji: "Gyosho no Za",
 
-        text: `これまでの経験から得た知恵や知識は、引き出すことができます。
+        text: `そして、これまでの経験から得た知恵や知識は、引き出すことができます。
 
  
 
@@ -774,7 +774,7 @@ window.RESONANCE_DATA = Object.freeze({
 
         romaji: "Shinpa no Za",
 
-        text: `自分の感情と向き合うことで、本当に大切にしたいものが少しずつ見えてきます。
+        text: `また、自分の感情と向き合うことで、本当に大切にしたいものが少しずつ見えてきます。
 
  
 
@@ -790,7 +790,7 @@ window.RESONANCE_DATA = Object.freeze({
 
         romaji: "Renken no Za",
 
-        text: `感情をそのままあなたが受け入れる時、あなたや周りの心が共鳴し、人生の彩りとして豊かさを与えてくれるでしょう。`
+        text: `そして、感情をそのままあなたが受け入れる時、あなたや周りの心が共鳴し、人生の彩りとして豊かさを与えてくれるでしょう。`
 
       })
 
