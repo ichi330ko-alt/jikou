@@ -1,494 +1,249 @@
-
 /* ========================================
-
    時光解析 結果ページ
-
 ======================================== */
 
- 
-
 .result-page {
-
   background:
-
     radial-gradient(circle at 50% 18%, rgba(221, 207, 171, 0.16), transparent 34%),
-
     linear-gradient(180deg, #f8f7f3 0%, #ffffff 42%, #f5f3ee 100%);
-
   color: #292821;
-
 }
-
- 
 
 .result-hero {
-
   min-height: 220px;
-
 }
-
- 
 
 .result-main {
-
   width: min(920px, calc(100% - 32px));
-
   margin: 0 auto;
-
   padding: 72px 0 96px;
-
 }
-
- 
 
 .result-loading,
-
 .result-error {
-
   max-width: 680px;
-
   margin: 0 auto;
-
   padding: 48px 28px;
-
   border: 1px solid rgba(151, 128, 77, 0.22);
-
   border-radius: 22px;
-
   background: rgba(255, 255, 255, 0.82);
-
   box-shadow: 0 18px 48px rgba(54, 45, 25, 0.08);
-
   text-align: center;
-
 }
-
- 
 
 .result-error h2 {
-
   margin: 0 0 20px;
-
   font-size: 1.4rem;
-
   font-weight: 500;
-
 }
-
- 
 
 .result-error p {
-
   margin: 0 0 28px;
-
   line-height: 2;
-
 }
-
- 
 
 .result-card-section {
-
   margin-bottom: 64px;
-
   text-align: center;
-
 }
-
- 
 
 .result-section-label {
-
   margin: 0 0 22px;
-
   color: #89764b;
-
   font-family: Georgia, "Times New Roman", serif;
-
   font-size: 0.76rem;
-
   letter-spacing: 0.26em;
-
 }
-
- 
 
 .gem-card-wrap {
-
   position: relative;
-
   width: min(440px, 100%);
-
   margin: 0 auto;
-
   overflow: hidden;
-
   border-radius: 26px;
-
   background: #111727;
-
   box-shadow:
-
     0 28px 68px rgba(21, 24, 39, 0.22),
-
     0 3px 12px rgba(21, 24, 39, 0.14);
-
 }
-
- 
 
 .gem-card-image {
-
   display: block;
-
   width: 100%;
-
   height: auto;
-
 }
-
- 
 
 .gem-card-text {
-
   position: absolute;
-
   right: 8%;
-
   bottom: 7%;
-
   left: 8%;
-
-  padding: 18px 16px 16px;
-
-  border: 1px solid rgba(255, 255, 255, 0.22);
-
-  border-radius: 16px;
-
-  background: rgba(7, 12, 28, 0.58);
-
-  -webkit-backdrop-filter: blur(8px);
-
-  backdrop-filter: blur(8px);
-
-  color: #ffffff;
-
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
-
+  padding: 0;
+  color: #403d35;
+  text-align: center;
+  pointer-events: none;
 }
-
- 
 
 .gem-card-text h2 {
-
   margin: 0;
-
-  color: #ffffff;
-
+  color: #403d35;
   font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
-
-  font-size: clamp(1.45rem, 4.5vw, 2rem);
-
+  font-size: clamp(1.35rem, 4.2vw, 1.9rem);
   font-weight: 500;
-
-  letter-spacing: 0.12em;
-
+  letter-spacing: 0.14em;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.96),
+    0 2px 8px rgba(255, 255, 255, 0.92);
 }
-
- 
 
 .gem-card-text p {
-
   margin: 8px 0 0;
-
-  color: rgba(255, 255, 255, 0.84);
-
+  color: #716d63;
   font-family: Georgia, "Times New Roman", serif;
-
-  font-size: 0.82rem;
-
-  letter-spacing: 0.12em;
-
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.98),
+    0 2px 7px rgba(255, 255, 255, 0.92);
 }
-
- 
 
 .result-reading-section {
-
   border: 1px solid rgba(151, 128, 77, 0.22);
-
   border-radius: 26px;
-
   background: rgba(255, 255, 255, 0.88);
-
   box-shadow: 0 22px 56px rgba(54, 45, 25, 0.08);
-
 }
-
- 
 
 .result-reading-inner {
-
   max-width: 680px;
-
   margin: 0 auto;
-
   padding: 60px 56px 68px;
-
 }
-
- 
 
 .result-reading-inner > h2 {
-
   margin: 0;
-
   color: #443b27;
-
   font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
-
   font-size: clamp(1.4rem, 4vw, 1.85rem);
-
   font-weight: 500;
-
   letter-spacing: 0.12em;
-
 }
-
- 
 
 .result-divider {
-
   width: 54px;
-
   height: 1px;
-
   margin: 25px 0 38px;
-
   background: #ad945e;
-
 }
-
- 
 
 .result-paragraph p {
-
   margin: 0 0 1.15em;
-
   font-size: 1rem;
-
   line-height: 2.15;
-
 }
-
- 
 
 .result-paragraph p:last-child {
-
   margin-bottom: 0;
-
 }
-
- 
 
 .result-connector {
-
   margin: 38px 0 24px;
-
   color: #806e49;
-
   font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
-
   font-weight: 500;
-
 }
-
- 
 
 .result-end-section {
-
   padding: 54px 20px 0;
-
   text-align: center;
-
 }
-
- 
 
 .result-end-section > p {
-
   margin: 0 0 28px;
-
   color: #6d695f;
-
   font-size: 0.92rem;
-
   letter-spacing: 0.06em;
-
 }
-
- 
 
 .result-actions {
-
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
-
   gap: 18px;
-
 }
-
- 
 
 .result-button {
-
   display: inline-flex;
-
   min-width: 210px;
-
   min-height: 52px;
-
   align-items: center;
-
   justify-content: center;
-
   padding: 12px 26px;
-
   border: 1px solid #8c7545;
-
   border-radius: 999px;
-
   background: #8c7545;
-
   color: #ffffff;
-
   text-decoration: none;
-
   transition:
-
     background-color 0.25s ease,
-
     color 0.25s ease,
-
     transform 0.25s ease;
-
 }
-
- 
 
 .result-button:hover,
-
 .result-button:focus-visible {
-
   background: #6f5b34;
-
   color: #ffffff;
-
   transform: translateY(-2px);
-
 }
-
- 
 
 .result-text-link {
-
   color: #72664c;
-
   text-underline-offset: 5px;
-
 }
-
- 
 
 .result-text-link:hover,
-
 .result-text-link:focus-visible {
-
   color: #493e29;
-
 }
-
- 
 
 @media (max-width: 640px) {
-
   .result-main {
-
     width: min(100% - 22px, 920px);
-
     padding: 50px 0 72px;
-
   }
-
- 
 
   .result-card-section {
-
     margin-bottom: 42px;
-
   }
-
- 
 
   .gem-card-wrap {
-
     width: min(100%, 390px);
-
     border-radius: 20px;
-
   }
-
- 
 
   .gem-card-text {
-
-    right: 6%;
-
-    bottom: 5%;
-
-    left: 6%;
-
-    padding: 14px 12px 13px;
-
+    right: 7%;
+    bottom: 6%;
+    left: 7%;
+    padding: 0;
   }
-
- 
 
   .result-reading-section {
-
     border-radius: 20px;
-
   }
-
- 
 
   .result-reading-inner {
-
     padding: 42px 24px 48px;
-
   }
-
- 
 
   .result-paragraph p {
-
     line-height: 2;
-
   }
-
 }
 
- 
-
 @media (prefers-reduced-motion: reduce) {
-
   .result-button {
-
     transition: none;
-
   }
-
 }
