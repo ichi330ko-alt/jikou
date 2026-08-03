@@ -22,13 +22,49 @@
 
  
 
-  const DEPENDENCIES = {
+  const WESTERN_POINTS = [
 
-    astronomy: "https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js",
+    { id: "sun", label: "太陽" },
 
-    lunar: "https://cdn.jsdelivr.net/npm/lunar-javascript@1.7.7/lunar.js"
+    { id: "moon", label: "月" },
 
-  };
+    { id: "mercury", label: "水星" },
+
+    { id: "venus", label: "金星" },
+
+    { id: "mars", label: "火星" },
+
+    { id: "jupiter", label: "木星" },
+
+    { id: "saturn", label: "土星" },
+
+    { id: "uranus", label: "天王星" },
+
+    { id: "neptune", label: "海王星" },
+
+    { id: "pluto", label: "冥王星" },
+
+    { id: "asc", label: "ASC" },
+
+    { id: "mc", label: "MC" }
+
+  ];
+
+ 
+
+  const EASTERN_POINTS = [
+
+    { id: "eastern-1", label: "主星1" },
+
+    { id: "eastern-2", label: "主星2" },
+
+    { id: "eastern-3", label: "主星3" },
+
+    { id: "eastern-4", label: "主星4" },
+
+    { id: "eastern-5", label: "主星5" }
+
+  ];
 
  
 
@@ -44,130 +80,6 @@
 
  
 
-  const PLANETS = [
-
-    ["太陽", "Sun"],
-
-    ["月", "Moon"],
-
-    ["水星", "Mercury"],
-
-    ["金星", "Venus"],
-
-    ["火星", "Mars"],
-
-    ["木星", "Jupiter"],
-
-    ["土星", "Saturn"],
-
-    ["天王星", "Uranus"],
-
-    ["海王星", "Neptune"],
-
-    ["冥王星", "Pluto"]
-
-  ];
-
- 
-
-  const ZODIAC = [
-
-    "牡羊座", "牡牛座", "双子座", "蟹座", "獅子座", "乙女座",
-
-    "天秤座", "蠍座", "射手座", "山羊座", "水瓶座", "魚座"
-
-  ];
-
- 
-
-  const STEM_INFO = {
-
-    "甲": { element: "木", polarity: "陽" },
-
-    "乙": { element: "木", polarity: "陰" },
-
-    "丙": { element: "火", polarity: "陽" },
-
-    "丁": { element: "火", polarity: "陰" },
-
-    "戊": { element: "土", polarity: "陽" },
-
-    "己": { element: "土", polarity: "陰" },
-
-    "庚": { element: "金", polarity: "陽" },
-
-    "辛": { element: "金", polarity: "陰" },
-
-    "壬": { element: "水", polarity: "陽" },
-
-    "癸": { element: "水", polarity: "陰" }
-
-  };
-
- 
-
-  const BRANCH_MAIN_STEM = {
-
-    "子": "癸",
-
-    "丑": "己",
-
-    "寅": "甲",
-
-    "卯": "乙",
-
-    "辰": "戊",
-
-    "巳": "丙",
-
-    "午": "丁",
-
-    "未": "己",
-
-    "申": "庚",
-
-    "酉": "辛",
-
-    "戌": "戊",
-
-    "亥": "壬"
-
-  };
-
- 
-
-  const GENERATES = {
-
-    "木": "火",
-
-    "火": "土",
-
-    "土": "金",
-
-    "金": "水",
-
-    "水": "木"
-
-  };
-
- 
-
-  const CONTROLS = {
-
-    "木": "土",
-
-    "土": "水",
-
-    "水": "火",
-
-    "火": "金",
-
-    "金": "木"
-
-  };
-
- 
-
   const state = {
 
     data: null,
@@ -179,40 +91,6 @@
  
 
   const byId = (id) => document.getElementById(id);
-
- 
-
-  function round(value, digits = 2) {
-
-    const unit = 10 ** digits;
-
-    return Math.round((Number(value) + Number.EPSILON) * unit) / unit;
-
-  }
-
- 
-
-  function normalizeDegrees(value) {
-
-    return ((Number(value) % 360) + 360) % 360;
-
-  }
-
- 
-
-  function zodiacFromLongitude(longitude) {
-
-    return ZODIAC[Math.floor(normalizeDegrees(longitude) / 30)];
-
-  }
-
- 
-
-  function degreeInSign(longitude) {
-
-    return round(normalizeDegrees(longitude) % 30, 2);
-
-  }
 
  
 
@@ -240,6 +118,16 @@
 
  
 
+  function round(value, digits = 2) {
+
+    const unit = 10 ** digits;
+
+    return Math.round((Number(value) + Number.EPSILON) * unit) / unit;
+
+  }
+
+ 
+
   function normalizeAxisMap(raw, targetTotal) {
 
     const rawTotal = Object.values(raw).reduce((sum, value) => sum + value, 0);
@@ -252,7 +140,11 @@
 
         total: 0,
 
-        values: Object.fromEntries(Object.keys(raw).map((key) => [key, 0]))
+        values: Object.fromEntries(
+
+          Object.keys(raw).map((key) => [key, 0])
+
+        )
 
       };
 
@@ -270,13 +162,7 @@
 
       values: Object.fromEntries(
 
-        Object.entries(raw).map(([key, value]) => [
-
-          key,
-
-          round(value * factor)
-
-        ])
+        Object.entries(raw).map(([key, value]) => [key, round(value * factor)])
 
       )
 
@@ -286,103 +172,121 @@
 
  
 
-  function loadScript(url, readyTest) {
+  function reduceNumerology(value) {
 
-    return new Promise((resolve, reject) => {
-
-      if (readyTest()) {
-
-        resolve();
-
-        return;
-
-      }
+    let number = Math.abs(Number(value)) || 0;
 
  
 
-      const existing = [...document.scripts].find((script) => script.src === url);
+    while (number > 9 && ![11, 22, 33].includes(number)) {
+
+      number = String(number)
+
+        .split("")
+
+        .reduce((sum, digit) => sum + Number(digit), 0);
+
+    }
 
  
 
-      if (existing) {
-
-        existing.addEventListener("load", () => resolve(), { once: true });
-
-        existing.addEventListener(
-
-          "error",
-
-          () => reject(new Error(`${url} を読み込めませんでした。`)),
-
-          { once: true }
-
-        );
-
-        return;
-
-      }
-
- 
-
-      const script = document.createElement("script");
-
-      script.src = url;
-
-      script.async = true;
-
-      script.crossOrigin = "anonymous";
-
-      script.addEventListener("load", () => {
-
-        if (readyTest()) {
-
-          resolve();
-
-        } else {
-
-          reject(new Error(`${url} の読み込み後に必要な機能を確認できませんでした。`));
-
-        }
-
-      }, { once: true });
-
-      script.addEventListener(
-
-        "error",
-
-        () => reject(new Error(`${url} を読み込めませんでした。`)),
-
-        { once: true }
-
-      );
-
-      document.head.appendChild(script);
-
-    });
+    return number;
 
   }
 
  
 
-  async function loadDependencies() {
+  function calculateKabbalahNumbers(dateValue) {
 
-    await loadScript(
+    if (!dateValue) {
 
-      DEPENDENCIES.astronomy,
+      return null;
 
-      () => Boolean(window.Astronomy?.GeoVector && window.Astronomy?.Ecliptic)
+    }
+
+ 
+
+    const [yearText, monthText, dayText] = dateValue.split("-");
+
+    const year = Number(yearText);
+
+    const month = Number(monthText);
+
+    const day = Number(dayText);
+
+ 
+
+    const monthNumber = reduceNumerology(month);
+
+    const dayNumber = reduceNumerology(day);
+
+    const yearNumber = reduceNumerology(year);
+
+    const totalNumber = reduceNumerology(
+
+      monthNumber + dayNumber + yearNumber
 
     );
 
  
 
-    await loadScript(
+    return {
 
-      DEPENDENCIES.lunar,
+      month: monthNumber,
 
-      () => Boolean(window.Solar?.fromYmdHms)
+      day: dayNumber,
+
+      year: yearNumber,
+
+      total: totalNumber
+
+    };
+
+  }
+
+ 
+
+  function hiraganaToKatakana(text) {
+
+    return text.replace(/[ぁ-ゖ]/g, (character) =>
+
+      String.fromCharCode(character.charCodeAt(0) + 0x60)
 
     );
+
+  }
+
+ 
+
+  function normalizeKatakamunaName(value) {
+
+    return hiraganaToKatakana((value || "").trim())
+
+      .replace(/[・･\s]/g, "")
+
+      .replace(/[ァ]/g, "ア")
+
+      .replace(/[ィ]/g, "イ")
+
+      .replace(/[ゥ]/g, "ウ")
+
+      .replace(/[ェ]/g, "エ")
+
+      .replace(/[ォ]/g, "オ")
+
+      .replace(/[ヵ]/g, "カ")
+
+      .replace(/[ヶ]/g, "ケ")
+
+      .replace(/[ッ]/g, "ツ")
+
+      .replace(/[ャ]/g, "ヤ")
+
+      .replace(/[ュ]/g, "ユ")
+
+      .replace(/[ョ]/g, "ヨ")
+
+      .replace(/ー/g, "");
 
   }
 
@@ -390,29 +294,19 @@
 
   async function loadJson(path) {
 
-    const url = new URL(path, document.baseURI);
-
-    const response = await fetch(url, { cache: "no-store" });
+    const response = await fetch(path, { cache: "no-store" });
 
  
 
     if (!response.ok) {
 
-      throw new Error(`${path}（HTTP ${response.status}）を読み込めませんでした。`);
+      throw new Error(`${path} を読み込めませんでした。`);
 
     }
 
  
 
-    try {
-
-      return await response.json();
-
-    } catch {
-
-      throw new Error(`${path} のJSON形式を確認してください。`);
-
-    }
+    return response.json();
 
   }
 
@@ -440,13 +334,163 @@
 
  
 
-    state.data = { axis, western, eastern, kabbalah, katakamuna, rules };
+    state.data = {
+
+      axis,
+
+      western,
+
+      eastern,
+
+      kabbalah,
+
+      katakamuna,
+
+      rules
+
+    };
 
   }
 
  
 
-  function appendTarotOptions() {
+  function appendOptions(select, values) {
+
+    values.forEach((value) => {
+
+      const option = document.createElement("option");
+
+      option.value = value;
+
+      option.textContent = value;
+
+      select.appendChild(option);
+
+    });
+
+  }
+
+ 
+
+  function buildWesternInputs() {
+
+    const container = byId("western-grid");
+
+    const signs = state.data.western.elements.map((item) => item.name);
+
+ 
+
+    WESTERN_POINTS.forEach((point) => {
+
+      const field = document.createElement("div");
+
+      field.className = "field";
+
+ 
+
+      const label = document.createElement("label");
+
+      label.htmlFor = `western-${point.id}`;
+
+      label.textContent = point.label;
+
+ 
+
+      const select = document.createElement("select");
+
+      select.id = `western-${point.id}`;
+
+      select.name = `western-${point.id}`;
+
+      select.className = "form-control";
+
+ 
+
+      const blank = document.createElement("option");
+
+      blank.value = "";
+
+      blank.textContent =
+
+        point.id === "asc" || point.id === "mc"
+
+          ? "不明・未入力"
+
+          : "選択してください";
+
+      select.appendChild(blank);
+
+ 
+
+      appendOptions(select, signs);
+
+      field.append(label, select);
+
+      container.appendChild(field);
+
+    });
+
+  }
+
+ 
+
+  function buildEasternInputs() {
+
+    const container = byId("eastern-grid");
+
+    const stars = state.data.eastern.elements.map((item) => item.name);
+
+ 
+
+    EASTERN_POINTS.forEach((point) => {
+
+      const field = document.createElement("div");
+
+      field.className = "field";
+
+ 
+
+      const label = document.createElement("label");
+
+      label.htmlFor = point.id;
+
+      label.textContent = point.label;
+
+ 
+
+      const select = document.createElement("select");
+
+      select.id = point.id;
+
+      select.name = point.id;
+
+      select.className = "form-control";
+
+ 
+
+      const blank = document.createElement("option");
+
+      blank.value = "";
+
+      blank.textContent = "選択してください";
+
+      select.appendChild(blank);
+
+ 
+
+      appendOptions(select, stars);
+
+      field.append(label, select);
+
+      container.appendChild(field);
+
+    });
+
+  }
+
+ 
+
+  function buildTarotInputs() {
 
     [
 
@@ -456,25 +500,7 @@
 
       "tarot-key-card"
 
-    ].forEach((id) => {
-
-      const select = byId(id);
-
- 
-
-      TAROT_CARDS.forEach((card) => {
-
-        const option = document.createElement("option");
-
-        option.value = card;
-
-        option.textContent = card;
-
-        select.appendChild(option);
-
-      });
-
-    });
+    ].forEach((id) => appendOptions(byId(id), TAROT_CARDS));
 
   }
 
@@ -540,493 +566,13 @@
 
  
 
-  function parseBirthInput() {
+  function getSelectedValues(ids) {
 
-    const dateValue = byId("birth-date").value;
+    return ids
 
-    const timeValue = byId("birth-time").value;
+      .map((id) => byId(id)?.value || "")
 
-    const timezone = Number(byId("timezone").value);
-
- 
-
-    if (!dateValue) {
-
-      throw new Error("生年月日を入力してください。");
-
-    }
-
- 
-
-    if (!Number.isFinite(timezone)) {
-
-      throw new Error("UTC時差を確認してください。");
-
-    }
-
- 
-
-    const [year, month, day] = dateValue.split("-").map(Number);
-
-    const [hour, minute] = timeValue
-
-      ? timeValue.split(":").map(Number)
-
-      : [12, 0];
-
- 
-
-    const utcMilliseconds =
-
-      Date.UTC(year, month - 1, day, hour, minute, 0) -
-
-      timezone * 60 * 60 * 1000;
-
- 
-
-    return {
-
-      year,
-
-      month,
-
-      day,
-
-      hour,
-
-      minute,
-
-      hasBirthTime: Boolean(timeValue),
-
-      utcDate: new Date(utcMilliseconds),
-
-      timezone,
-
-      latitude:
-
-        byId("latitude").value === ""
-
-          ? null
-
-          : Number(byId("latitude").value),
-
-      longitude:
-
-        byId("longitude").value === ""
-
-          ? null
-
-          : Number(byId("longitude").value)
-
-    };
-
-  }
-
- 
-
-  function planetLongitude(bodyName, date) {
-
-    if (!window.Astronomy) {
-
-      throw new Error("西洋計算ライブラリを読み込めませんでした。");
-
-    }
-
- 
-
-    let longitude;
-
- 
-
-    if (bodyName === "Sun") {
-
-      longitude = Astronomy.SunPosition(date).elon;
-
-    } else if (bodyName === "Moon") {
-
-      longitude = Astronomy.EclipticGeoMoon(date).lon;
-
-    } else {
-
-      const body = Astronomy.Body[bodyName];
-
- 
-
-      if (!body) {
-
-        throw new Error(`${bodyName} の天体定義を確認できませんでした。`);
-
-      }
-
- 
-
-      const geocentricVector = Astronomy.GeoVector(body, date, true);
-
-      longitude = Astronomy.Ecliptic(geocentricVector).elon;
-
-    }
-
- 
-
-    if (!Number.isFinite(longitude)) {
-
-      throw new Error(`${bodyName} の黄経を取得できませんでした。`);
-
-    }
-
- 
-
-    return normalizeDegrees(longitude);
-
-  }
-
- 
-
-  function meanObliquity(date) {
-
-    const julianDate = date.getTime() / 86400000 + 2440587.5;
-
-    const t = (julianDate - 2451545.0) / 36525;
-
-    return 23.4392911111
-
-      - 0.0130041667 * t
-
-      - 0.0000001639 * t * t
-
-      + 0.0000005036 * t * t * t;
-
-  }
-
- 
-
-  function calculateAngles(date, latitude, longitude) {
-
-    if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
-
-      return null;
-
-    }
-
- 
-
-    if (!window.Astronomy || typeof Astronomy.SiderealTime !== "function") {
-
-      throw new Error("ASC・MC計算に必要な恒星時を取得できませんでした。");
-
-    }
-
- 
-
-    const theta = normalizeDegrees(
-
-      Astronomy.SiderealTime(date) * 15 + longitude
-
-    );
-
- 
-
-    const radians = Math.PI / 180;
-
-    const thetaRad = theta * radians;
-
-    const latitudeRad = latitude * radians;
-
-    const obliquityRad = meanObliquity(date) * radians;
-
- 
-
-    const mc = normalizeDegrees(
-
-      Math.atan2(
-
-        Math.sin(thetaRad),
-
-        Math.cos(thetaRad) * Math.cos(obliquityRad)
-
-      ) / radians
-
-    );
-
- 
-
-    const asc = normalizeDegrees(
-
-      Math.atan2(
-
-        -Math.cos(thetaRad),
-
-        Math.sin(obliquityRad) * Math.tan(latitudeRad)
-
-          + Math.cos(obliquityRad) * Math.sin(thetaRad)
-
-      ) / radians + 180
-
-    );
-
- 
-
-    return { asc, mc };
-
-  }
-
- 
-
-  function calculateWesternElements(birth) {
-
-    const elements = PLANETS.map(([label, bodyName]) => {
-
-      const longitude = planetLongitude(bodyName, birth.utcDate);
-
- 
-
-      return {
-
-        label,
-
-        key: bodyName,
-
-        longitude: round(longitude),
-
-        sign: zodiacFromLongitude(longitude),
-
-        degree: degreeInSign(longitude)
-
-      };
-
-    });
-
- 
-
-    if (
-
-      birth.hasBirthTime &&
-
-      Number.isFinite(birth.latitude) &&
-
-      Number.isFinite(birth.longitude)
-
-    ) {
-
-      const angles = calculateAngles(
-
-        birth.utcDate,
-
-        birth.latitude,
-
-        birth.longitude
-
-      );
-
- 
-
-      elements.push(
-
-        {
-
-          label: "ASC",
-
-          key: "ASC",
-
-          longitude: round(angles.asc),
-
-          sign: zodiacFromLongitude(angles.asc),
-
-          degree: degreeInSign(angles.asc)
-
-        },
-
-        {
-
-          label: "MC",
-
-          key: "MC",
-
-          longitude: round(angles.mc),
-
-          sign: zodiacFromLongitude(angles.mc),
-
-          degree: degreeInSign(angles.mc)
-
-        }
-
-      );
-
-    }
-
- 
-
-    return elements;
-
-  }
-
- 
-
-  function tenGodToStar(dayStem, targetStem) {
-
-    const day = STEM_INFO[dayStem];
-
-    const target = STEM_INFO[targetStem];
-
- 
-
-    if (!day || !target) {
-
-      throw new Error(`十大主星の算定に使う干を確認してください。`);
-
-    }
-
- 
-
-    const samePolarity = day.polarity === target.polarity;
-
- 
-
-    if (day.element === target.element) {
-
-      return samePolarity ? "貫索星" : "石門星";
-
-    }
-
- 
-
-    if (GENERATES[day.element] === target.element) {
-
-      return samePolarity ? "鳳閣星" : "調舒星";
-
-    }
-
- 
-
-    if (CONTROLS[day.element] === target.element) {
-
-      return samePolarity ? "禄存星" : "司禄星";
-
-    }
-
- 
-
-    if (CONTROLS[target.element] === day.element) {
-
-      return samePolarity ? "車騎星" : "牽牛星";
-
-    }
-
- 
-
-    if (GENERATES[target.element] === day.element) {
-
-      return samePolarity ? "玉堂星" : "龍高星";
-
-    }
-
- 
-
-    throw new Error(`${dayStem}と${targetStem}の関係を判定できませんでした。`);
-
-  }
-
- 
-
-  function calculateEasternElements(birth) {
-
-    if (!window.Solar || typeof Solar.fromYmdHms !== "function") {
-
-      throw new Error("東洋計算ライブラリを読み込めませんでした。");
-
-    }
-
- 
-
-    const solar = Solar.fromYmdHms(
-
-      birth.year,
-
-      birth.month,
-
-      birth.day,
-
-      birth.hour,
-
-      birth.minute,
-
-      0
-
-    );
-
- 
-
-    const lunar = solar.getLunar();
-
- 
-
-    const yearGan = lunar.getYearGanExact();
-
-    const yearZhi = lunar.getYearZhiExact();
-
-    const monthGan = lunar.getMonthGanExact();
-
-    const monthZhi = lunar.getMonthZhiExact();
-
-    const dayGan = lunar.getDayGanExact2();
-
-    const dayZhi = lunar.getDayZhiExact2();
-
- 
-
-    const targetStems = [
-
-      { source: "年干", stem: yearGan },
-
-      { source: "月干", stem: monthGan },
-
-      { source: "年支本元", stem: BRANCH_MAIN_STEM[yearZhi] },
-
-      { source: "月支本元", stem: BRANCH_MAIN_STEM[monthZhi] },
-
-      { source: "日支本元", stem: BRANCH_MAIN_STEM[dayZhi] }
-
-    ];
-
- 
-
-    if (targetStems.some((item) => !item.stem)) {
-
-      throw new Error("地支本元の対応を確認できませんでした。");
-
-    }
-
- 
-
-    const stars = targetStems.map((item) => ({
-
-      ...item,
-
-      star: tenGodToStar(dayGan, item.stem)
-
-    }));
-
- 
-
-    return {
-
-      pillars: {
-
-        year: `${yearGan}${yearZhi}`,
-
-        month: `${monthGan}${monthZhi}`,
-
-        day: `${dayGan}${dayZhi}`
-
-      },
-
-      dayMaster: dayGan,
-
-      targets: targetStems,
-
-      stars
-
-    };
+      .filter(Boolean);
 
   }
 
@@ -1076,61 +622,29 @@
 
  
 
-  function reduceNumerology(value) {
+  function calculateKabbalah(dateValue, axes) {
 
-    let number = Math.abs(Number(value)) || 0;
+    const numbers = calculateKabbalahNumbers(dateValue);
+
+    const raw = emptyAxisMap(axes);
 
  
 
-    while (number > 9 && ![11, 22, 33].includes(number)) {
+    if (!numbers) {
 
-      number = String(number)
+      return {
 
-        .split("")
+        numbers: null,
 
-        .reduce((sum, digit) => sum + Number(digit), 0);
+        raw,
+
+        values100: emptyAxisMap(axes)
+
+      };
 
     }
 
  
-
-    return number;
-
-  }
-
- 
-
-  function calculateKabbalahNumbers(birth) {
-
-    return {
-
-      month: reduceNumerology(birth.month),
-
-      day: reduceNumerology(birth.day),
-
-      year: reduceNumerology(birth.year),
-
-      total: reduceNumerology(
-
-        reduceNumerology(birth.month)
-
-          + reduceNumerology(birth.day)
-
-          + reduceNumerology(birth.year)
-
-      )
-
-    };
-
-  }
-
- 
-
-  function calculateKabbalah(birth, axes) {
-
-    const numbers = calculateKabbalahNumbers(birth);
-
-    const raw = emptyAxisMap(axes);
 
     const numberMap = new Map(
 
@@ -1144,7 +658,11 @@
 
       const item = numberMap.get(number);
 
-      if (item) addScores(raw, item.scores);
+      if (item) {
+
+        addScores(raw, item.scores);
+
+      }
 
     });
 
@@ -1164,53 +682,15 @@
 
  
 
-    return { numbers, raw, values100 };
+    return {
 
-  }
+      numbers,
 
- 
+      raw,
 
-  function hiraganaToKatakana(text) {
+      values100
 
-    return text.replace(/[ぁ-ゖ]/g, (character) =>
-
-      String.fromCharCode(character.charCodeAt(0) + 0x60)
-
-    );
-
-  }
-
- 
-
-  function normalizeKatakamunaName(value) {
-
-    return hiraganaToKatakana((value || "").trim())
-
-      .replace(/[・･\s]/g, "")
-
-      .replace(/[ァ]/g, "ア")
-
-      .replace(/[ィ]/g, "イ")
-
-      .replace(/[ゥ]/g, "ウ")
-
-      .replace(/[ェ]/g, "エ")
-
-      .replace(/[ォ]/g, "オ")
-
-      .replace(/[ヵ]/g, "カ")
-
-      .replace(/[ヶ]/g, "ケ")
-
-      .replace(/[ッ]/g, "ツ")
-
-      .replace(/[ャ]/g, "ヤ")
-
-      .replace(/[ュ]/g, "ユ")
-
-      .replace(/[ョ]/g, "ヨ")
-
-      .replace(/ー/g, "");
+    };
 
   }
 
@@ -1286,8 +766,6 @@
 
       addScores(raw, item.distribution);
 
- 
-
       sounds.push({
 
         input: sound,
@@ -1332,169 +810,47 @@
 
  
 
-  function assertCondition(condition, message) {
-
-    if (!condition) {
-
-      throw new Error(`算定エンジン検証エラー：${message}`);
-
-    }
-
-  }
-
- 
-
-  function validateRuleData() {
-
-    const axes = state.data.axis.axes;
-
-    assertCondition(axes.length === 12, "12座定義が12件ではありません。");
-
-    assertCondition(new Set(axes.map((axis) => axis.id)).size === 12, "12座IDが重複しています。");
-
- 
-
-    for (const item of state.data.western.elements) {
-
-      const total = Object.values(item.scores).reduce((sum, value) => sum + Number(value), 0);
-
-      assertCondition(total === 20, `西洋変換表 ${item.name} の合計が20ではありません。`);
-
-    }
-
- 
-
-    for (const item of state.data.eastern.elements) {
-
-      const total = Object.values(item.scores).reduce((sum, value) => sum + Number(value), 0);
-
-      assertCondition(total === 20, `東洋変換表 ${item.name} の合計が20ではありません。`);
-
-    }
-
-  }
-
- 
-
-  function validateEasternReference() {
-
-    const reference = calculateEasternElements({
-
-      year: 2010,
-
-      month: 4,
-
-      day: 1,
-
-      hour: 12,
-
-      minute: 0
-
-    });
-
- 
-
-    assertCondition(reference.pillars.year === "庚寅", "2010-04-01の年柱が庚寅になりません。");
-
-    assertCondition(reference.pillars.month === "己卯", "2010-04-01の月柱が己卯になりません。");
-
-    assertCondition(reference.pillars.day === "辛巳", "2010-04-01の日柱が辛巳になりません。");
-
- 
-
-    const actualStars = reference.stars.map((item) => item.star).sort().join("|");
-
-    const expectedStars = ["石門星", "玉堂星", "司禄星", "禄存星", "牽牛星"].sort().join("|");
-
-    assertCondition(actualStars === expectedStars, "2010-04-01の十大主星5点が検証記録と一致しません。");
-
-  }
-
- 
-
-  function angularDifference(a, b) {
-
-    const difference = Math.abs(normalizeDegrees(a) - normalizeDegrees(b));
-
-    return Math.min(difference, 360 - difference);
-
-  }
-
- 
-
-  function validateWesternReference() {
-
-    const referenceDate = new Date(Date.UTC(2010, 3, 1, 0, 0, 0));
-
-    const expected = {
-
-      Sun: 11.15,
-
-      Moon: 216.67,
-
-      Mercury: 27.52,
-
-      Venus: 30.32,
-
-      Mars: 122.80,
-
-      Jupiter: 347.25,
-
-      Saturn: 180.50,
-
-      Uranus: 357.40,
-
-      Neptune: 327.73,
-
-      Pluto: 275.42
-
-    };
-
- 
-
-    for (const [bodyName, expectedLongitude] of Object.entries(expected)) {
-
-      const actualLongitude = planetLongitude(bodyName, referenceDate);
-
-      assertCondition(
-
-        angularDifference(actualLongitude, expectedLongitude) <= 0.25,
-
-        `${bodyName}の黄経が検証値から外れています。`
-
-      );
-
-    }
-
-  }
-
- 
-
-  function validateEngine() {
-
-    validateRuleData();
-
-    validateEasternReference();
-
-    validateWesternReference();
-
-  }
-
- 
-
   function calculateAll() {
 
     const axes = state.data.axis.axes;
 
     const axisIds = axes.map((axis) => axis.id);
 
-    const birth = parseBirthInput();
+ 
+
+    const westernSelections = getSelectedValues(
+
+      WESTERN_POINTS.map((point) => `western-${point.id}`)
+
+    );
 
  
 
-    const westernElements = calculateWesternElements(birth);
+    const easternSelections = getSelectedValues(
 
-    const easternElements = calculateEasternElements(birth);
+      EASTERN_POINTS.map((point) => point.id)
+
+    );
+
+ 
+
+    if (westernSelections.length < 10) {
+
+      throw new Error(
+
+        "西洋は10天体をすべて選択してください。ASC・MCは不明でも算定できます。"
+
+      );
+
+    }
+
+ 
+
+    if (easternSelections.length !== 5) {
+
+      throw new Error("東洋は十大主星を5つすべて選択してください。");
+
+    }
 
  
 
@@ -1502,7 +858,7 @@
 
       state.data.western.elements,
 
-      westernElements.map((item) => item.sign),
+      westernSelections,
 
       axes,
 
@@ -1516,7 +872,7 @@
 
       state.data.eastern.elements,
 
-      easternElements.stars.map((item) => item.star),
+      easternSelections,
 
       axes,
 
@@ -1532,11 +888,7 @@
 
         axisId,
 
-        round(
-
-          (western.normalized[axisId] + eastern.normalized[axisId]) / 2
-
-        )
+        round((western.normalized[axisId] + eastern.normalized[axisId]) / 2)
 
       ])
 
@@ -1544,13 +896,13 @@
 
  
 
-    const kabbalah = calculateKabbalah(birth, axes);
+    const kabbalah = calculateKabbalah(byId("birth-date").value, axes);
 
     const katakamuna = calculateKatakamuna(byId("nickname").value, axes);
 
  
 
-    const ranking = axes
+    const ranking = [...axes]
 
       .map((axis) => ({
 
@@ -1574,14 +926,6 @@
 
         birthTime: byId("birth-time").value,
 
-        birthPlace: byId("birth-place").value.trim(),
-
-        latitude: birth.latitude,
-
-        longitude: birth.longitude,
-
-        timezone: birth.timezone,
-
         nickname: byId("nickname").value.trim(),
 
         gender:
@@ -1589,12 +933,6 @@
           document.querySelector('input[name="gender"]:checked')?.value || ""
 
       },
-
-      birth,
-
-      westernElements,
-
-      easternElements,
 
       western,
 
@@ -1639,38 +977,6 @@
       notes: byId("notes").value.trim()
 
     };
-
-  }
-
- 
-
-  function updateElementSummaries(result) {
-
-    byId("western-elements").textContent = result.westernElements
-
-      .map((item) => `${item.label}：${item.sign} ${item.degree}°`)
-
-      .join(" ／ ");
-
- 
-
-    const pillars = result.easternElements.pillars;
-
- 
-
-    byId("eastern-pillars").textContent =
-
-      `干支：年柱 ${pillars.year}・月柱 ${pillars.month}・日柱 ${pillars.day}（日干 ${result.easternElements.dayMaster}）`;
-
- 
-
-    byId("eastern-stars").textContent =
-
-      `十大主星5点：${result.easternElements.stars
-
-        .map((item) => `${item.star}（${item.source} ${item.stem}）`)
-
-        .join("・")}`;
 
   }
 
@@ -1736,11 +1042,13 @@
 
  
 
-    const numbers = result.kabbalah.numbers;
+    const kabbalahNumbers = result.kabbalah.numbers;
 
-    byId("kabbalah-summary").textContent =
+    byId("kabbalah-summary").textContent = kabbalahNumbers
 
-      `カバラ4秘数：月 ${numbers.month}・日 ${numbers.day}・年 ${numbers.year}・総数 ${numbers.total}`;
+      ? `カバラ4秘数：月 ${kabbalahNumbers.month}・日 ${kabbalahNumbers.day}・年 ${kabbalahNumbers.year}・総数 ${kabbalahNumbers.total}`
+
+      : "カバラ4秘数：生年月日未入力";
 
  
 
@@ -1770,7 +1078,13 @@
 
   function createCandidateText(result) {
 
-    const [first, second, third] = result.ranking.slice(0, 3);
+    const top = result.ranking.slice(0, 3);
+
+    const first = top[0];
+
+    const second = top[1];
+
+    const third = top[2];
 
  
 
@@ -1784,15 +1098,55 @@
 
       "",
 
-      `西洋出生要素：${result.westernElements.map((item) => `${item.label}${item.sign}`).join("・")}`,
-
-      `東洋5主星：${result.easternElements.stars.map((item) => item.star).join("・")}`,
-
-      "",
-
-      "※これは算定値から作った初期候補です。人物像を断定せず、三体系の一致・差・ねじれと、本人の経験を重ねて編集してください。"
+      "※これは点数から作った初期候補です。人物像の断定ではなく、三体系の一致・差・ねじれと併せて確認してください。"
 
     ];
+
+ 
+
+    if (result.kabbalah.numbers) {
+
+      lines.push(
+
+        "",
+
+        `カバラ4秘数は、${result.kabbalah.numbers.month}・${result.kabbalah.numbers.day}・${result.kabbalah.numbers.year}・${result.kabbalah.numbers.total}です。`
+
+      );
+
+    }
+
+ 
+
+    if (result.katakamuna.normalizedName) {
+
+      const nameTop = state.data.axis.axes
+
+        .map((axis) => ({
+
+          name: axis.name,
+
+          value: result.katakamuna.raw[axis.id]
+
+        }))
+
+        .sort((a, b) => b.value - a.value)
+
+        .slice(0, 3)
+
+        .map((item) => item.name)
+
+        .join("・");
+
+ 
+
+      lines.push(
+
+        `呼び名の音では、${nameTop}への加点が比較的強く出ています。`
+
+      );
+
+    }
 
  
 
@@ -1810,77 +1164,61 @@
 
  
 
-  async function ensureDataLoaded() {
-
-    if (state.data) return;
-
- 
-
-    const status = byId("engine-status");
-
-    status.textContent = "算定エンジンを読み込んでいます…";
-
- 
-
-    await loadDependencies();
-
-    await loadData();
-
-    validateEngine();
-
-    buildSeatGrid();
-
- 
-
-    status.textContent = "算定エンジンの読込と検証が完了しました。";
-
-  }
-
- 
-
   async function init() {
 
     const status = byId("engine-status");
-
-    appendTarotOptions();
 
  
 
     try {
 
-      await ensureDataLoaded();
+      status.textContent = "算定データを読み込んでいます…";
+
+      await loadData();
 
  
 
-      status.textContent = "算定エンジンは正常です。";
+      buildWesternInputs();
+
+      buildEasternInputs();
+
+      buildTarotInputs();
+
+      buildSeatGrid();
+
+ 
+
+      byId("calculate-seats").disabled = false;
+
+      byId("create-result").disabled = false;
+
+      status.textContent = "算定データを読み込みました。";
 
     } catch (error) {
 
       console.error(error);
 
-      status.textContent = error.message;
+      status.textContent =
 
-      status.classList.add("error");
+        "算定データの読み込みに失敗しました。GitHub Pages上で開き、dataフォルダの配置を確認してください。";
 
     }
 
  
 
-    byId("calculate-seats").addEventListener("click", async () => {
+    byId("calculate-seats").addEventListener("click", () => {
 
       const seatStatus = byId("seat-status");
-
-      seatStatus.classList.remove("error");
 
  
 
       try {
 
-        await ensureDataLoaded();
+        const form = byId("studio-form");
 
  
 
-        if (!byId("studio-form").reportValidity()) {
+        if (!form.reportValidity()) {
 
           seatStatus.textContent = "入力内容を確認してください。";
 
@@ -1894,10 +1232,6 @@
 
         state.lastResult = result;
 
- 
-
-        updateElementSummaries(result);
-
         updateSeatGrid(result);
 
         saveStudioResult(result);
@@ -1906,7 +1240,7 @@
 
         seatStatus.textContent =
 
-          "出生情報から西洋・東洋を計算し、12座を算定しました。";
+          "12座を算定しました。天地統合・カバラ・名前音は別列で表示しています。";
 
       } catch (error) {
 
@@ -1914,29 +1248,25 @@
 
         seatStatus.textContent = error.message;
 
-        seatStatus.classList.add("error");
-
       }
 
     });
 
  
 
-    byId("create-result").addEventListener("click", async () => {
+    byId("create-result").addEventListener("click", () => {
 
       const resultStatus = byId("result-status");
-
-      resultStatus.classList.remove("error");
 
  
 
       try {
 
-        await ensureDataLoaded();
+        const form = byId("studio-form");
 
  
 
-        if (!byId("studio-form").reportValidity()) {
+        if (!form.reportValidity()) {
 
           resultStatus.textContent = "入力内容を確認してください。";
 
@@ -1956,23 +1286,13 @@
 
         saveStudioResult(result);
 
-        updateElementSummaries(result);
-
         updateSeatGrid(result);
 
  
 
-        const candidate = byId("candidate-text");
+        resultStatus.textContent = "解析結果を表示します。";
 
-        candidate.value = result.candidateText;
-
-        candidate.hidden = false;
-
- 
-
-        resultStatus.textContent =
-
-          "候補文を作成し、解析データを一時保存しました。";
+        window.location.href = "result.html";
 
       } catch (error) {
 
@@ -1980,25 +1300,11 @@
 
         resultStatus.textContent = error.message;
 
-        resultStatus.classList.add("error");
-
       }
 
     });
 
   }
-
- 
-
-  window.JikouEngine = {
-
-    calculate: calculateAll,
-
-    validate: validateEngine,
-
-    getLastResult: () => state.lastResult
-
-  };
 
  
 
