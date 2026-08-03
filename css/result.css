@@ -3,9 +3,13 @@
 ======================================== */
 
 .result-page {
-  background:
-    radial-gradient(circle at 50% 18%, rgba(221, 207, 171, 0.16), transparent 34%),
-    linear-gradient(180deg, #f8f7f3 0%, #ffffff 42%, #f5f3ee 100%);
+  background-image:
+    linear-gradient(rgba(248, 247, 243, 0.80), rgba(248, 247, 243, 0.88)),
+    url("../img/analysis-result-bg.png");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
   color: #292821;
 }
 
@@ -122,12 +126,23 @@
 }
 
 .result-reading-inner > h2 {
+  display: flex;
+  align-items: center;
+  gap: 14px;
   margin: 0;
   color: #443b27;
   font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
   font-size: clamp(1.4rem, 4vw, 1.85rem);
   font-weight: 500;
   letter-spacing: 0.12em;
+}
+
+.axis-heading-icon {
+  display: block;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  object-fit: contain;
 }
 
 .result-divider {
@@ -148,10 +163,11 @@
 }
 
 .result-connector {
-  margin: 38px 0 24px;
+  margin: 24px 0 10px;
   color: #806e49;
   font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
   font-weight: 500;
+  line-height: 1.8;
 }
 
 .result-end-section {
@@ -241,6 +257,12 @@
 
   .result-reading-inner {
     padding: 42px 24px 48px;
+  }
+
+  .axis-heading-icon {
+    width: 42px;
+    height: 42px;
+    flex-basis: 42px;
   }
 
   .result-paragraph p {
