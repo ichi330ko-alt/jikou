@@ -84,7 +84,7 @@
 }
 
 .gem-card-title {
-  top: 55%;
+  top: 39%;
   color: #403d35;
   font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
   font-size: clamp(1.35rem, 4.2vw, 1.9rem);
@@ -97,7 +97,7 @@
 }
 
 .gem-card-romaji {
-  top: 70%;
+  top: 52%;
   color: #716d63;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 0.78rem;
@@ -224,13 +224,13 @@
   }
 
   .gem-card-title {
-    top: 54%;
+    top: 38%;
     right: 6%;
     left: 6%;
   }
 
   .gem-card-romaji {
-    top: 69%;
+    top: 51%;
     right: 6%;
     left: 6%;
   }
