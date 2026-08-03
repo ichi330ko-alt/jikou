@@ -1,212 +1,372 @@
 <!DOCTYPE html>
+
 <html lang="ja">
+
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+ 
+
   <meta
+
     name="description"
+
     content="生年月日・出生時間・出生地・呼び名を入力して、時光解析を始めるページです。"
+
   >
+
+ 
 
   <title>時光解析 | 時光</title>
 
+ 
+
   <link rel="stylesheet" href="css/style.css">
+
 </head>
+
+ 
 
 <body class="analysis-page">
 
+ 
+
   <header>
+
     <div class="header-inner">
+
       <a href="index.html" class="logo">時光</a>
 
+ 
+
       <nav aria-label="メインナビゲーション">
+
         <ul>
+
           <li><a href="index.html">ホーム</a></li>
+
           <li><a href="about.html">時光とは</a></li>
+
           <li><a href="analysis.html" aria-current="page">解析</a></li>
+
         </ul>
+
       </nav>
+
     </div>
+
   </header>
 
+ 
+
   <div class="hero">
+
     <div>
+
       <p>ANALYSIS</p>
+
       <h1>時光解析</h1>
+
     </div>
+
   </div>
+
+ 
 
   <main class="analysis-main">
 
+ 
+
     <div class="analysis-intro fade">
+
       <p>あなたの生まれ持った回路と、</p>
+
       <p>現在の流れを解析します。</p>
+
     </div>
 
+ 
+
     <form
+
       class="analysis-form fade"
-      action="result.html"
-      method="get"
+
       id="analysis-form"
+
+      novalidate
+
     >
 
+ 
+
       <div class="form-section">
+
         <label class="form-label" for="birth-date">
+
           生年月日
+
           <span class="required">必須</span>
+
         </label>
 
+ 
+
         <input
+
           class="form-control"
+
           type="date"
+
           id="birth-date"
+
           name="birthDate"
+
           required
+
         >
+
       </div>
 
+ 
+
       <div class="form-section">
+
         <label class="form-label" for="birth-time">
+
           出生時間
+
           <span class="optional">任意</span>
+
         </label>
 
+ 
+
         <input
+
           class="form-control"
+
           type="time"
+
           id="birth-time"
+
           name="birthTime"
+
         >
 
+ 
+
         <p class="form-help">
+
           出生時間が分かる場合は、より詳細な解析に使用します。
+
         </p>
+
       </div>
 
+ 
+
       <div class="form-section">
+
         <label class="form-label" for="birth-place">
+
           出生地
+
           <span class="required">必須</span>
+
         </label>
 
+ 
+
         <input
+
           class="form-control"
+
           type="text"
+
           id="birth-place"
+
           name="birthPlace"
+
           placeholder="例：千葉県君津市"
+
           autocomplete="address-level2"
+
           required
+
         >
 
+ 
+
         <p class="form-help">
+
           都道府県と市区町村まで入力してください。
+
         </p>
+
       </div>
 
+ 
+
       <div class="form-section">
+
         <label class="form-label" for="nickname">
+
           呼び名（ひらがな）
+
           <span class="optional">任意</span>
+
         </label>
 
+ 
+
         <input
+
           class="form-control"
+
           type="text"
+
           id="nickname"
+
           name="nickname"
+
           placeholder="例：そのこ"
+
           inputmode="text"
+
           autocomplete="off"
+
           pattern="[ぁ-ゖー\s]*"
+
           title="ひらがなで入力してください"
+
         >
 
+ 
+
         <p class="form-help">
+
           呼び名を入力しなくても解析できます。入力した場合は、カタカムナによる読みを解析に加えます。
+
         </p>
+
+ 
 
         <p class="form-note">
+
           ※双子の場合は、生年月日だけでは同じ解析結果になるため、呼び名の入力をおすすめします。
+
         </p>
+
       </div>
+
+ 
 
       <fieldset class="form-section">
+
         <legend class="form-label">
+
           性別
+
           <span class="optional">任意</span>
+
         </legend>
 
+ 
+
         <div class="radio-group">
+
           <label class="radio-option">
+
             <input type="radio" name="gender" value="female">
+
             <span>女性</span>
+
           </label>
 
+ 
+
           <label class="radio-option">
+
             <input type="radio" name="gender" value="male">
+
             <span>男性</span>
+
           </label>
 
+ 
+
           <label class="radio-option">
+
             <input type="radio" name="gender" value="other">
+
             <span>その他</span>
+
           </label>
 
+ 
+
           <label class="radio-option">
+
             <input type="radio" name="gender" value="no-answer">
+
             <span>回答しない</span>
+
           </label>
+
         </div>
+
       </fieldset>
 
+ 
+
       <div class="analysis-submit">
-        <button type="submit">
+
+        <button type="submit" id="analysis-submit-button">
+
           時光解析を始める
+
         </button>
+
       </div>
+
+ 
+
+      <p
+
+        id="analysis-status"
+
+        class="form-help"
+
+        role="status"
+
+        aria-live="polite"
+
+      ></p>
+
+ 
 
     </form>
 
+ 
+
   </main>
 
+ 
+
   <footer>
+
     © 2026 JIKOU
+
   </footer>
 
-  <script>
-    const fadeObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-          }
-        });
-      },
-      {
-        threshold: 0.12
-      }
-    );
+ 
 
-    document.querySelectorAll(".fade").forEach((element) => {
-      fadeObserver.observe(element);
-    });
-
-    const nickname = document.getElementById("nickname");
-
-    nickname.addEventListener("input", () => {
-      const value = nickname.value;
-
-      if (value === "" || /^[ぁ-ゖー\s]+$/.test(value)) {
-        nickname.setCustomValidity("");
-      } else {
-        nickname.setCustomValidity(
-          "呼び名は、ひらがなで入力してください。"
-        );
-      }
-    });
-  </script>
+  <script src="js/analysis.js?v=6"></script>
 
 </body>
+
 </html>
+
