@@ -26,27 +26,47 @@
 
   function readStoredResult() {
 
-    for (const key of STORAGE_KEYS) {
+    const storageSources = [
 
-      const raw = sessionStorage.getItem(key);
+      { name: "sessionStorage", storage: sessionStorage },
 
- 
+      { name: "localStorage", storage: localStorage }
 
-      if (!raw) {
-
-        continue;
-
-      }
+    ];
 
  
 
-      try {
+    for (const source of storageSources) {
 
-        return JSON.parse(raw);
+      for (const key of STORAGE_KEYS) {
 
-      } catch (error) {
+        const raw = source.storage.getItem(key);
 
-        console.warn(`${key} の保存データを読み込めませんでした。`, error);
+ 
+
+        if (!raw) {
+
+          continue;
+
+        }
+
+ 
+
+        try {
+
+          return JSON.parse(raw);
+
+        } catch (error) {
+
+          console.warn(
+
+            `${source.name} の ${key} を読み込めませんでした。`,
+
+            error
+
+          );
+
+        }
 
       }
 
