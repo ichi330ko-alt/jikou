@@ -1,1 +1,243 @@
 
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+
+    name="description"
+
+    content="時光解析の無料版解析結果を表示するページです。"
+
+  >
+
+ 
+
+  <title>解析結果 | 時光</title>
+
+ 
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="stylesheet" href="css/result.css">
+
+</head>
+
+ 
+
+<body class="result-page">
+
+ 
+
+  <header>
+
+    <div class="header-inner">
+
+      <a href="index.html" class="logo">時光</a>
+
+ 
+
+      <nav aria-label="メインナビゲーション">
+
+        <ul>
+
+          <li><a href="index.html">ホーム</a></li>
+
+          <li><a href="about.html">時光とは</a></li>
+
+          <li><a href="analysis.html">解析</a></li>
+
+        </ul>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+ 
+
+  <div class="hero result-hero">
+
+    <div>
+
+      <p>ANALYSIS RESULT</p>
+
+      <h1>解析結果</h1>
+
+    </div>
+
+  </div>
+
+ 
+
+  <main class="result-main">
+
+ 
+
+    <section
+
+      class="result-loading"
+
+      id="result-loading"
+
+      aria-live="polite"
+
+    >
+
+      <p>解析結果を読み込んでいます。</p>
+
+    </section>
+
+ 
+
+    <section
+
+      class="result-error"
+
+      id="result-error"
+
+      hidden
+
+      aria-live="assertive"
+
+    >
+
+      <h2>解析結果を表示できませんでした</h2>
+
+      <p id="result-error-message">
+
+        解析ページへ戻り、もう一度算定してください。
+
+      </p>
+
+      <a class="result-button" href="analysis.html">解析ページへ戻る</a>
+
+    </section>
+
+ 
+
+    <div id="result-content" hidden>
+
+ 
+
+      <section class="result-card-section" aria-labelledby="symbol-name">
+
+        <p class="result-section-label">YOUR RESONANCE</p>
+
+ 
+
+        <div class="gem-card-wrap">
+
+          <img
+
+            id="gem-card-image"
+
+            class="gem-card-image"
+
+            src=""
+
+            alt=""
+
+          >
+
+ 
+
+          <div class="gem-card-text">
+
+            <h2 id="symbol-name"></h2>
+
+            <p id="symbol-romaji"></p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+ 
+
+      <section class="result-reading-section" aria-labelledby="axis-heading">
+
+        <div class="result-reading-inner">
+
+          <h2 id="axis-heading"></h2>
+
+ 
+
+          <div class="result-divider" aria-hidden="true"></div>
+
+ 
+
+          <div class="result-paragraph" id="cycle-text-1"></div>
+
+ 
+
+          <p class="result-connector">また、</p>
+
+ 
+
+          <div class="result-paragraph" id="cycle-text-2"></div>
+
+ 
+
+          <p class="result-connector">そして、</p>
+
+ 
+
+          <div class="result-paragraph" id="cycle-text-3"></div>
+
+        </div>
+
+      </section>
+
+ 
+
+      <section class="result-end-section">
+
+        <p>無料版の解析結果はここまでです。</p>
+
+ 
+
+        <div class="result-actions">
+
+          <a class="result-button" href="analysis.html">もう一度解析する</a>
+
+          <a class="result-text-link" href="index.html">ホームへ戻る</a>
+
+        </div>
+
+      </section>
+
+ 
+
+    </div>
+
+ 
+
+  </main>
+
+ 
+
+  <footer>
+
+    © 2026 JIKOU
+
+  </footer>
+
+ 
+
+  <script src="js/resonance-data.js"></script>
+
+  <script src="js/result.js"></script>
+
+</body>
+
+</html>
+
