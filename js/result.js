@@ -454,7 +454,31 @@
 
     byId("symbol-romaji").textContent = symbolData.romaji;
 
-    byId("axis-heading").textContent = `● ${axisData.name}`;
+    const axisHeading = byId("axis-heading");
+
+    axisHeading.innerHTML = "";
+
+ 
+
+    const axisIcon = document.createElement("img");
+
+    axisIcon.className = "axis-heading-icon";
+
+    axisIcon.src = axisData.icon;
+
+    axisIcon.alt = "";
+
+    axisIcon.setAttribute("aria-hidden", "true");
+
+ 
+
+    const axisName = document.createElement("span");
+
+    axisName.textContent = axisData.name;
+
+ 
+
+    axisHeading.append(axisIcon, axisName);
 
  
 
@@ -561,3 +585,4 @@
   document.addEventListener("DOMContentLoaded", init);
 
 })();
+
