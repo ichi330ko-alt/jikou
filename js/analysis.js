@@ -1158,7 +1158,19 @@
 
   function saveStudioResult(result) {
 
-    sessionStorage.setItem("jikouStudioData", JSON.stringify(result));
+    const serialized = JSON.stringify({
+
+      ...result,
+
+      savedAt: new Date().toISOString()
+
+    });
+
+ 
+
+    sessionStorage.setItem("jikouStudioData", serialized);
+
+    localStorage.setItem("jikouStudioData", serialized);
 
   }
 
@@ -1311,3 +1323,4 @@
   document.addEventListener("DOMContentLoaded", init);
 
 })();
+
