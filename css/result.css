@@ -122,33 +122,58 @@
 .result-reading-inner {
   max-width: 680px;
   margin: 0 auto;
-  padding: 60px 56px 68px;
+  padding: 58px 56px 66px;
 }
 
-.result-reading-inner > h2 {
+.reading-introduction {
+  margin-bottom: 50px;
+}
+
+.reading-introduction .result-section-label {
+  margin-bottom: 14px;
+}
+
+.reading-introduction > h2 {
+  margin: 0;
+  color: #443b27;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: clamp(1.45rem, 4vw, 1.95rem);
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.1em;
+}
+
+.reading-introduction-text {
+  margin: 24px 0 0;
+  color: #615d53;
+  font-size: 0.94rem;
+  line-height: 2.05;
+}
+
+.reading-part > h3 {
   display: flex;
   align-items: center;
   gap: 14px;
   margin: 0;
   color: #443b27;
   font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
-  font-size: clamp(1.4rem, 4vw, 1.85rem);
+  font-size: clamp(1.3rem, 3.7vw, 1.72rem);
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
 }
 
 .axis-heading-icon {
   display: block;
-  width: 48px;
-  height: 48px;
-  flex: 0 0 48px;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
   object-fit: contain;
 }
 
 .result-divider {
   width: 54px;
   height: 1px;
-  margin: 25px 0 38px;
+  margin: 24px 0 34px;
   background: #ad945e;
 }
 
@@ -162,6 +187,37 @@
   margin-bottom: 0;
 }
 
+.reading-transition {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 54px 0;
+  color: #a48850;
+}
+
+.reading-transition span {
+  width: min(145px, 28%);
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(173, 148, 94, 0),
+    rgba(173, 148, 94, 0.72)
+  );
+}
+
+.reading-transition span:last-child {
+  background: linear-gradient(
+    90deg,
+    rgba(173, 148, 94, 0.72),
+    rgba(173, 148, 94, 0)
+  );
+}
+
+.reading-transition b {
+  font-size: 0.86rem;
+  font-weight: 400;
+}
 
 .result-end-section {
   padding: 54px 20px 0;
@@ -252,6 +308,15 @@
     padding: 42px 24px 48px;
   }
 
+  .reading-introduction {
+    margin-bottom: 40px;
+  }
+
+  .reading-introduction-text {
+    font-size: 0.92rem;
+    line-height: 2;
+  }
+
   .axis-heading-icon {
     width: 42px;
     height: 42px;
@@ -260,6 +325,15 @@
 
   .result-paragraph p {
     line-height: 2;
+  }
+
+  .reading-transition {
+    gap: 11px;
+    margin: 44px 0;
+  }
+
+  .reading-transition span {
+    width: 26%;
   }
 }
 
