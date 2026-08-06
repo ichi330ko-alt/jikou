@@ -90,6 +90,7 @@
 <script>
 const ob=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.15});
 document.querySelectorAll('.fade').forEach(x=>ob.observe(x));
+  
 </script>
 
 </body>
