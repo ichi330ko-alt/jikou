@@ -166,4 +166,3 @@ window.getFlowerCycleData = function getFlowerCycleData(axis, cycle) {
     movement: data.movement[cycleNumber]
   });
 };
-
