@@ -300,16 +300,33 @@
 }
 
 @media (max-width: 640px) {
-   .result-hero {
-  padding-top: 90px;
-  min-height: 300px;
-}
+  /* スマホでは共通ヘッダーの固定を解除し、
+     結果ページの内容と重ならないようにする */
+  .result-page > header {
+    position: static;
+    top: auto;
+    left: auto;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
 
-.result-hero-inner {
-  padding-top: 20px;
-}
+  .result-page > header .header-inner {
+    min-height: 0;
+    height: auto;
+    padding: 14px 18px;
+  }
+
+  .result-page .result-hero {
+    min-height: auto;
+    padding-top: 34px;
+    padding-bottom: 20px;
+  }
+
   .result-hero-inner {
     width: min(100% - 22px, 920px);
+    padding-top: 0;
   }
 
   .result-guide {
