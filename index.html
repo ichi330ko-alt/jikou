@@ -773,6 +773,73 @@
         transform: none;
       }
     }
+  
+
+    /* ========================================
+       あなたに合ったコンテンツ
+    ======================================== */
+
+    .related-section {
+      padding: 105px 24px;
+      background:
+        radial-gradient(
+          circle at 50% 20%,
+          rgba(216, 194, 148, 0.2),
+          rgba(255, 255, 255, 0) 45%
+        ),
+        linear-gradient(180deg, #f8f5f1 0%, #eee8ec 100%);
+      text-align: center;
+    }
+
+    .related-inner {
+      width: min(720px, 100%);
+      margin: 0 auto;
+    }
+
+    .related-kicker {
+      margin-bottom: 12px;
+      color: var(--gold);
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      padding-left: 0.3em;
+    }
+
+    .related-title {
+      margin-bottom: 24px;
+      color: #443e47;
+      font-size: clamp(1.65rem, 4vw, 2.35rem);
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      padding-left: 0.16em;
+    }
+
+    .related-text {
+      color: var(--text-soft);
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      line-height: 2.2;
+      letter-spacing: 0.09em;
+    }
+
+    .related-button {
+      display: inline-block;
+      min-width: 245px;
+      margin-top: 34px;
+      padding: 14px 30px;
+      border: 1px solid rgba(145, 116, 75, 0.48);
+      border-radius: 100px;
+      color: #5a4d52;
+      background: rgba(255, 255, 255, 0.46);
+      font-size: 0.88rem;
+      letter-spacing: 0.16em;
+      transition: transform 0.35s ease, background 0.35s ease;
+    }
+
+    .related-button:hover,
+    .related-button:focus-visible {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.75);
+    }
+
   </style>
 </head>
 
@@ -901,6 +968,23 @@
           時光解析を始める
         </a>
 
+      </div>
+    </section>
+
+
+    <!-- あなたに合ったコンテンツ -->
+    <section class="related-section">
+      <div class="related-inner reveal">
+        <p class="related-kicker">YOUR NEXT STEP</p>
+        <h2 class="related-title">あなたに合ったコンテンツ</h2>
+        <p class="related-text">
+          生まれ持った性質を知ること。<br>
+          今の流れに気づくこと。心を静かに整えること。<br>
+          今のあなたに必要だと感じる入り口をお選びください。
+        </p>
+        <a href="contents.html" class="related-button">
+          コンテンツを見る
+        </a>
       </div>
     </section>
 
