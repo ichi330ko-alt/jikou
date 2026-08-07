@@ -300,6 +300,14 @@
 }
 
 @media (max-width: 640px) {
+   .result-hero {
+  padding-top: 90px;
+  min-height: 300px;
+}
+
+.result-hero-inner {
+  padding-top: 20px;
+}
   .result-hero-inner {
     width: min(100% - 22px, 920px);
   }
