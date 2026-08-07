@@ -1,1 +1,508 @@
 
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="時光解析の特定商取引法に基づく表記です。販売事業者、料金、支払方法、納品時期、キャンセル条件等を掲載しています。"
+  >
+
+  <title>特定商取引法に基づく表記｜時光</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+      margin: 0;
+    }
+
+    body {
+      color: #49424d;
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(222, 208, 229, 0.42),
+          transparent 35%
+        ),
+        linear-gradient(
+          180deg,
+          #f7f3f5 0%,
+          #eee8ed 100%
+        );
+      font-family:
+        "Yu Mincho",
+        "Hiragino Mincho ProN",
+        "Noto Serif JP",
+        serif;
+      line-height: 1.9;
+      letter-spacing: 0.05em;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .site-header {
+      position: relative;
+      z-index: 10;
+      border-bottom: 1px solid rgba(160, 133, 88, 0.25);
+      background: rgba(255, 255, 255, 0.74);
+      backdrop-filter: blur(9px);
+      -webkit-backdrop-filter: blur(9px);
+    }
+
+    .header-inner {
+      width: min(1120px, 100%);
+      min-height: 66px;
+      margin: 0 auto;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      color: #a48355;
+      font-size: 18px;
+      letter-spacing: 0.16em;
+      text-decoration: none;
+    }
+
+    .home-link {
+      color: #6c6470;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .hero {
+      padding: 62px 20px 52px;
+      text-align: center;
+    }
+
+    .hero-symbol {
+      width: min(150px, 42vw);
+      margin: 0 auto 20px;
+    }
+
+    .hero-symbol img {
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 7px 18px rgba(78, 56, 58, 0.10));
+    }
+
+    .hero small {
+      display: block;
+      margin-bottom: 10px;
+      color: #a48355;
+      font-size: 12px;
+      letter-spacing: 0.25em;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(28px, 5.6vw, 44px);
+      font-weight: normal;
+      letter-spacing: 0.08em;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: 17px auto 0;
+      color: #6c6470;
+      font-size: 16px;
+    }
+
+    .content {
+      padding: 0 16px 72px;
+    }
+
+    .content-inner {
+      width: min(920px, 100%);
+      margin: 0 auto;
+    }
+
+    .intro {
+      margin-bottom: 26px;
+      padding: 24px 27px;
+      border: 1px solid rgba(160, 133, 88, 0.27);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.72);
+      font-size: 16px;
+    }
+
+    .commerce-table {
+      width: 100%;
+      overflow: hidden;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: 1px solid rgba(160, 133, 88, 0.31);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.77);
+      box-shadow: 0 14px 38px rgba(45, 37, 54, 0.07);
+    }
+
+    .commerce-table th,
+    .commerce-table td {
+      padding: 20px 22px;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(160, 133, 88, 0.20);
+      text-align: left;
+    }
+
+    .commerce-table tr:last-child th,
+    .commerce-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .commerce-table th {
+      width: 29%;
+      color: #826a47;
+      background: rgba(236, 228, 236, 0.66);
+      font-weight: normal;
+    }
+
+    .commerce-table td {
+      color: #514a55;
+    }
+
+    .commerce-table p {
+      margin: 0;
+    }
+
+    .commerce-table p + p {
+      margin-top: 10px;
+    }
+
+    .notice {
+      margin-top: 28px;
+      padding: 22px 25px;
+      border: 1px solid rgba(160, 133, 88, 0.25);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.64);
+      color: #655c69;
+      font-size: 14px;
+    }
+
+    .date {
+      margin-top: 28px;
+      color: #7b727e;
+      font-size: 14px;
+      text-align: right;
+    }
+
+    .button-row {
+      margin-top: 35px;
+      text-align: center;
+    }
+
+    .button {
+      display: inline-flex;
+      min-width: 220px;
+      padding: 13px 25px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      color: #fff;
+      background:
+        linear-gradient(
+          135deg,
+          #343955,
+          #655472
+        );
+      text-decoration: none;
+      box-shadow: 0 10px 25px rgba(52, 48, 74, 0.18);
+    }
+
+    .site-footer {
+      padding: 30px 20px;
+      color: #766c76;
+      background: #eee8ed;
+      text-align: center;
+    }
+
+    .footer-links {
+      margin-bottom: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px 23px;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .copyright {
+      margin: 0;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+    }
+
+    @media (max-width: 700px) {
+      .hero {
+        padding: 46px 15px 40px;
+      }
+
+      .hero p {
+        text-align: left;
+      }
+
+      .content {
+        padding: 0 12px 58px;
+      }
+
+      .intro {
+        padding: 21px 18px;
+        font-size: 17px;
+      }
+
+      .commerce-table,
+      .commerce-table tbody,
+      .commerce-table tr,
+      .commerce-table th,
+      .commerce-table td {
+        display: block;
+        width: 100%;
+      }
+
+      .commerce-table tr {
+        border-bottom: 1px solid rgba(160, 133, 88, 0.22);
+      }
+
+      .commerce-table tr:last-child {
+        border-bottom: 0;
+      }
+
+      .commerce-table th,
+      .commerce-table td {
+        border-bottom: 0;
+      }
+
+      .commerce-table th {
+        padding: 15px 18px 8px;
+        font-size: 16px;
+      }
+
+      .commerce-table td {
+        padding: 10px 18px 18px;
+        font-size: 16px;
+      }
+
+      .button {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .footer-links {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">時光</a>
+      <a class="home-link" href="index.html">ホームへ戻る</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-symbol">
+      <img
+        src="img/jikou-icon-bg.png"
+        alt="時光のシンボルマーク"
+      >
+    </div>
+
+    <small>LEGAL INFORMATION</small>
+
+    <h1>特定商取引法に基づく表記</h1>
+
+    <p>
+      時光解析の個人鑑定を安心してお申し込みいただくため、
+      販売条件および運営者情報を掲載しています。
+    </p>
+  </section>
+
+  <main class="content">
+    <div class="content-inner">
+      <div class="intro">
+        本ページは、時光解析における有料の個人鑑定および
+        デジタル鑑定書の提供について定めたものです。
+        実際の料金・内容・納期は、各申込ページまたはご案内メールもあわせてご確認ください。
+      </div>
+
+      <table class="commerce-table">
+        <tbody>
+          <tr>
+            <th>サービス名</th>
+            <td>時光解析</td>
+          </tr>
+
+          <tr>
+            <th>運営ブランド</th>
+            <td>Sono</td>
+          </tr>
+
+          <tr>
+            <th>販売事業者</th>
+            <td>菅原 園子</td>
+          </tr>
+
+          <tr>
+            <th>運営責任者</th>
+            <td>菅原 園子</td>
+          </tr>
+
+          <tr>
+            <th>所在地</th>
+            <td>〒292-0404 千葉県君津市泉770</td>
+          </tr>
+
+          <tr>
+            <th>電話番号</th>
+            <td>
+              080-5424-4413
+              <p>お問い合わせは、できるだけメールをご利用ください。</p>
+            </td>
+          </tr>
+
+          <tr>
+            <th>メールアドレス</th>
+            <td>
+              <a href="mailto:ichi330ko@gmail.com">
+                ichi330ko@gmail.com
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <th>販売価格</th>
+            <td>
+              各鑑定の申込ページまたはご案内メールに、消費税を含む金額を表示します。
+            </td>
+          </tr>
+
+          <tr>
+            <th>商品代金以外の必要料金</th>
+            <td>
+              インターネット接続料金、通信料金および銀行振込手数料は、
+              利用者のご負担となります。
+            </td>
+          </tr>
+
+          <tr>
+            <th>支払方法</th>
+            <td>
+              銀行振込またはPayPay。
+              利用できる支払方法は、申込時のご案内に表示します。
+            </td>
+          </tr>
+
+          <tr>
+            <th>支払時期</th>
+            <td>
+              お申し込み後にお送りするご案内に記載した期日までにお支払いください。
+              期日までに入金が確認できない場合は、申込みをキャンセルとして扱うことがあります。
+            </td>
+          </tr>
+
+          <tr>
+            <th>サービスの提供時期</th>
+            <td>
+              入金確認後、各申込ページまたはご案内メールに記載した期日以内に、
+              鑑定結果または鑑定書をメール等で納品します。
+            </td>
+          </tr>
+
+          <tr>
+            <th>提供方法</th>
+            <td>
+              メール本文、PDFその他、申込時にご案内するデジタル形式で提供します。
+            </td>
+          </tr>
+
+          <tr>
+            <th>キャンセル・返金</th>
+            <td>
+              <p>
+                入金確認前は、メールでご連絡いただくことでキャンセルできます。
+              </p>
+              <p>
+                入金確認後または鑑定制作開始後は、
+                個別に制作するデジタルサービスの性質上、
+                利用者都合によるキャンセル・返金には応じられません。
+              </p>
+              <p>
+                ただし、運営者の都合によりサービスを提供できない場合、
+                重複入金その他返金が必要と判断した場合は、この限りではありません。
+              </p>
+            </td>
+          </tr>
+
+          <tr>
+            <th>鑑定結果について</th>
+            <td>
+              時光解析およびタロットによる鑑定は、
+              性格、未来、出来事、成功、健康状態その他の結果を断定または保証するものではありません。
+              自分自身を見つめるための手がかりとしてご利用ください。
+            </td>
+          </tr>
+
+          <tr>
+            <th>お申し込みの制限</th>
+            <td>
+              人の生死、病気の診断、犯罪や違法行為、他者を害する目的、
+              ギャンブル・投資の結果保証、第三者のプライバシーを侵害する内容等については、
+              お申し込みをお断りする場合があります。
+            </td>
+          </tr>
+
+          <tr>
+            <th>動作環境</th>
+            <td>
+              鑑定結果を受信・閲覧できるメール環境および、
+              PDF等を閲覧できる端末・ソフトウェアが必要です。
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="notice">
+        本ページに記載していない個別の販売条件は、
+        各申込ページまたはお申し込み後のご案内に表示します。
+        内容をご確認のうえ、お申し込みください。
+      </div>
+
+      <p class="date">制定日：2026年8月7日</p>
+
+      <div class="button-row">
+        <a class="button" href="index.html">ホームへ戻る</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="contents.html">あなたに合ったコンテンツ</a>
+      <a href="contact.html">お問い合わせ</a>
+      <a href="terms.html">利用規約</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+    </div>
+
+    <p class="copyright">© 2026 JIKOU</p>
+  </footer>
+</body>
+</html>
