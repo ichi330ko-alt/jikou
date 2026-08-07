@@ -1,1 +1,5 @@
 
+User-agent: *
+Allow: /
+
+Sitemap: https://ichi330ko-alt.github.io/jikou/sitemap.xml
