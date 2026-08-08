@@ -859,7 +859,36 @@
       background: rgba(255, 255, 255, 0.75);
     }
 
-  </style>
+  
+    .personal-section{
+      padding:90px 24px;
+      background:linear-gradient(180deg,#f7f3f5 0%,#f1ecef 100%);
+      text-align:center;
+    }
+    .personal-inner{width:min(720px,100%);margin:0 auto;}
+    .personal-kicker{margin-bottom:12px;color:var(--gold);font-size:.68rem;letter-spacing:.3em;padding-left:.3em;}
+    .personal-title{margin-bottom:18px;font-size:clamp(1.6rem,4vw,2.2rem);font-weight:400;letter-spacing:.14em;}
+    .personal-text{color:var(--text-soft);line-height:2.2;}
+    .coming-badge{
+      display:inline-block;
+      margin:18px 0;
+      padding:6px 14px;
+      border:1px solid rgba(145,116,75,.35);
+      border-radius:999px;
+      color:#8d7048;
+      font-size:.8rem;
+    }
+    .personal-button{
+      display:inline-block;
+      min-width:245px;
+      margin-top:28px;
+      padding:14px 30px;
+      border:1px solid rgba(145,116,75,.48);
+      border-radius:100px;
+      background:rgba(255,255,255,.55);
+    }
+
+</style>
 </head>
 
 <body>
@@ -991,8 +1020,22 @@
         </a>
 
       </div>
+
     </section>
 
+    <!-- 個人鑑定 -->
+    <section class="personal-section">
+      <div class="personal-inner reveal">
+        <p class="personal-kicker">PERSONAL READING</p>
+        <h2 class="personal-title">個人鑑定</h2>
+        <p class="personal-text">
+          無料解析の結果をもとに、現在の流れや課題、
+          タロットを重ねながら、一人ひとり丁寧に読み解きます。
+        </p>
+        <div class="coming-badge">受付準備中</div><br>
+        <a href="personal.html" class="personal-button">詳しく見る</a>
+      </div>
+    </section>
 
     <!-- あなたに合ったコンテンツ -->
     <section class="related-section">
