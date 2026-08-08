@@ -1,1 +1,612 @@
 
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="時光の無料解析結果をもとに、個人鑑定へ進むための確認・お申し込みページです。"
+  >
+
+  <title>無料解析から個人鑑定へ｜時光</title>
+
+  <meta property="og:title" content="無料解析から個人鑑定へ｜時光">
+  <meta property="og:description" content="無料解析で入力した基本情報を確認し、そのまま個人鑑定へ進めます。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ichi330ko-alt.github.io/jikou/personal-result.html">
+  <meta property="og:image" content="https://ichi330ko-alt.github.io/jikou/img/ogp.png">
+  <meta property="og:site_name" content="時光">
+  <meta property="og:locale" content="ja_JP">
+
+  <style>
+    :root {
+      --text-main: #403a43;
+      --text-soft: #675f6a;
+      --gold: #ad8c54;
+      --gold-light: #d8c294;
+      --paper: rgba(255,255,255,.80);
+      --line: rgba(160,133,88,.30);
+      --deep-1: #20243f;
+      --deep-2: #493b5f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text-main);
+      font-family:
+        "Yu Mincho",
+        "Hiragino Mincho ProN",
+        "Noto Serif JP",
+        serif;
+      line-height: 2;
+      letter-spacing: .06em;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(222,208,229,.42), transparent 32%),
+        linear-gradient(180deg,#f7f3f5 0%,#fbf8f4 50%,#eee8ed 100%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-header {
+      position: relative;
+      z-index: 10;
+      border-bottom: 1px solid rgba(160,133,88,.2);
+      background: rgba(255,255,255,.72);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .header-inner {
+      width: min(1120px,100%);
+      min-height: 66px;
+      margin: 0 auto;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      color: #8d7048;
+      font-size: 18px;
+      letter-spacing: .18em;
+    }
+
+    .header-nav {
+      display: flex;
+      gap: 18px;
+      color: var(--text-soft);
+      font-size: 13px;
+    }
+
+    .hero {
+      padding: 66px 20px 58px;
+      text-align: center;
+    }
+
+    .hero-symbol {
+      width: min(150px,40vw);
+      margin: 0 auto 20px;
+    }
+
+    .hero-symbol img {
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 8px 20px rgba(72,50,60,.10));
+    }
+
+    .kicker {
+      margin: 0 0 9px;
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: .28em;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(30px,5.8vw,46px);
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: .12em;
+      padding-left: .12em;
+    }
+
+    .hero-lead {
+      max-width: 720px;
+      margin: 22px auto 0;
+      color: var(--text-soft);
+      font-size: 15px;
+      line-height: 2.15;
+    }
+
+    .section {
+      padding: 62px 20px;
+    }
+
+    .section-inner {
+      width: min(820px,100%);
+      margin: 0 auto;
+    }
+
+    .section-heading {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .section-heading small {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--gold);
+      font-size: 10px;
+      letter-spacing: .26em;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: clamp(23px,4.5vw,34px);
+      font-weight: 400;
+      letter-spacing: .1em;
+    }
+
+    .info-card,
+    .confirm-card,
+    .form-shell,
+    .error-card {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--paper);
+      box-shadow: 0 18px 44px rgba(48,39,56,.07);
+    }
+
+    .info-card {
+      padding: 30px 34px;
+    }
+
+    .info-intro {
+      margin: 0 0 24px;
+      color: var(--text-soft);
+      text-align: center;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 0;
+      overflow: hidden;
+      border: 1px solid rgba(160,133,88,.22);
+      border-radius: 16px;
+      background: rgba(255,255,255,.55);
+    }
+
+    .info-label,
+    .info-value {
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(160,133,88,.16);
+    }
+
+    .info-label {
+      color: #806c43;
+      background: rgba(238,231,236,.55);
+    }
+
+    .info-value {
+      color: #4d4650;
+    }
+
+    .info-grid > :nth-last-child(-n+2) {
+      border-bottom: 0;
+    }
+
+    .confirm-card {
+      margin-top: 24px;
+      padding: 24px 28px;
+    }
+
+    .confirm-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .confirm-label input {
+      width: 20px;
+      height: 20px;
+      margin-top: 7px;
+      flex: 0 0 auto;
+      accent-color: #8c7545;
+    }
+
+    .confirm-text {
+      color: var(--text-soft);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .wrong-person {
+      margin: 14px 0 0 32px;
+      font-size: 13px;
+    }
+
+    .wrong-person a {
+      color: #806c43;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .form-section {
+      display: none;
+      padding-top: 22px;
+    }
+
+    .form-section.is-visible {
+      display: block;
+    }
+
+    .form-note {
+      max-width: 700px;
+      margin: 0 auto 24px;
+      color: var(--text-soft);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .form-shell {
+      overflow: hidden;
+      padding: 10px;
+    }
+
+    .google-form {
+      display: block;
+      width: 100%;
+      min-height: 2700px;
+      border: 0;
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    .error-card {
+      padding: 34px 30px;
+      text-align: center;
+    }
+
+    .error-card h2 {
+      margin: 0 0 14px;
+      font-size: 22px;
+      font-weight: 400;
+    }
+
+    .error-card p {
+      margin: 0;
+      color: var(--text-soft);
+    }
+
+    .action-button {
+      display: inline-flex;
+      min-width: 240px;
+      margin-top: 24px;
+      padding: 13px 24px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(145,116,75,.52);
+      border-radius: 999px;
+      color: #fff;
+      background: linear-gradient(135deg,#6b5874,#9b7d76);
+      box-shadow: 0 12px 28px rgba(65,48,68,.14);
+    }
+
+    .site-footer {
+      padding: 42px 20px;
+      color: #766c76;
+      background: #f1ecef;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px 22px;
+      margin-bottom: 18px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+    }
+
+    .copyright {
+      margin: 0;
+      font-size: 12px;
+    }
+
+    @media(max-width:700px) {
+      .header-nav {
+        gap: 10px;
+        font-size: 11px;
+      }
+
+      .hero {
+        padding: 50px 16px 46px;
+      }
+
+      .hero-lead {
+        text-align: left;
+      }
+
+      .section {
+        padding: 48px 12px;
+      }
+
+      .info-card {
+        padding: 22px 16px;
+      }
+
+      .info-grid {
+        display: block;
+      }
+
+      .info-label,
+      .info-value {
+        display: block;
+      }
+
+      .info-label {
+        padding: 11px 14px 5px;
+        border-bottom: 0;
+        font-size: 13px;
+      }
+
+      .info-value {
+        padding: 5px 14px 13px;
+      }
+
+      .info-grid > * {
+        border-bottom: 1px solid rgba(160,133,88,.16);
+      }
+
+      .info-grid > :last-child {
+        border-bottom: 0;
+      }
+
+      .confirm-card {
+        padding: 21px 18px;
+      }
+
+      .wrong-person {
+        margin-left: 0;
+      }
+
+      .google-form {
+        min-height: 2800px;
+      }
+
+      .footer-links {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">時光</a>
+
+      <nav class="header-nav" aria-label="ページ案内">
+        <a href="index.html">ホーム</a>
+        <a href="about.html">時光とは</a>
+        <a href="analysis.html">無料解析</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-symbol">
+        <img src="img/jikou-icon-bg.png" alt="時光のシンボルマーク">
+      </div>
+
+      <p class="kicker">PERSONAL READING</p>
+      <h1>この結果をもとに<br>個人鑑定へ</h1>
+
+      <p class="hero-lead">
+        無料解析でご入力いただいた基本情報を確認し、
+        現在の流れやタロットを重ねた個人鑑定へ進みます。
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="section-inner">
+        <div id="saved-area">
+          <div class="section-heading">
+            <small>YOUR INFORMATION</small>
+            <h2>入力内容の確認</h2>
+          </div>
+
+          <div class="info-card">
+            <p class="info-intro">
+              無料解析で入力された内容です。<br>
+              今回鑑定を受けるご本人の情報か、ご確認ください。
+            </p>
+
+            <div class="info-grid">
+              <div class="info-label">時光でお呼びするお名前</div>
+              <div class="info-value" id="confirm-nickname">―</div>
+
+              <div class="info-label">生年月日</div>
+              <div class="info-value" id="confirm-birth-date">―</div>
+
+              <div class="info-label">出生時間</div>
+              <div class="info-value" id="confirm-birth-time">―</div>
+
+              <div class="info-label">出生都道府県</div>
+              <div class="info-value" id="confirm-birth-place">―</div>
+
+              <div class="info-label">性別</div>
+              <div class="info-value" id="confirm-gender">―</div>
+            </div>
+          </div>
+
+          <div class="confirm-card">
+            <label class="confirm-label">
+              <input type="checkbox" id="person-confirm">
+              <span class="confirm-text">
+                上記は、今回個人鑑定を受けるご本人の情報で間違いありません。
+              </span>
+            </label>
+
+            <p class="wrong-person">
+              別の方の情報が表示されている場合は、
+              <a href="personal.html">通常の個人鑑定ページからお申し込みください。</a>
+            </p>
+          </div>
+
+          <div class="form-section" id="form-section">
+            <div class="section-heading">
+              <small>APPLICATION</small>
+              <h2>お申し込み</h2>
+            </div>
+
+            <p class="form-note">
+              下記フォームに、メールアドレス・ご相談のテーマ・ご相談内容などをご入力ください。
+            </p>
+
+            <div class="form-shell">
+              <iframe
+                class="google-form"
+                src="https://docs.google.com/forms/d/e/1FAIpQLSd8j81L6XNi3o71UVG_LEWTCAID18HCIxBiDf2hrd9twCC0qg/viewform?embedded=true"
+                title="時光 個人鑑定お申し込みフォーム"
+                loading="lazy"
+              >
+                読み込んでいます…
+              </iframe>
+            </div>
+          </div>
+        </div>
+
+        <div class="error-card" id="no-data" hidden>
+          <h2>無料解析の入力内容を確認できませんでした</h2>
+          <p>
+            無料解析の結果からこのページへ進んだ場合に、
+            入力内容を引き継ぐことができます。
+          </p>
+          <a class="action-button" href="analysis.html">無料解析を始める</a>
+          <br>
+          <a class="action-button" href="personal.html">直接個人鑑定へ進む</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="contents.html">あなたに合ったコンテンツ</a>
+      <a href="contact.html">お問い合わせ</a>
+      <a href="terms.html">利用規約</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+    </div>
+
+    <p class="copyright">© 2026 JIKOU</p>
+  </footer>
+
+  <script>
+    (() => {
+      "use strict";
+
+      function readSavedData() {
+        const keys = ["jikouStudioData", "jikouResultData", "resonanceResult"];
+        const stores = [sessionStorage, localStorage];
+
+        for (const store of stores) {
+          for (const key of keys) {
+            const raw = store.getItem(key);
+            if (!raw) continue;
+
+            try {
+              return JSON.parse(raw);
+            } catch (error) {
+              console.warn("保存された解析情報を読み込めませんでした。", error);
+            }
+          }
+        }
+
+        return null;
+      }
+
+      function valueOrDash(value, fallback = "―") {
+        const text = String(value ?? "").trim();
+        return text || fallback;
+      }
+
+      function genderLabel(value) {
+        const map = {
+          female: "女性",
+          male: "男性",
+          other: "その他",
+          女性: "女性",
+          男性: "男性",
+          その他: "その他"
+        };
+
+        return map[value] || valueOrDash(value);
+      }
+
+      const data = readSavedData();
+      const person = data?.person;
+
+      if (!person) {
+        document.getElementById("saved-area").hidden = true;
+        document.getElementById("no-data").hidden = false;
+        return;
+      }
+
+      document.getElementById("confirm-nickname").textContent =
+        valueOrDash(person.nickname);
+
+      document.getElementById("confirm-birth-date").textContent =
+        valueOrDash(person.birthDate);
+
+      document.getElementById("confirm-birth-time").textContent =
+        valueOrDash(person.birthTime, "出生時間未入力");
+
+      document.getElementById("confirm-birth-place").textContent =
+        valueOrDash(person.birthPlace);
+
+      document.getElementById("confirm-gender").textContent =
+        genderLabel(person.gender);
+
+      const checkbox = document.getElementById("person-confirm");
+      const formSection = document.getElementById("form-section");
+
+      checkbox.addEventListener("change", () => {
+        formSection.classList.toggle("is-visible", checkbox.checked);
+
+        if (checkbox.checked) {
+          setTimeout(() => {
+            formSection.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+          }, 100);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
