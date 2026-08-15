@@ -984,6 +984,52 @@
 
  
 
+    const cycleBox = byId("jewel-cycle").closest(".jewel-cycle-box");
+
+    let cycleNote = byId("jewel-cycle-note");
+
+ 
+
+    if (!cycleNote) {
+
+      cycleNote = document.createElement("p");
+
+      cycleNote.id = "jewel-cycle-note";
+
+      cycleNote.className = "jewel-cycle-note";
+
+      cycleBox.appendChild(cycleNote);
+
+    }
+
+ 
+
+    const cycleNames = jewel.cycle
+
+      .replace(/…/g, "")
+
+      .split("→")
+
+      .map((name) => name.trim())
+
+      .filter(Boolean);
+
+ 
+
+    const threeStages = cycleNames.slice(0, 3).join(" → ");
+
+ 
+
+    cycleNote.textContent =
+
+      `あなたの12座の中で、最も強く現れているのは「${jewel.axis}」です。` +
+
+      `「${jewel.axis}」の働きは、${threeStages}の3つを巡ります。` +
+
+      `この3つのうち、あなたを象徴する位置が「${jewel.name}」です。`;
+
+ 
+
     point.setAttribute(
 
       "aria-label",
