@@ -11,7 +11,7 @@
   <title>解析結果 | 時光</title>
 
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/result.css?v=12">
+  <link rel="stylesheet" href="css/result.css?v=13">
 </head>
 
 <body class="result-page">
@@ -132,6 +132,69 @@
         </div>
       </section>
 
+
+      <section class="result-insight-section" aria-labelledby="jewel-position-heading">
+        <div class="result-insight-inner">
+
+          <section class="result-insight-block jewel-position-block">
+            <div class="insight-heading">
+              <p class="result-section-label">YOUR JEWEL POSITION</p>
+              <h2 id="jewel-position-heading">あなたの宝石の座</h2>
+              <p class="insight-lead">
+                36の宝石は、それぞれ異なる働きと位置を持っています。
+                ここでは、あなたを象徴する宝石が「内界と外界」「創造性と現実化」のどこに座しているかを表します。
+              </p>
+            </div>
+
+            <div class="jewel-map" aria-label="宝石の座標">
+              <div class="jewel-map-axis jewel-map-axis-x" aria-hidden="true"></div>
+              <div class="jewel-map-axis jewel-map-axis-y" aria-hidden="true"></div>
+
+              <span class="jewel-map-label jewel-map-label-top">現実化</span>
+              <span class="jewel-map-label jewel-map-label-bottom">創造性</span>
+              <span class="jewel-map-label jewel-map-label-left">内界領域</span>
+              <span class="jewel-map-label jewel-map-label-right">外界領域</span>
+
+              <div id="jewel-map-point" class="jewel-map-point">
+                <span class="jewel-map-gem" aria-hidden="true">◆</span>
+                <span id="jewel-map-point-label" class="jewel-map-point-label"></span>
+              </div>
+            </div>
+
+            <div class="jewel-description">
+              <p id="jewel-action" class="jewel-action"></p>
+              <h3 id="jewel-description-title"></h3>
+              <p id="jewel-description-text"></p>
+
+              <div class="jewel-cycle-box">
+                <span class="jewel-cycle-label">この座の循環</span>
+                <p id="jewel-cycle"></p>
+              </div>
+            </div>
+          </section>
+
+          <div class="insight-separator" aria-hidden="true">✦</div>
+
+          <section class="result-insight-block axis-profile-block" aria-labelledby="axis-profile-heading">
+            <div class="insight-heading">
+              <p class="result-section-label">YOUR 12 SEATS</p>
+              <h2 id="axis-profile-heading">あなたの12の座</h2>
+              <p class="insight-lead">
+                12の座は、あなたの中にある12種類の働きを表します。
+                数値は良し悪しや能力の優劣ではなく、それぞれの座があなたの中でどの程度強く現れているかを見るためのものです。
+              </p>
+            </div>
+
+            <div id="axis-profile-list" class="axis-profile-list"></div>
+
+            <p class="axis-profile-note">
+              ※ バーの長さは、あなた自身の12座の中での相対的な強さを見やすくしたものです。表示されている数値が算定値です。
+            </p>
+          </section>
+
+        </div>
+      </section>
+
       <section class="result-end-section">
         <p>無料版の解析結果はここまでです。</p>
 
@@ -154,6 +217,6 @@
 
   <script src="js/resonance-data.js?v=8"></script>
   <script src="js/flower-data.js?v=2"></script>
-  <script src="js/result.js?v=9"></script>
+  <script src="js/result.js?v=10"></script>
 </body>
 </html>
