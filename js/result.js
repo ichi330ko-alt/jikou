@@ -2,8 +2,6 @@
 
   "use strict";
 
- 
-
   const STORAGE_KEYS = [
 
     "jikouResultData",
@@ -14,15 +12,9 @@
 
   ];
 
- 
-
   const DEFAULT_CYCLE = 1;
 
   const byId = (id) => document.getElementById(id);
-
- 
-
- 
 
   const AXIS_PROFILE = [
 
@@ -51,8 +43,6 @@
     { key: "情", description: "感じとり、巡らせる" }
 
   ];
-
- 
 
   const JEWEL_DATA = {
 
@@ -92,8 +82,6 @@
 
     },
 
- 
-
     "言霊の座": {
 
       axis: "現", action: "届ける",
@@ -129,8 +117,6 @@
       x: 42, y: 20
 
     },
-
- 
 
     "結縁の座": {
 
@@ -168,8 +154,6 @@
 
     },
 
- 
-
     "天門の座": {
 
       axis: "信", action: "開く",
@@ -205,8 +189,6 @@
       x: 37, y: 68
 
     },
-
- 
 
     "心眼の座": {
 
@@ -244,8 +226,6 @@
 
     },
 
- 
-
     "飛翔の座": {
 
       axis: "動", action: "動き出す",
@@ -281,8 +261,6 @@
       x: 64, y: 34
 
     },
-
- 
 
     "調律の座": {
 
@@ -320,8 +298,6 @@
 
     },
 
- 
-
     "解放の座": {
 
       axis: "放", action: "離す",
@@ -357,8 +333,6 @@
       x: 68, y: 66
 
     },
-
- 
 
     "安息の座": {
 
@@ -396,8 +370,6 @@
 
     },
 
- 
-
     "和心の座": {
 
       axis: "受", action: "共存させる",
@@ -434,8 +406,6 @@
 
     },
 
- 
-
     "天巡の座": {
 
       axis: "時", action: "流れを見る",
@@ -471,8 +441,6 @@
       x: 66, y: 22
 
     },
-
- 
 
     "共鳴の座": {
 
@@ -512,8 +480,6 @@
 
   };
 
- 
-
   const JEWEL_BY_AXIS_CYCLE = {
 
     "感": ["天響の座", "降光の座", "透解の座"],
@@ -542,10 +508,6 @@
 
   };
 
- 
-
- 
-
   function readStoredResult() {
 
     const storageSources = [
@@ -556,8 +518,6 @@
 
     ];
 
- 
-
     for (const source of storageSources) {
 
       for (const key of STORAGE_KEYS) {
@@ -565,8 +525,6 @@
         const raw = source.storage.getItem(key);
 
         if (!raw) continue;
-
- 
 
         try {
 
@@ -582,13 +540,9 @@
 
     }
 
- 
-
     return null;
 
   }
-
- 
 
   function clampCycle(value) {
 
@@ -600,8 +554,6 @@
 
   }
 
- 
-
   function axisValue(candidate) {
 
     if (typeof candidate === "string" && candidate.trim()) {
@@ -609,8 +561,6 @@
       return candidate.trim();
 
     }
-
- 
 
     if (candidate && typeof candidate === "object") {
 
@@ -630,19 +580,13 @@
 
     }
 
- 
-
     return null;
 
   }
 
- 
-
   function getAxisCandidate(result) {
 
     if (!result || typeof result !== "object") return null;
-
- 
 
     const directCandidates = [
 
@@ -662,8 +606,6 @@
 
     ];
 
- 
-
     for (const candidate of directCandidates) {
 
       const value = axisValue(candidate);
@@ -672,8 +614,6 @@
 
     }
 
- 
-
     if (Array.isArray(result.ranking) && result.ranking.length > 0) {
 
       const value = axisValue(result.ranking[0]);
@@ -681,8 +621,6 @@
       if (value) return value;
 
     }
-
- 
 
     const sequenceCandidates = [
 
@@ -698,8 +636,6 @@
 
     ];
 
- 
-
     for (const sequence of sequenceCandidates) {
 
       if (!Array.isArray(sequence) || sequence.length === 0) continue;
@@ -710,19 +646,13 @@
 
     }
 
- 
-
     return null;
 
   }
 
- 
-
   function getCycleCandidate(result) {
 
     if (!result || typeof result !== "object") return DEFAULT_CYCLE;
-
- 
 
     const directCandidates = [
 
@@ -738,8 +668,6 @@
 
     ];
 
- 
-
     for (const candidate of directCandidates) {
 
       if (candidate !== undefined && candidate !== null && candidate !== "") {
@@ -750,19 +678,13 @@
 
     }
 
- 
-
     return DEFAULT_CYCLE;
 
   }
 
- 
-
   function resolveAxisKey(axisCandidate) {
 
     if (!axisCandidate || typeof axisCandidate !== "string") return null;
-
- 
 
     const value = axisCandidate.trim();
 
@@ -774,21 +696,15 @@
 
     }
 
- 
-
     const shortCharacter = value.charAt(0);
 
     return window.RESONANCE_DATA?.[shortCharacter] ? shortCharacter : null;
 
   }
 
- 
-
   function getRankedAxisKeys(result, fallbackAxisKey) {
 
     const candidates = [];
-
- 
 
     if (Array.isArray(result?.ranking)) {
 
@@ -796,15 +712,11 @@
 
     }
 
- 
-
     for (const sequence of [result?.circuit, result?.route, result?.flow, result?.axes, result?.seats]) {
 
       if (Array.isArray(sequence)) candidates.push(...sequence);
 
     }
-
- 
 
     const keys = [];
 
@@ -818,15 +730,11 @@
 
     }
 
- 
-
     if (fallbackAxisKey && !keys.includes(fallbackAxisKey)) {
 
       keys.unshift(fallbackAxisKey);
 
     }
-
- 
 
     while (keys.length < 3 && fallbackAxisKey) {
 
@@ -834,19 +742,13 @@
 
     }
 
- 
-
     return keys.slice(0, 3);
 
   }
 
- 
-
   function createTextParagraphs(container, text) {
 
     container.innerHTML = "";
-
- 
 
     const blocks = String(text || "")
 
@@ -855,8 +757,6 @@
       .map((block) => block.trim())
 
       .filter(Boolean);
-
- 
 
     blocks.forEach((block) => {
 
@@ -870,15 +770,11 @@
 
   }
 
- 
-
   function setSectionHeading(elementId, iconPath, title) {
 
     const heading = byId(elementId);
 
     heading.innerHTML = "";
-
- 
 
     if (iconPath) {
 
@@ -896,8 +792,6 @@
 
     }
 
- 
-
     const label = document.createElement("span");
 
     label.textContent = title;
@@ -905,8 +799,6 @@
     heading.appendChild(label);
 
   }
-
- 
 
   function renderThreeCycleSection(prefix, rankedAxisKeys, fieldName) {
 
@@ -928,29 +820,19 @@
 
   }
 
- 
-
- 
-
   function getJewelData(symbolName, axisKey, cycle) {
 
     const direct = JEWEL_DATA[String(symbolName || "").trim()];
 
     if (direct) return { name: String(symbolName).trim(), ...direct };
 
- 
-
     const fallbackName = JEWEL_BY_AXIS_CYCLE?.[axisKey]?.[clampCycle(cycle) - 1];
 
     const fallback = fallbackName ? JEWEL_DATA[fallbackName] : null;
 
- 
-
     return fallback ? { name: fallbackName, ...fallback } : null;
 
   }
-
- 
 
   function renderJewelPosition(symbolData, primaryAxisKey, selectedCycle) {
 
@@ -962,15 +844,11 @@
 
     }
 
- 
-
     const point = byId("jewel-map-point");
 
     point.style.left = `${jewel.x}%`;
 
     point.style.top = `${jewel.y}%`;
-
- 
 
     byId("jewel-map-point-label").textContent = jewel.name;
 
@@ -978,57 +856,9 @@
 
     byId("jewel-description-title").textContent = jewel.name;
 
-    byId("jewel-description-text").textContent = jewel.description;
+    createTextParagraphs(byId("jewel-description-text"), symbolData?.text || jewel.description);
 
     byId("jewel-cycle").textContent = jewel.cycle;
-
- 
-
-    const cycleBox = byId("jewel-cycle").closest(".jewel-cycle-box");
-
-    let cycleNote = byId("jewel-cycle-note");
-
- 
-
-    if (!cycleNote) {
-
-      cycleNote = document.createElement("p");
-
-      cycleNote.id = "jewel-cycle-note";
-
-      cycleNote.className = "jewel-cycle-note";
-
-      cycleBox.appendChild(cycleNote);
-
-    }
-
- 
-
-    const cycleNames = jewel.cycle
-
-      .replace(/…/g, "")
-
-      .split("→")
-
-      .map((name) => name.trim())
-
-      .filter(Boolean);
-
- 
-
-    const threeStages = cycleNames.slice(0, 3).join(" → ");
-
- 
-
-    cycleNote.textContent =
-
-      `あなたの12座の中で、最も強く現れているのは「${jewel.axis}」です。` +
-
-      `「${jewel.axis}」の働きは、${threeStages}の3つを巡ります。` +
-
-      `この3つのうち、あなたを象徴する位置が「${jewel.name}」です。`;
-
- 
 
     point.setAttribute(
 
@@ -1040,15 +870,11 @@
 
   }
 
- 
-
   function getAxisScore(result, axisKey) {
 
     const direct = Number(result?.heavenEarth?.[axisKey]);
 
     if (Number.isFinite(direct)) return direct;
-
- 
 
     const ranked = Array.isArray(result?.ranking)
 
@@ -1062,23 +888,17 @@
 
       : null;
 
- 
-
     const rankedValue = Number(ranked?.value);
 
     return Number.isFinite(rankedValue) ? rankedValue : 0;
 
   }
 
- 
-
   function renderAxisProfile(result) {
 
     const container = byId("axis-profile-list");
 
     container.innerHTML = "";
-
- 
 
     const scores = AXIS_PROFILE.map((axis) => ({
 
@@ -1088,11 +908,7 @@
 
     }));
 
- 
-
     const maxScore = Math.max(...scores.map((axis) => axis.value), 1);
-
- 
 
     scores.forEach((axis) => {
 
@@ -1100,23 +916,17 @@
 
       row.className = "axis-profile-row";
 
- 
-
       const name = document.createElement("div");
 
       name.className = "axis-profile-name";
 
       name.textContent = axis.key;
 
- 
-
       const description = document.createElement("div");
 
       description.className = "axis-profile-description";
 
       description.textContent = axis.description;
-
- 
 
       const value = document.createElement("div");
 
@@ -1128,23 +938,17 @@
 
         : axis.value.toFixed(1);
 
- 
-
       const track = document.createElement("div");
 
       track.className = "axis-profile-track";
 
       track.setAttribute("aria-hidden", "true");
 
- 
-
       const fill = document.createElement("div");
 
       fill.className = "axis-profile-fill";
 
       fill.style.width = `${Math.max(3, (axis.value / maxScore) * 100)}%`;
-
- 
 
       track.appendChild(fill);
 
@@ -1155,8 +959,6 @@
     });
 
   }
-
- 
 
   function showError(message) {
 
@@ -1170,15 +972,11 @@
 
   }
 
- 
-
   function renderResult(result, primaryAxisKey, selectedCycle) {
 
     const axisData = window.getResonanceAxisData(primaryAxisKey);
 
     const symbolData = window.getResonanceCycleData(primaryAxisKey, selectedCycle);
-
- 
 
     if (!axisData || !symbolData) {
 
@@ -1186,21 +984,15 @@
 
     }
 
- 
-
     const image = byId("gem-card-image");
 
     image.src = axisData.image;
 
     image.alt = `${axisData.name}の宝石カード`;
 
- 
-
     byId("symbol-name").textContent = symbolData.symbolName;
 
     byId("symbol-romaji").textContent = symbolData.romaji;
-
- 
 
     const rankedAxisKeys = getRankedAxisKeys(result, primaryAxisKey);
 
@@ -1210,25 +1002,17 @@
 
     }
 
- 
-
     setSectionHeading("flower-heading", "img/icon-kan.png", "あなたの花の育ち方");
 
     setSectionHeading("movement-heading", axisData.icon, "あなたに現れやすい動き");
-
- 
 
     renderThreeCycleSection("flower-text", rankedAxisKeys, "flower");
 
     renderThreeCycleSection("movement-text", rankedAxisKeys, "movement");
 
- 
-
     renderJewelPosition(symbolData, primaryAxisKey, selectedCycle);
 
     renderAxisProfile(result);
-
- 
 
     byId("result-loading").hidden = true;
 
@@ -1236,13 +1020,9 @@
 
     byId("result-content").hidden = false;
 
- 
-
     document.title = `${symbolData.symbolName} | 時光解析`;
 
   }
-
- 
 
   function init() {
 
@@ -1270,8 +1050,6 @@
 
     }
 
- 
-
     const storedResult = readStoredResult();
 
     if (!storedResult) {
@@ -1282,15 +1060,11 @@
 
     }
 
- 
-
     const axisCandidate = getAxisCandidate(storedResult);
 
     const primaryAxisKey = resolveAxisKey(axisCandidate);
 
     const selectedCycle = getCycleCandidate(storedResult);
-
- 
 
     if (!primaryAxisKey) {
 
@@ -1303,8 +1077,6 @@
       return;
 
     }
-
- 
 
     try {
 
@@ -1320,10 +1092,7 @@
 
   }
 
- 
-
   document.addEventListener("DOMContentLoaded", init);
 
 })();
 
- 
