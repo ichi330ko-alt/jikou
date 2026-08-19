@@ -1,0 +1,204 @@
+:root {
+  --night: #102039;
+  --night-soft: #263a58;
+  --moon: #fff5d8;
+  --moon-soft: rgba(255, 245, 216, .38);
+  --text-light: #f8f3e7;
+  --paper: rgba(249, 245, 234, .96);
+  --paper-deep: #eee5d4;
+  --ink: #3e3a3c;
+  --muted: #736b65;
+  --gold: #a98d5d;
+  --line: rgba(125, 103, 67, .28);
+  --shadow: 0 24px 70px rgba(2, 10, 25, .34);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text-light);
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  line-height: 1.95;
+  letter-spacing: .055em;
+  background: #0d1930;
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+
+.omikuji-page {
+  background:
+    linear-gradient(180deg, rgba(7, 17, 35, .22), rgba(7, 17, 35, .56)),
+    url("../img/omikuji-bg.png") center top / cover fixed no-repeat;
+}
+
+.page-shell {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 50% 14%, rgba(255,255,255,.08), transparent 31%),
+    linear-gradient(180deg, rgba(8,16,33,.06), rgba(8,16,33,.28));
+}
+
+.site-header { padding: 24px 28px; }
+.header-inner {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+}
+.brand { font-size: 1.08rem; letter-spacing: .28em; }
+.home-link { font-size: .82rem; opacity: .78; border-bottom: 1px solid transparent; transition: .25s ease; }
+.home-link:hover, .home-link:focus-visible { opacity: 1; border-color: rgba(255,255,255,.62); }
+
+main {
+  width: min(980px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 40px 0 96px;
+}
+
+.omikuji-hero {
+  min-height: 73vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 54px 0 70px;
+}
+.eyebrow { margin: 0 0 10px; font-size: .72rem; letter-spacing: .28em; opacity: .76; }
+h1 { margin: 0; font-size: clamp(2.3rem, 7vw, 4.4rem); font-weight: 400; letter-spacing: .16em; text-shadow: 0 3px 18px rgba(0,0,0,.25); }
+.hero-copy { max-width: 610px; margin: 22px auto 0; font-size: .95rem; color: rgba(248,243,231,.87); text-shadow: 0 2px 12px rgba(0,0,0,.3); }
+
+.moon-stage { position: relative; width: 220px; height: 220px; margin: 24px 0 8px; }
+.moon-halo {
+  position: absolute; inset: 14px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,247,216,.38), rgba(255,247,216,.08) 46%, transparent 70%);
+  filter: blur(3px);
+}
+.moon {
+  position: absolute; width: 112px; height: 112px; left: 54px; top: 42px; border-radius: 50%;
+  background: radial-gradient(circle at 38% 34%, #fffdf3 0%, #fbf2d4 58%, #dcc996 100%);
+  box-shadow: 0 0 24px rgba(255,241,198,.54), 0 0 58px rgba(255,241,198,.22);
+}
+.moon-reflection {
+  position: absolute; left: 92px; top: 159px; width: 36px; height: 48px;
+  background: linear-gradient(180deg, rgba(255,244,204,.42), transparent);
+  filter: blur(6px);
+  transform: perspective(80px) rotateX(38deg);
+}
+
+.draw-button, .sub-button, .support-button {
+  border: 1px solid rgba(246,232,196,.66);
+  border-radius: 999px;
+  letter-spacing: .12em;
+  cursor: pointer;
+  transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+}
+.draw-button {
+  min-width: 220px;
+  padding: 14px 34px;
+  color: #fff8e7;
+  background: rgba(18,35,61,.52);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 12px 32px rgba(0,0,0,.18);
+}
+.draw-button:hover, .draw-button:focus-visible { transform: translateY(-2px); background: rgba(32,55,86,.68); }
+.draw-note { margin: 14px 0 0; font-size: .77rem; opacity: .72; }
+
+.result-wrap { width: min(720px, 100%); margin: 0 auto 78px; }
+.result-wrap.reveal { animation: rise .8s ease both; }
+@keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+
+.omikuji-paper {
+  position: relative;
+  color: var(--ink);
+  background:
+    linear-gradient(rgba(255,255,255,.28), rgba(255,255,255,.12)),
+    repeating-linear-gradient(0deg, rgba(118,91,56,.022) 0 1px, transparent 1px 5px),
+    var(--paper);
+  border: 1px solid rgba(223,208,180,.78);
+  box-shadow: var(--shadow);
+  padding: clamp(34px, 6vw, 62px) clamp(24px, 7vw, 70px) 42px;
+  clip-path: polygon(1.1% 0, 98.7% .5%, 100% 99%, 1.5% 100%, 0 2%);
+}
+.omikuji-paper::before, .omikuji-paper::after {
+  content: ""; position: absolute; left: 24px; right: 24px; height: 1px; background: var(--line);
+}
+.omikuji-paper::before { top: 22px; }
+.omikuji-paper::after { bottom: 22px; }
+
+.result-head { text-align: center; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+.phase-mark { font-size: 2.25rem; color: #88714c; line-height: 1; margin-bottom: 9px; }
+.result-number { margin: 0 0 2px; color: var(--gold); font-size: .8rem; letter-spacing: .22em; }
+.result-head h2 { margin: 0; font-size: clamp(2rem, 6vw, 3rem); font-weight: 400; letter-spacing: .12em; }
+.mother-line { margin: 12px 0 0; color: #685f58; font-size: .92rem; font-style: italic; }
+
+.oracle-block { padding: 34px 0 30px; text-align: center; border-bottom: 1px solid var(--line); }
+.oracle-label { margin: 0 0 20px; color: var(--gold); font-size: .78rem; letter-spacing: .14em; }
+.oracle-label span { color: #4d4847; }
+.oracle-poem { margin: 0; font-size: clamp(1rem, 3.2vw, 1.16rem); line-height: 2.25; letter-spacing: .075em; }
+
+.details { padding: 24px 0 4px; }
+.detail-row { display: grid; grid-template-columns: 116px 1fr; gap: 18px; margin: 0; padding: 14px 0; border-bottom: 1px dotted rgba(118,95,62,.24); }
+.detail-row:last-child { border-bottom: 0; }
+.detail-row dt { color: var(--gold); font-weight: 400; letter-spacing: .08em; }
+.detail-row dd { margin: 0; line-height: 1.8; }
+
+.paper-actions { text-align: center; padding-top: 24px; }
+.sub-button { padding: 11px 28px; color: #5b5249; border-color: rgba(142,116,73,.44); background: rgba(255,255,255,.28); }
+.sub-button:hover, .sub-button:focus-visible { background: rgba(169,141,93,.14); transform: translateY(-1px); }
+
+.support-card, .origin-card {
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(12,27,50,.52);
+  box-shadow: 0 18px 50px rgba(0,0,0,.18);
+  backdrop-filter: blur(10px);
+}
+.support-card { margin-top: 28px; padding: 30px 26px; text-align: center; border-radius: 18px; }
+.support-kicker, .origin-kicker { margin: 0 0 8px; color: #ead7a9; font-size: .78rem; letter-spacing: .18em; }
+.support-card p:not(.support-kicker) { margin: 0 0 20px; font-size: .9rem; color: rgba(248,243,231,.86); }
+.support-button { padding: 11px 24px; color: rgba(255,255,255,.72); background: rgba(255,255,255,.07); cursor: default; opacity: .72; }
+.support-button span { font-size: .74rem; }
+
+.origin-card { max-width: 720px; margin: 0 auto; padding: 42px 32px; text-align: center; border-radius: 22px; }
+.origin-card h2 { margin: 0 0 20px; font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 400; letter-spacing: .08em; }
+.origin-card p { margin: 0; color: rgba(248,243,231,.88); font-size: .92rem; }
+.origin-small { margin-top: 14px !important; font-size: .76rem !important; opacity: .68; }
+
+.site-footer { padding: 30px 20px 44px; text-align: center; color: rgba(248,243,231,.72); font-size: .8rem; }
+.site-footer p { margin: 0 0 10px; letter-spacing: .18em; }
+.site-footer nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 18px; }
+.site-footer a { border-bottom: 1px solid transparent; }
+.site-footer a:hover, .site-footer a:focus-visible { border-color: rgba(255,255,255,.5); }
+
+.is-drawing .moon { animation: moonPulse 1.35s ease-in-out both; }
+@keyframes moonPulse {
+  0% { transform: scale(1); filter: brightness(1); }
+  35% { transform: scale(.82); filter: brightness(.75); }
+  70% { transform: scale(1.08); filter: brightness(1.2); }
+  100% { transform: scale(1); filter: brightness(1); }
+}
+
+@media (max-width: 680px) {
+  .omikuji-page { background-attachment: scroll; background-position: 58% top; }
+  .site-header { padding: 20px 18px; }
+  .header-inner { gap: 10px; }
+  .brand { font-size: 1rem; }
+  .home-link { font-size: .76rem; }
+  main { width: min(100% - 22px, 980px); padding-top: 18px; }
+  .omikuji-hero { min-height: 70svh; padding: 36px 8px 58px; }
+  h1 { letter-spacing: .11em; }
+  .hero-copy { font-size: .88rem; }
+  .moon-stage { transform: scale(.92); margin-top: 16px; }
+  .omikuji-paper { padding-left: 22px; padding-right: 22px; }
+  .detail-row { grid-template-columns: 86px 1fr; gap: 12px; font-size: .9rem; }
+  .origin-card { padding: 34px 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+  .is-drawing .moon, .result-wrap.reveal { animation: none !important; }
+}
