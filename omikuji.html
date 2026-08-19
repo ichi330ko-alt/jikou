@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="時光 月御籤。月の巡りに映る今の相と、そこからひらかれる神託を受け取るおみくじです。">
+  <title>時光 月御籤</title>
+  <meta name="theme-color" content="#15243d">
+  <link rel="apple-touch-icon" href="icon-512.png">
+  <link rel="stylesheet" href="css/omikuji.css">
+</head>
+<body class="omikuji-page">
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="index.html" aria-label="時光 ホームへ">時光</a>
+        <a class="home-link" href="index.html">ホームへ戻る</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="omikuji-hero" aria-labelledby="page-title">
+        <p class="eyebrow">JIKOU · TSUKI MIKUJI</p>
+        <h1 id="page-title">時光 月御籤</h1>
+        <p class="hero-copy">
+          月は満ち、欠け、また巡ります。<br>
+          今のあなたに映る月の相と、そこからひらかれる神託をお受け取りください。
+        </p>
+
+        <div class="moon-stage" aria-hidden="true">
+          <div class="moon-halo"></div>
+          <div class="moon"></div>
+          <div class="moon-reflection"></div>
+        </div>
+
+        <button id="drawButton" class="draw-button" type="button">
+          神託をひらく
+        </button>
+        <p class="draw-note">問いを決めなくても大丈夫です。今、現れる一篇を。</p>
+      </section>
+
+      <section id="resultSection" class="result-wrap" aria-live="polite" hidden>
+        <article class="omikuji-paper">
+          <header class="result-head">
+            <div class="phase-mark" aria-hidden="true">◐</div>
+            <p class="result-number">第三</p>
+            <h2>現れる</h2>
+            <p class="mother-line">夢より現れしは　真か幻か</p>
+          </header>
+
+          <div class="oracle-block">
+            <p class="oracle-label">今回の神託　<span>始める</span></p>
+            <p class="oracle-poem">
+              夢より醒めて　姿を見せし<br>
+              その影が真か　未だ知らず<br>
+              確かめる術を得るために<br>
+              今ここより　歩みを始めよ
+            </p>
+          </div>
+
+          <div class="details" aria-label="各論">
+            <dl class="detail-row"><dt>願い</dt><dd>見えてきた願いへ一歩踏み出せ。</dd></dl>
+            <dl class="detail-row"><dt>営み</dt><dd>新たに気づいたことを日々に取り入れよ。</dd></dl>
+            <dl class="detail-row"><dt>仕事・学問</dt><dd>気になっていたことに着手せよ。</dd></dl>
+            <dl class="detail-row"><dt>財</dt><dd>必要が見えたところから少額で動かせ。</dd></dl>
+            <dl class="detail-row"><dt>待ち人</dt><dd>気になる縁には自ら声をかけてみよ。</dd></dl>
+            <dl class="detail-row"><dt>健康</dt><dd>気づいた変化を放置せずケアを始めよ。</dd></dl>
+          </div>
+
+          <div class="paper-actions">
+            <button id="drawAgainButton" class="sub-button" type="button">もう一度ひらく</button>
+          </div>
+        </article>
+
+        <aside class="support-card">
+          <p class="support-kicker">時光を応援する</p>
+          <p>
+            この神託が心に残ったら、<br>
+            時光のこれからを少しだけ応援していただけたら嬉しいです。
+          </p>
+          <button class="support-button" type="button" disabled aria-disabled="true">100円から応援する <span>（準備中）</span></button>
+        </aside>
+      </section>
+
+      <section class="origin-card" aria-labelledby="origin-title">
+        <p class="origin-kicker">一篇の詩から</p>
+        <h2 id="origin-title">この月御籤は生まれました</h2>
+        <p>
+          人の歩みを、巡る十八の景として綴った一篇の母詩。<br>
+          そこへ十四の応答を重ね、二百五十二篇の神託が生まれました。
+        </p>
+        <p class="origin-small">長い母詩は、月御籤の世界を紹介するページで公開予定です。</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>時光 ─ JIKOU</p>
+      <nav aria-label="サイト案内">
+        <a href="index.html">ホーム</a>
+        <a href="about.html">時光について</a>
+        <a href="contents.html">コンテンツ</a>
+      </nav>
+    </footer>
+  </div>
+
+  <script src="js/omikuji.js"></script>
+</body>
+</html>
