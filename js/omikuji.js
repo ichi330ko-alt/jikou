@@ -86,7 +86,7 @@
     {"id":"06-12","stateNo":6,"state":"満ちる","responseNo":12,"response":"受ける","mother":"我心の盃があふれる時に","poem":"差し出されし盃　すでに満ち\nなお注がるる　恵みもあり\n己には過ぎると退けることなく\n与えらるるものを　受け取れ","wish":"時は満ちた、訪れた機会を素直に受けよ。","life":"満ちている、差し出された助けを受けよ。","work":"得た、助言や新しい知識を受け取れ。","money":"得られる支援や対価を受けよ。","waiting":"訪れた縁をまず受け入れよ。","health":"調子の良い今こそ、休息や周囲の助けを受け取れ。"},
     {"id":"06-13","stateNo":6,"state":"満ちる","responseNo":13,"response":"求める","mother":"我心の盃があふれる時に","poem":"満ちたる盃を　見つめても\nなお消えぬ渇きが　胸にあるなら\n水では満たせぬものを知るため\n己が真に求むるものを　探せ","wish":"本当に望むものを求めよ。","life":"満ちている、今の暮らしに必要なものを求めよ。","work":"分からないことをさらに探究せよ。","money":"何のための財かを明らかにせよ。","waiting":"本当に求める相手や縁を見つめよ。","health":"調子の良い今こそ、身体が求めるものを確かめよ。"},
     {"id":"06-14","stateNo":6,"state":"満ちる","responseNo":14,"response":"省みる","mother":"我心の盃があふれる時に","poem":"満ちたる盃　手に取りて\n一滴ごとの来たりし場所を思え\n己のみで満たしたものにあらず\n与えられし恵みを　今省みよ","wish":"その願いが何を求めているか見直せ。","life":"満ちている、日々の過ごし方を振り返れ。","work":"目的と方法のずれを見直せ。","money":"これまでの使い方を振り返れ。","waiting":"なぜその人を待つのか見直せ。","health":"調子の良い今こそ、最近の無理や偏りを振り返れ。"},
-    {"id":"07-01","stateNo":7,"state":"実る","responseNo":1,"response":"始める","mother":"弾かれし雫　天へと繋がりゆく","poem":"実りし果実　種を宿して\n一つの終わりは　始まりとなる\n得たるものを胸に携え\n新しき営みを　ここより始めよ","wish":"よくよく考えて小さな一歩から始めよ。","life":"日々に新しい一つを始めよ。","work":"気になることに着手せよ。","money":"少額から動かし始めよ。","waiting":"気になる縁には自ら声をかけてみよ。","health":"気づいたところからケアを始めよ。"},
+    {"id":"07-01","stateNo":7,"state":"実る","responseNo":1,"response":"始める","mother":"弾かれし雫　天へと繋がりゆく","poem":"実りし果実　種を宿して\n一つの終わりは　始まりとなる\n得たるものを胸に携え\n新しき営みを　ここより始めよ","wish":"小さな一歩から始めよ。","life":"日々に新しい一つを始めよ。","work":"気になることに着手せよ。","money":"少額から動かし始めよ。","waiting":"気になる縁には自ら声をかけてみよ。","health":"気づいたところからケアを始めよ。"},
     {"id":"07-02","stateNo":7,"state":"実る","responseNo":2,"response":"進む","mother":"弾かれし雫　天へと繋がりゆく","poem":"長き時を経て　実は結び\n歩みし道に　答えは現る\n得たるものを確かに携え\nためらうことなく　先へ進め","wish":"迷わず一歩進め。","life":"今できることから進めよ。","work":"今の課題を一段先へ進めよ。","money":"無理のない範囲で計画を進めよ。","waiting":"会いたい相手へ一歩近づけ。","health":"今の体調に合う歩幅で進め。"},
     {"id":"07-03","stateNo":7,"state":"実る","responseNo":3,"response":"続ける","mother":"弾かれし雫　天へと繋がりゆく","poem":"実りの兆し　すでに見えて\n豊かに波打つ　小山田の里\nここまで重ねし営みを\n手を止めることなく　続けよ","wish":"焦らず歩みを続けよ。","life":"今の営みを丁寧に続けよ。","work":"成果を急がず積み重ねよ。","money":"堅実な管理を続けよ。","waiting":"今ある縁を丁寧に続けよ。","health":"今できているケアを続けよ。"},
     {"id":"07-04","stateNo":7,"state":"実る","responseNo":4,"response":"待つ","mother":"弾かれし雫　天へと繋がりゆく","poem":"枝に結びし　実はあれど\n未だその色　深まらぬなら\n手を伸ばすこと急がずに\n熟すその時を　静かに待て","wish":"成就を急がず待て。","life":"急がず、日々を保ちながら待て。","work":"結論を急がず機を待て。","money":"大きな判断は急がず様子を見よ。","waiting":"訪れを急かさず自然な時を待て。","health":"回復を急がず休みながら待て。"},
@@ -96,9 +96,9 @@
     {"id":"07-08","stateNo":7,"state":"実る","responseNo":8,"response":"選ぶ","mother":"弾かれし雫　天へと繋がりゆく","poem":"数多に実りし　果実の中\nすべてを抱くことは叶わず\n己が手に取るものを定め\n真に要る実を　選び取れ","wish":"本当に望むものを選べ。","life":"今必要なことを一つ選べ。","work":"今もっとも重要な課題を選べ。","money":"使い道に優先順位をつけよ。","waiting":"誰を待つのか、その縁を見定めよ。","health":"今必要な休息やケアを優先せよ。"},
     {"id":"07-09","stateNo":7,"state":"実る","responseNo":9,"response":"整える","mother":"弾かれし雫　天へと繋がりゆく","poem":"集いし実りを　一つに束ね\n散らばるままに　置くことなかれ\n得たるものに形を与え\n次へ渡せるよう　今整えよ","wish":"願いと現実の足場を整えよ。","life":"暮らしの乱れを一つずつ整えよ。","work":"資料・手順・時間を整えよ。","money":"収支と持ち物を整えよ。","waiting":"迎える前に心と関係を整えよ。","health":"睡眠・食事・休息を整えよ。"},
     {"id":"07-10","stateNo":7,"state":"実る","responseNo":10,"response":"変える","mother":"弾かれし雫　天へと繋がりゆく","poem":"実りしものを　種へと還し\n昨日の形に　留まることなかれ\n得たる恵みを新たに変えて\n次なる姿を　生み出せよ","wish":"願いはそのまま、叶え方を変えよ。","life":"無理のあるやり方を変えよ。","work":"方法や問い方を変えてみよ。","money":"使い方や管理方法を変えよ。","waiting":"待つだけでなく関わり方を変えよ。","health":"負担が続くなら生活を見直せ。"},
-    {"id":"07-11","stateNo":7,"state":"実る","responseNo":11,"response":"結ぶ","mother":"弾かれし雫　天へと繋がりゆく","poem":"一人に余る　豊かさならば\nその実りを　誰かと分かて\n雫が大きな流れとなるように\n共に在る縁へ　結びゆけ","wish":"助けとなる縁にて願い叶い易し。","life":"一人で抱えず周囲と助け合え。","work":"人の知恵や協力を借りよ。","money":"使える支援や制度とつながれ。","waiting":"人とのつながりを広げてみよ。","health":"必要なら支えや専門家につながれ。"},
-    {"id":"07-12","stateNo":7,"state":"実る","responseNo":12,"response":"受ける","mother":"弾かれし雫　天へと繋がりゆく","poem":"実りしものを　前にして\n未だ足りぬと　背を向けるな\nここまで来たりし己を許し\n与えられし実りを　受け取れ","wish":"訪れた機会を素直に受けることで叶う。","life":"差し出された助けを受けよ。","work":"助言や新しい知識を受け取れ。","money":"得られる支援や対価を受けよ。","waiting":"訪れた縁をまず受け入れよ。","health":"休息や周囲の助けを受け取れ。"},
-    {"id":"07-13","stateNo":7,"state":"実る","responseNo":13,"response":"求める","mother":"弾かれし雫　天へと繋がりゆく","poem":"実りを得ても　なお胸に\n消えぬ願いが　在るならば\n足らぬゆえとは決めつけず\n次なる実りを　祈り求めよ","wish":"完成形を思い浮かべて本当に望むものを求めよ。","life":"今の暮らしに必要なものを求めよ。","work":"分からないことをさらに探究せよ。","money":"何のための財かを明らかにせよ。","waiting":"本当に求める相手や縁を見つめよ。","health":"身体が求めるものを確かめよ。"},
+    {"id":"07-11","stateNo":7,"state":"実る","responseNo":11,"response":"結ぶ","mother":"弾かれし雫　天へと繋がりゆく","poem":"一人に余る　豊かさならば\nその実りを　誰かと分かて\n雫が大きな流れとなるように\n共に在る縁へ　結びゆけ","wish":"助けとなる縁と結べ。","life":"一人で抱えず周囲と助け合え。","work":"人の知恵や協力を借りよ。","money":"使える支援や制度とつながれ。","waiting":"人とのつながりを広げてみよ。","health":"必要なら支えや専門家につながれ。"},
+    {"id":"07-12","stateNo":7,"state":"実る","responseNo":12,"response":"受ける","mother":"弾かれし雫　天へと繋がりゆく","poem":"実りしものを　前にして\n未だ足りぬと　背を向けるな\nここまで来たりし己を許し\n与えられし実りを　受け取れ","wish":"訪れた機会を素直に受けよ。","life":"差し出された助けを受けよ。","work":"助言や新しい知識を受け取れ。","money":"得られる支援や対価を受けよ。","waiting":"訪れた縁をまず受け入れよ。","health":"休息や周囲の助けを受け取れ。"},
+    {"id":"07-13","stateNo":7,"state":"実る","responseNo":13,"response":"求める","mother":"弾かれし雫　天へと繋がりゆく","poem":"実りを得ても　なお胸に\n消えぬ願いが　在るならば\n足らぬゆえとは決めつけず\n次なる実りを　祈り求めよ","wish":"本当に望むものを求めよ。","life":"今の暮らしに必要なものを求めよ。","work":"分からないことをさらに探究せよ。","money":"何のための財かを明らかにせよ。","waiting":"本当に求める相手や縁を見つめよ。","health":"身体が求めるものを確かめよ。"},
     {"id":"07-14","stateNo":7,"state":"実る","responseNo":14,"response":"省みる","mother":"弾かれし雫　天へと繋がりゆく","poem":"豊かに実りし　この時に\n来たりし道を　振り返れ\n何がこの実を育てたのか\n与えられし恵みを　今一度知れ","wish":"その願いが何を求めているか見直せ。","life":"日々の過ごし方を振り返れ。","work":"目的と方法のずれを見直せ。","money":"これまでの使い方を振り返れ。","waiting":"なぜその人を待つのか見直せ。","health":"最近の無理や偏りを振り返れ。"},
     {"id":"08-01","stateNo":8,"state":"保たれる","responseNo":1,"response":"始める","mother":"その御胸に微睡む幼子のごとく","poem":"帰るべき場所を　胸に知れば\n遠き道にも　恐れは薄れる\n支えられしことを忘れずに\n新しき歩みを　ここより始めよ","wish":"小さな一歩から始めよ。","life":"日々に新しい一つを始めよ。","work":"気になることに着手せよ。","money":"少額から動かし始めよ。","waiting":"気になる縁には自ら声をかけてみよ。","health":"気づいたところからケアを始めよ。"},
     {"id":"08-02","stateNo":8,"state":"保たれる","responseNo":2,"response":"進む","mother":"その御胸に微睡む幼子のごとく","poem":"見えぬ御手に　支えられ\n今日まで道を　歩み来たり\n己一人の力と思わずに\n委ねる心を携え　先へ進め","wish":"迷わず一歩進め。","life":"今できることから進めよ。","work":"今の課題を一段先へ進めよ。","money":"無理のない範囲で計画を進めよ。","waiting":"会いたい相手へ一歩近づけ。","health":"今の体調に合う歩幅で進め。"},
@@ -277,12 +277,11 @@
   const detailWaiting = document.getElementById("detailWaiting");
   const detailHealth = document.getElementById("detailHealth");
 
-  const DAILY_KEY = "jikou_tsukiomikuji_daily_v1";
-  const HOLD_MS = 1800;
+  const DAILY_KEY = "jikou_tsukiomikuji_daily_v2";
+  const HOLD_MS = 1600;
 
   let isDrawing = false;
   let holdTimer = null;
-  let holdStartedAt = 0;
   let holdCompleted = false;
 
   function todayKey() {
@@ -373,7 +372,9 @@
   }
 
   function finishDailyDraw() {
-    if (isDrawing) return;
+    if (isDrawing || holdCompleted) return;
+
+    holdCompleted = true;
     isDrawing = true;
 
     const fortune = drawOne();
@@ -389,7 +390,20 @@
       setText(drawButton, "本日の神託を受け取りました");
       body.classList.remove("is-drawing");
       isDrawing = false;
-    }, 1100);
+    }, 900);
+  }
+
+  function startHold(event) {
+    if (drawButton.disabled || isDrawing || holdTimer || holdCompleted) return;
+
+    event.preventDefault();
+    drawButton.classList.add("is-holding");
+    setText(drawButton, "そのまま月に触れていてください…");
+
+    holdTimer = window.setTimeout(() => {
+      holdTimer = null;
+      finishDailyDraw();
+    }, HOLD_MS);
   }
 
   function cancelHold() {
@@ -397,42 +411,40 @@
       window.clearTimeout(holdTimer);
       holdTimer = null;
     }
-    drawButton?.classList.remove("is-holding");
 
-    if (!holdCompleted && !drawButton?.disabled) {
-      setText(drawButton, "月に触れたままお待ちください");
-      window.setTimeout(() => {
-        if (!holdTimer && !holdCompleted && !drawButton.disabled) {
-          setText(drawButton, "月を長押しして神託をひらく");
-        }
-      }, 900);
+    drawButton.classList.remove("is-holding");
+
+    if (!holdCompleted && !drawButton.disabled) {
+      setText(drawButton, "月を長押しして神託をひらく");
     }
   }
 
-  function beginHold(event) {
-    if (drawButton.disabled || isDrawing) return;
+  function setupLongPress() {
+    if (!drawButton) return;
 
-    event.preventDefault();
-    holdCompleted = false;
-    holdStartedAt = Date.now();
-    drawButton.classList.add("is-holding");
-    setText(drawButton, "そのまま月に触れていてください…");
+    // スマホは touch イベントを直接使う。
+    drawButton.addEventListener("touchstart", startHold, { passive: false });
+    drawButton.addEventListener("touchend", (event) => {
+      event.preventDefault();
+      if (!holdCompleted) cancelHold();
+    }, { passive: false });
+    drawButton.addEventListener("touchcancel", cancelHold, { passive: false });
 
-    holdTimer = window.setTimeout(() => {
-      holdTimer = null;
-      holdCompleted = true;
-      finishDailyDraw();
-    }, HOLD_MS);
-  }
+    // PCは mouse イベント。
+    drawButton.addEventListener("mousedown", startHold);
+    drawButton.addEventListener("mouseup", () => {
+      if (!holdCompleted) cancelHold();
+    });
+    drawButton.addEventListener("mouseleave", () => {
+      if (!holdCompleted) cancelHold();
+    });
 
-  function endHold(event) {
-    if (drawButton.disabled || isDrawing) return;
-    event.preventDefault();
-
-    const heldFor = Date.now() - holdStartedAt;
-    if (!holdCompleted && heldFor < HOLD_MS) {
-      cancelHold();
-    }
+    // 長押しメニューや選択を抑止。
+    drawButton.addEventListener("contextmenu", (event) => event.preventDefault());
+    drawButton.style.webkitTouchCallout = "none";
+    drawButton.style.webkitUserSelect = "none";
+    drawButton.style.userSelect = "none";
+    drawButton.style.touchAction = "manipulation";
   }
 
   function restoreTodayIfAny() {
@@ -442,29 +454,13 @@
       return;
     }
 
+    holdCompleted = true;
     showResult(savedFortune, { scroll: false });
     drawButton.disabled = true;
     setText(drawButton, "本日の神託を受け取りました");
   }
 
-  drawButton?.addEventListener("pointerdown", beginHold);
-  drawButton?.addEventListener("pointerup", endHold);
-  drawButton?.addEventListener("pointercancel", cancelHold);
-  drawButton?.addEventListener("pointerleave", (event) => {
-    if (event.pointerType === "mouse" && !holdCompleted) cancelHold();
-  });
-  drawButton?.addEventListener("contextmenu", (event) => event.preventDefault());
-
-  // キーボード利用時はEnter/Spaceの長押しにも対応
-  drawButton?.addEventListener("keydown", (event) => {
-    if ((event.key === "Enter" || event.key === " ") && !holdTimer && !isDrawing) {
-      beginHold(event);
-    }
-  });
-  drawButton?.addEventListener("keyup", (event) => {
-    if (event.key === "Enter" || event.key === " ") endHold(event);
-  });
-
+  setupLongPress();
   restoreTodayIfAny();
 
   if (FORTUNES.length !== 252) {
