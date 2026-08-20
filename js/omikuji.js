@@ -261,7 +261,6 @@
 
   const body = document.body;
   const drawButton = document.getElementById("drawButton");
-  const drawAgainButton = document.getElementById("drawAgainButton");
   const resultSection = document.getElementById("resultSection");
 
   const phaseMark = document.getElementById("phaseMark");
@@ -278,7 +277,21 @@
   const detailWaiting = document.getElementById("detailWaiting");
   const detailHealth = document.getElementById("detailHealth");
 
+  const DAILY_KEY = "jikou_tsukiomikuji_daily_v1";
+  const HOLD_MS = 1800;
+
   let isDrawing = false;
+  let holdTimer = null;
+  let holdStartedAt = 0;
+  let holdCompleted = false;
+
+  function todayKey() {
+    const now = new Date();
+    const y = now.getFullYear();
+    const m = String(now.getMonth() + 1).padStart(2, "0");
+    const d = String(now.getDate()).padStart(2, "0");
+    return `${y}-${m}-${d}`;
+  }
 
   function randomInt(max) {
     if (window.crypto && window.crypto.getRandomValues) {
@@ -300,11 +313,34 @@
     if (el) el.textContent = text;
   }
 
-  function renderFortune(fortune) {
-    // 月相の正式な18状態→月相対応は後で決められるよう、
-    // ここでは共通の月印だけを表示します。
-    setText(phaseMark, "☾");
+  function saveToday(fortune) {
+    try {
+      localStorage.setItem(
+        DAILY_KEY,
+        JSON.stringify({ date: todayKey(), fortuneId: fortune.id })
+      );
+    } catch (error) {
+      console.warn("月御籤の保存ができませんでした。", error);
+    }
+  }
 
+  function loadToday() {
+    try {
+      const raw = localStorage.getItem(DAILY_KEY);
+      if (!raw) return null;
+
+      const saved = JSON.parse(raw);
+      if (!saved || saved.date !== todayKey() || !saved.fortuneId) return null;
+
+      return FORTUNES.find((fortune) => fortune.id === saved.fortuneId) || null;
+    } catch (error) {
+      console.warn("月御籤の保存内容を読み込めませんでした。", error);
+      return null;
+    }
+  }
+
+  function renderFortune(fortune) {
+    setText(phaseMark, "☾");
     setText(
       resultNumber,
       `${STATE_KANJI[fortune.stateNo]} ― ${RESPONSE_KANJI[fortune.responseNo]}`
@@ -324,40 +360,113 @@
     resultSection.dataset.fortuneId = fortune.id;
   }
 
-  function revealResult() {
+  function showResult(fortune, { scroll = true } = {}) {
+    renderFortune(fortune);
+    resultSection.hidden = false;
+    resultSection.classList.remove("reveal");
+    void resultSection.offsetWidth;
+    resultSection.classList.add("reveal");
+
+    if (scroll) {
+      resultSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  function finishDailyDraw() {
     if (isDrawing) return;
     isDrawing = true;
 
-    body.classList.add("is-drawing");
-    if (drawButton) drawButton.disabled = true;
-    if (drawAgainButton) drawAgainButton.disabled = true;
-
     const fortune = drawOne();
+    saveToday(fortune);
+
+    body.classList.add("is-drawing");
+    drawButton.disabled = true;
+    drawButton.classList.remove("is-holding");
+    setText(drawButton, "神託をひらいています…");
 
     window.setTimeout(() => {
-      renderFortune(fortune);
-
-      resultSection.hidden = false;
-      resultSection.classList.remove("reveal");
-      void resultSection.offsetWidth;
-      resultSection.classList.add("reveal");
-
-      resultSection.scrollIntoView({ behavior: "smooth", block: "start" });
-
-      if (drawButton) drawButton.disabled = false;
-      if (drawAgainButton) drawAgainButton.disabled = false;
+      showResult(fortune);
+      setText(drawButton, "本日の神託を受け取りました");
       body.classList.remove("is-drawing");
       isDrawing = false;
     }, 1100);
   }
 
-  drawButton?.addEventListener("click", revealResult);
+  function cancelHold() {
+    if (holdTimer) {
+      window.clearTimeout(holdTimer);
+      holdTimer = null;
+    }
+    drawButton?.classList.remove("is-holding");
 
-  drawAgainButton?.addEventListener("click", () => {
-    revealResult();
+    if (!holdCompleted && !drawButton?.disabled) {
+      setText(drawButton, "月に触れたままお待ちください");
+      window.setTimeout(() => {
+        if (!holdTimer && !holdCompleted && !drawButton.disabled) {
+          setText(drawButton, "月を長押しして神託をひらく");
+        }
+      }, 900);
+    }
+  }
+
+  function beginHold(event) {
+    if (drawButton.disabled || isDrawing) return;
+
+    event.preventDefault();
+    holdCompleted = false;
+    holdStartedAt = Date.now();
+    drawButton.classList.add("is-holding");
+    setText(drawButton, "そのまま月に触れていてください…");
+
+    holdTimer = window.setTimeout(() => {
+      holdTimer = null;
+      holdCompleted = true;
+      finishDailyDraw();
+    }, HOLD_MS);
+  }
+
+  function endHold(event) {
+    if (drawButton.disabled || isDrawing) return;
+    event.preventDefault();
+
+    const heldFor = Date.now() - holdStartedAt;
+    if (!holdCompleted && heldFor < HOLD_MS) {
+      cancelHold();
+    }
+  }
+
+  function restoreTodayIfAny() {
+    const savedFortune = loadToday();
+    if (!savedFortune) {
+      setText(drawButton, "月を長押しして神託をひらく");
+      return;
+    }
+
+    showResult(savedFortune, { scroll: false });
+    drawButton.disabled = true;
+    setText(drawButton, "本日の神託を受け取りました");
+  }
+
+  drawButton?.addEventListener("pointerdown", beginHold);
+  drawButton?.addEventListener("pointerup", endHold);
+  drawButton?.addEventListener("pointercancel", cancelHold);
+  drawButton?.addEventListener("pointerleave", (event) => {
+    if (event.pointerType === "mouse" && !holdCompleted) cancelHold();
+  });
+  drawButton?.addEventListener("contextmenu", (event) => event.preventDefault());
+
+  // キーボード利用時はEnter/Spaceの長押しにも対応
+  drawButton?.addEventListener("keydown", (event) => {
+    if ((event.key === "Enter" || event.key === " ") && !holdTimer && !isDrawing) {
+      beginHold(event);
+    }
+  });
+  drawButton?.addEventListener("keyup", (event) => {
+    if (event.key === "Enter" || event.key === " ") endHold(event);
   });
 
-  // データ欠損を開発時に気づける簡易チェック
+  restoreTodayIfAny();
+
   if (FORTUNES.length !== 252) {
     console.error(`月御籤データ件数が252ではありません: ${FORTUNES.length}`);
   }
