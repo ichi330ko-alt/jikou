@@ -888,6 +888,113 @@
       background:rgba(255,255,255,.55);
     }
 
+
+    /* ========================================
+       時光 月御籤
+    ======================================== */
+    .omikuji-home-section {
+      position: relative;
+      padding: 112px 24px;
+      overflow: hidden;
+      color: #f8f2e8;
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 28%, rgba(216, 197, 151, 0.16), transparent 28%),
+        linear-gradient(145deg, #171b31 0%, #28243b 52%, #171c31 100%);
+    }
+
+    .omikuji-home-section::before {
+      content: "";
+      position: absolute;
+      width: min(380px, 70vw);
+      aspect-ratio: 1;
+      left: 50%;
+      top: 34px;
+      border: 1px solid rgba(229, 211, 166, 0.15);
+      border-radius: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 70px rgba(221, 203, 163, 0.08);
+    }
+
+    .omikuji-home-inner {
+      position: relative;
+      z-index: 2;
+      width: min(700px, 100%);
+      margin: 0 auto;
+    }
+
+    .omikuji-home-moon {
+      margin-bottom: 18px;
+      color: #e3d2a8;
+      font-size: 2rem;
+      line-height: 1;
+      text-shadow: 0 0 22px rgba(232, 215, 171, 0.28);
+    }
+
+    .omikuji-home-kicker {
+      margin-bottom: 12px;
+      color: #cdbb91;
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      padding-left: 0.3em;
+    }
+
+    .omikuji-home-title {
+      margin-bottom: 27px;
+      font-size: clamp(1.8rem, 4vw, 2.55rem);
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      padding-left: 0.18em;
+    }
+
+    .omikuji-home-text {
+      color: rgba(249, 244, 235, 0.78);
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      line-height: 2.25;
+      letter-spacing: 0.09em;
+    }
+
+    .omikuji-home-button {
+      display: inline-block;
+      min-width: 245px;
+      margin-top: 37px;
+      padding: 14px 30px;
+      border: 1px solid rgba(232, 216, 180, 0.56);
+      border-radius: 100px;
+      color: #fffaf0;
+      background: rgba(255, 255, 255, 0.055);
+      font-size: 0.9rem;
+      letter-spacing: 0.18em;
+      transition:
+        transform 0.35s ease,
+        background 0.35s ease,
+        border-color 0.35s ease;
+    }
+
+    .omikuji-home-button:hover,
+    .omikuji-home-button:focus-visible {
+      transform: translateY(-2px);
+      border-color: rgba(240, 224, 190, 0.9);
+      background: rgba(255, 255, 255, 0.11);
+    }
+
+    .omikuji-home-note {
+      margin-top: 16px;
+      color: rgba(239, 229, 208, 0.58);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+    }
+
+    @media (max-width: 700px) {
+      .omikuji-home-section {
+        padding: 92px 23px;
+      }
+
+      .omikuji-home-text {
+        text-align: center;
+      }
+    }
+
 </style>
 </head>
 
@@ -1022,6 +1129,37 @@
       </div>
 
     </section>
+
+
+    <!-- 時光 月御籤 -->
+    <section class="omikuji-home-section">
+      <div class="omikuji-home-inner reveal">
+
+        <div class="omikuji-home-moon" aria-hidden="true">☾</div>
+
+        <p class="omikuji-home-kicker">JIKOU TSUKI OMIKUJI</p>
+
+        <h2 class="omikuji-home-title">
+          時光 月御籤
+        </h2>
+
+        <p class="omikuji-home-text">
+          一篇の母詩から生まれた、二百五十二篇の神託。<br>
+          今のあなたへ現れる一篇を、<br>
+          一日一籤お受け取りください。
+        </p>
+
+        <a href="omikuji.html" class="omikuji-home-button">
+          月御籤をひらく
+        </a>
+
+        <p class="omikuji-home-note">
+          一日一籤
+        </p>
+
+      </div>
+    </section>
+
 
     <!-- 個人鑑定 -->
     <section class="personal-section">
