@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow,noarchive" />
+  <meta name="googlebot" content="noindex,nofollow,noarchive" />
+  <title>豊かさの循環・検証版｜時光</title>
+  <style>
+    :root{
+      --bg:#f7f4ee;
+      --paper:#fffdf8;
+      --ink:#2b2926;
+      --muted:#777067;
+      --line:#d8d0c5;
+      --accent:#7e6652;
+      --accent-soft:#eee6dc;
+      --warn:#a34b3d;
+      --ok:#446a53;
+      --shadow:0 12px 34px rgba(43,41,38,.08);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at top right, rgba(180,155,120,.08), transparent 32rem),
+        var(--bg);
+      font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","YuGothic",Meiryo,sans-serif;
+      line-height:1.75;
+    }
+    .wrap{
+      width:min(920px, calc(100% - 28px));
+      margin:0 auto;
+      padding:34px 0 72px;
+    }
+    .hero{
+      text-align:center;
+      padding:24px 16px 28px;
+    }
+    .eyebrow{
+      font-size:.78rem;
+      letter-spacing:.18em;
+      color:var(--muted);
+      margin:0 0 8px;
+    }
+    h1{
+      margin:0;
+      font-family:"Yu Mincho","Hiragino Mincho ProN",serif;
+      font-size:clamp(1.8rem,5vw,2.8rem);
+      font-weight:600;
+      letter-spacing:.06em;
+    }
+    .lead{
+      max-width:700px;
+      margin:16px auto 0;
+      color:var(--muted);
+      font-size:.96rem;
+    }
+    .notice{
+      margin:0 auto 24px;
+      padding:14px 16px;
+      max-width:760px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:rgba(255,255,255,.55);
+      font-size:.9rem;
+      color:var(--muted);
+    }
+    .card{
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:20px;
+      margin:18px 0;
+    }
+    .section-title{
+      margin:0 0 6px;
+      font-family:"Yu Mincho","Hiragino Mincho ProN",serif;
+      font-size:1.25rem;
+      letter-spacing:.04em;
+    }
+    .section-note{
+      margin:0 0 16px;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+    .question{
+      padding:18px 0 20px;
+      border-top:1px solid #ebe5dc;
+    }
+    .question:first-child{border-top:0}
+    .qtext{
+      margin:0 0 12px;
+      font-weight:600;
+    }
+    .qnum{
+      display:inline-block;
+      min-width:2.7em;
+      color:var(--accent);
+      font-weight:700;
+    }
+    .scale{
+      display:grid;
+      grid-template-columns:repeat(5,minmax(0,1fr));
+      gap:8px;
+    }
+    .scale label{
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:56px;
+      padding:8px 4px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:#fff;
+      cursor:pointer;
+      text-align:center;
+      transition:.15s ease;
+      font-size:.78rem;
+      line-height:1.35;
+      user-select:none;
+    }
+    .scale label:hover{
+      border-color:var(--accent);
+      background:#fbf8f3;
+    }
+    .scale input{
+      position:absolute;
+      opacity:0;
+      pointer-events:none;
+    }
+    .scale label:has(input:checked){
+      border-color:var(--accent);
+      background:var(--accent-soft);
+      box-shadow:inset 0 0 0 1px var(--accent);
+      font-weight:700;
+    }
+    .value-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:10px;
+      margin-top:14px;
+    }
+    .value-grid label{
+      display:flex;
+      gap:8px;
+      align-items:flex-start;
+      min-height:72px;
+      padding:12px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:#fff;
+      cursor:pointer;
+    }
+    .value-grid label:has(input:checked){
+      border-color:var(--accent);
+      background:var(--accent-soft);
+    }
+    .value-grid input{
+      margin-top:.3em;
+      accent-color:var(--accent);
+    }
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-top:24px;
+    }
+    button{
+      appearance:none;
+      border:0;
+      border-radius:999px;
+      padding:13px 22px;
+      font:inherit;
+      font-weight:700;
+      cursor:pointer;
+      transition:.15s ease;
+    }
+    .primary{
+      color:#fff;
+      background:var(--ink);
+    }
+    .primary:hover{transform:translateY(-1px)}
+    .secondary{
+      color:var(--ink);
+      background:var(--accent-soft);
+      border:1px solid var(--line);
+    }
+    .error{
+      display:none;
+      margin:14px auto 0;
+      padding:10px 14px;
+      max-width:680px;
+      color:var(--warn);
+      background:#fff3f0;
+      border:1px solid #eed0ca;
+      border-radius:10px;
+      font-size:.9rem;
+    }
+    #resultView{display:none}
+    .result-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:10px;
+      margin-top:14px;
+    }
+    .axis{
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:14px;
+      background:#fff;
+      text-align:center;
+    }
+    .axis-name{
+      font-family:"Yu Mincho","Hiragino Mincho ProN",serif;
+      font-size:1.25rem;
+      margin-bottom:5px;
+    }
+    .axis-score{
+      font-weight:800;
+      font-size:1.1rem;
+    }
+    .axis small{color:var(--muted)}
+    .selected-values{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:12px;
+    }
+    .chip{
+      padding:7px 11px;
+      border-radius:999px;
+      background:var(--accent-soft);
+      border:1px solid var(--line);
+      font-size:.86rem;
+    }
+    .copybox{
+      margin-top:16px;
+      width:100%;
+      min-height:260px;
+      padding:14px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:#fbfaf7;
+      color:var(--ink);
+      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      font-size:.82rem;
+      line-height:1.55;
+      resize:vertical;
+    }
+    .copied{
+      min-height:1.4em;
+      text-align:center;
+      color:var(--ok);
+      font-size:.9rem;
+      margin-top:8px;
+    }
+    .footer{
+      text-align:center;
+      color:var(--muted);
+      font-size:.78rem;
+      margin-top:34px;
+    }
+    @media (max-width:680px){
+      .wrap{width:min(100% - 18px,920px);padding-top:18px}
+      .card{padding:15px;border-radius:14px}
+      .scale{gap:5px}
+      .scale label{min-height:62px;padding:6px 2px;font-size:.68rem}
+      .value-grid{grid-template-columns:1fr}
+      .result-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section id="formView">
+      <div class="hero">
+        <p class="eyebrow">JIKOU / RESEARCH TEST</p>
+        <h1>豊かさの循環・検証版</h1>
+        <p class="lead">
+          現在、「豊かさとお金の流れ」を見る診断を検証しています。
+          正解・不正解はありません。考え込みすぎず、今の自分にいちばん近いものを選んでください。
+        </p>
+      </div>
+
+      <div class="notice">
+        このページは研究・検証用です。診断結果の良し悪しを判定するものではありません。
+        回答後に表示される「結果をコピー」を押して、そのまま依頼者へ送ってください。
+      </div>
+
+      <form id="testForm">
+        <section class="card">
+          <h2 class="section-title">36の質問</h2>
+          <p class="section-note">
+            それぞれ5段階から、もっとも近いものを1つ選んでください。
+          </p>
+          <div id="questions"></div>
+        </section>
+
+        <section class="card">
+          <h2 class="section-title">あなたが「豊かだ」と感じるもの</h2>
+          <p class="section-note">
+            「これが十分にあると、自分は豊かだ」と感じるものを<strong>3つだけ</strong>選んでください。
+          </p>
+          <div class="value-grid" id="valueOptions"></div>
+          <div class="error" id="valueError">3つだけ選んでください。</div>
+        </section>
+
+        <div class="actions">
+          <button class="primary" type="submit">結果を見る</button>
+        </div>
+        <div class="error" id="formError">未回答の質問があります。36問すべてに回答してください。</div>
+      </form>
+    </section>
+
+    <section id="resultView">
+      <div class="hero">
+        <p class="eyebrow">JIKOU / RESEARCH RESULT</p>
+        <h1>あなたの豊かさの流れ</h1>
+        <p class="lead">
+          数字は「良い・悪い」を表すものではありません。
+          今どの作用が通りやすく、どこが動きにくいと感じているかを見るための検証用データです。
+        </p>
+      </div>
+
+      <section class="card">
+        <h2 class="section-title">12の作用</h2>
+        <div class="result-grid" id="scoreGrid"></div>
+      </section>
+
+      <section class="card">
+        <h2 class="section-title">あなたが豊かさを感じるもの</h2>
+        <div class="selected-values" id="selectedValues"></div>
+      </section>
+
+      <section class="card">
+        <h2 class="section-title">検証用データ</h2>
+        <p class="section-note">
+          下のボタンを押して全文をコピーし、そのまま依頼者へ送ってください。
+        </p>
+        <textarea class="copybox" id="copyText" readonly></textarea>
+        <div class="actions">
+          <button class="primary" id="copyBtn" type="button">結果をコピー</button>
+          <button class="secondary" id="backBtn" type="button">回答を修正する</button>
+        </div>
+        <div class="copied" id="copiedMsg"></div>
+      </section>
+    </section>
+
+    <p class="footer">豊かさの循環・研究用試験ページ / noindex</p>
+  </main>
+
+  <script>
+    const SCALE = [
+      {value:0, label:"まったく\n当てはまらない"},
+      {value:1, label:"あまり\n当てはまらない"},
+      {value:2, label:"どちらとも\nいえない"},
+      {value:3, label:"やや\n当てはまる"},
+      {value:4, label:"とても\n当てはまる"}
+    ];
+
+    const VALUES = {
+      A:"生活の安全・安心",
+      B:"物や快適な環境",
+      C:"家族・友人・人とのつながり",
+      D:"楽しい経験・遊び・旅行",
+      E:"大切な存在と共にいること",
+      F:"学び・成長・創作",
+      G:"人の役に立つこと・与えること",
+      H:"自由な時間・選択肢",
+      I:"お金そのものの余裕"
+    };
+
+    // 表示順は固定シャッフル。axis/item は回答者には見せない。
+    const QUESTIONS = [
+      {axis:"留", item:1, text:"予定外のお金が入ったとき、一部を使わず残すことができる。"},
+      {axis:"源", item:1, text:"自分には、お金や仕事につながり得る技能・経験・知識があると思う。"},
+      {axis:"結", item:1, text:"一人では難しいことでも、人とつながることで実現できると思う。"},
+      {axis:"満", item:1, text:"必要な生活費を払ったあとにも、ある程度のお金が残ることが多い。"},
+      {axis:"生", item:1, text:"今あるものを使って、新しいアイデアや方法を考えることができる。"},
+      {axis:"受", item:1, text:"自分が提供した価値には、相応の対価を受け取ってよいと思う。"},
+      {axis:"守", item:1, text:"生活を守るために「ここまでは使わない」という線を決めることができる。"},
+      {axis:"招", item:1, text:"自分が提供できるものを、必要とする人に知ってもらう機会がある。"},
+      {axis:"与", item:1, text:"自分のお金・時間・技能を、人のために使うことがある。"},
+      {axis:"換", item:1, text:"自分が提供できるものに、適切な値段や対価をつけられると思う。"},
+      {axis:"育", item:1, text:"今あるお金・時間・技能の一部を、将来のために使っている。"},
+      {axis:"還", item:1, text:"自分が人へ渡したものが、別の形で自分にも返ってきていると感じることがある。"},
+
+      {axis:"源", item:2, text:"自分が今すでに持っている「使えるもの」を、いくつか思い浮かべられる。"},
+      {axis:"満", item:2, text:"急な出費があっても、生活を大きく崩さず対応できる。"},
+      {axis:"換", item:2, text:"自分の技能・経験・時間を、収入につながる形にする方法を考えられる。"},
+      {axis:"与", item:2, text:"自分が少し出すことで誰かやその場が豊かになるなら、それを価値あることだと思う。"},
+      {axis:"招", item:2, text:"仕事・収入・援助・機会などが自分に届く入口が、複数あると思う。"},
+      {axis:"留", item:2, text:"使い道の決まっていないお金が手元にあっても、そのまま置いておける。"},
+      {axis:"生", item:2, text:"必要なものがなければ、自分なりに作ったり工夫したりすることがある。"},
+      {axis:"守", item:2, text:"頼まれたり勧められたりしても、自分に必要でなければお金や時間を出さずにいられる。"},
+      {axis:"結", item:2, text:"必要な人・情報・場所へ、自分からつながりを作ることができる。"},
+      {axis:"育", item:2, text:"すぐ成果が出なくても、将来価値を生むと思えば続けられる。"},
+      {axis:"受", item:2, text:"人から物・助け・好意をもらったとき、素直に受け取ることができる。"},
+      {axis:"還", item:2, text:"自分だけが与え続けるのではなく、互いに助け合える関係がある。"},
+
+      {axis:"満", item:3, text:"お金が理由で、生活に必要なものを諦めることは少ない。"},
+      {axis:"結", item:3, text:"自分の持つものと、誰かが必要としているものを結びつけることがある。"},
+      {axis:"源", item:3, text:"人から評価されたことや、自分では当たり前にできることの中に、価値があると思える。"},
+      {axis:"招", item:3, text:"必要なとき、新しい仕事や収入につながるきっかけを作る行動ができる。"},
+      {axis:"還", item:3, text:"自分が生み出した価値が、人や社会を巡って次の仕事・機会・つながりにつながることがある。"},
+      {axis:"生", item:3, text:"自分の知識・経験・技能から、人に提供できるものを生み出せると思う。"},
+      {axis:"育", item:3, text:"学び・道具・仕事・人間関係など、後で価値を生むものへ資源を回している。"},
+      {axis:"換", item:3, text:"お金を使うとき、それによって得たい価値（便利さ・時間・経験など）をある程度意識している。"},
+      {axis:"留", item:3, text:"将来必要になるもののために、今あるお金を残しておくことができる。"},
+      {axis:"受", item:3, text:"予想以上に多く受け取っても、すぐ同じだけ返さなければとは思わない。"},
+      {axis:"守", item:3, text:"急な変化や出費に備えて、自分なりの準備をしている。"},
+      {axis:"与", item:3, text:"自分に無理のない範囲で、人へ価値を渡すことができる。"}
+    ];
+
+    const AXIS_ORDER = ["源","生","結","換","招","受","満","留","育","守","与","還"];
+
+    const questionsEl = document.getElementById("questions");
+    const valueOptionsEl = document.getElementById("valueOptions");
+    const form = document.getElementById("testForm");
+    const formError = document.getElementById("formError");
+    const valueError = document.getElementById("valueError");
+
+    QUESTIONS.forEach((q, idx) => {
+      const wrap = document.createElement("div");
+      wrap.className = "question";
+      const p = document.createElement("p");
+      p.className = "qtext";
+      p.innerHTML = `<span class="qnum">Q${String(idx+1).padStart(2,"0")}</span>${q.text}`;
+      wrap.appendChild(p);
+
+      const scale = document.createElement("div");
+      scale.className = "scale";
+
+      SCALE.forEach(s => {
+        const label = document.createElement("label");
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = `q${idx+1}`;
+        input.value = String(s.value);
+        label.appendChild(input);
+        const span = document.createElement("span");
+        span.innerHTML = s.label.replace("\n","<br>");
+        label.appendChild(span);
+        scale.appendChild(label);
+      });
+
+      wrap.appendChild(scale);
+      questionsEl.appendChild(wrap);
+    });
+
+    Object.entries(VALUES).forEach(([key, labelText]) => {
+      const label = document.createElement("label");
+      const input = document.createElement("input");
+      input.type = "checkbox";
+      input.name = "wealthValue";
+      input.value = key;
+      const span = document.createElement("span");
+      span.innerHTML = `<strong>${key}</strong>：${labelText}`;
+      label.append(input, span);
+      valueOptionsEl.appendChild(label);
+    });
+
+    valueOptionsEl.addEventListener("change", e => {
+      const checked = [...document.querySelectorAll('input[name="wealthValue"]:checked')];
+      if (checked.length > 3) {
+        e.target.checked = false;
+      }
+      valueError.style.display = "none";
+    });
+
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+
+      const answers = [];
+      let allAnswered = true;
+
+      QUESTIONS.forEach((q, idx) => {
+        const checked = document.querySelector(`input[name="q${idx+1}"]:checked`);
+        if (!checked) {
+          allAnswered = false;
+        } else {
+          answers.push({
+            displayNumber: idx+1,
+            axis: q.axis,
+            item: q.item,
+            text: q.text,
+            value: Number(checked.value)
+          });
+        }
+      });
+
+      const selected = [...document.querySelectorAll('input[name="wealthValue"]:checked')]
+        .map(el => el.value);
+
+      formError.style.display = allAnswered ? "none" : "block";
+      valueError.style.display = selected.length === 3 ? "none" : "block";
+
+      if (!allAnswered || selected.length !== 3) {
+        const firstError = !allAnswered ? formError : valueError;
+        firstError.scrollIntoView({behavior:"smooth", block:"center"});
+        return;
+      }
+
+      const scores = {};
+      AXIS_ORDER.forEach(axis => scores[axis] = {sum:0, items:[]});
+
+      answers.forEach(a => {
+        scores[a.axis].sum += a.value;
+        scores[a.axis].items.push(a);
+      });
+
+      renderResults(scores, answers, selected);
+    });
+
+    function renderResults(scores, answers, selected){
+      const scoreGrid = document.getElementById("scoreGrid");
+      scoreGrid.innerHTML = "";
+
+      AXIS_ORDER.forEach(axis => {
+        const box = document.createElement("div");
+        box.className = "axis";
+        box.innerHTML = `
+          <div class="axis-name">${axis}</div>
+          <div class="axis-score">${scores[axis].sum} / 12</div>
+          <small>${scores[axis].items.map(x=>x.value).join("・")}</small>
+        `;
+        scoreGrid.appendChild(box);
+      });
+
+      const selectedValues = document.getElementById("selectedValues");
+      selectedValues.innerHTML = "";
+      selected.forEach(key => {
+        const chip = document.createElement("span");
+        chip.className = "chip";
+        chip.textContent = `${key}：${VALUES[key]}`;
+        selectedValues.appendChild(chip);
+      });
+
+      const lines = [];
+      lines.push("【豊かさの循環・検証版】");
+      lines.push("");
+      lines.push("■ 12作用");
+      AXIS_ORDER.forEach(axis => {
+        const itemValues = scores[axis].items
+          .sort((a,b)=>a.item-b.item)
+          .map(x=>x.value)
+          .join(",");
+        lines.push(`${axis}：${itemValues} = ${scores[axis].sum}/12`);
+      });
+
+      lines.push("");
+      lines.push("■ 豊かさTOP3");
+      selected.forEach(key => lines.push(`${key}：${VALUES[key]}`));
+
+      lines.push("");
+      lines.push("■ 回答詳細");
+      answers.forEach(a => {
+        lines.push(`Q${String(a.displayNumber).padStart(2,"0")}：${a.value}［${a.axis}${a.item}］ ${a.text}`);
+      });
+
+      document.getElementById("copyText").value = lines.join("\n");
+      document.getElementById("formView").style.display = "none";
+      document.getElementById("resultView").style.display = "block";
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+
+    document.getElementById("copyBtn").addEventListener("click", async () => {
+      const textarea = document.getElementById("copyText");
+      const msg = document.getElementById("copiedMsg");
+      try{
+        await navigator.clipboard.writeText(textarea.value);
+        msg.textContent = "コピーしました。そのまま送ってください。";
+      }catch(err){
+        textarea.focus();
+        textarea.select();
+        document.execCommand("copy");
+        msg.textContent = "コピーしました。そのまま送ってください。";
+      }
+      setTimeout(()=>msg.textContent="", 3500);
+    });
+
+    document.getElementById("backBtn").addEventListener("click", () => {
+      document.getElementById("resultView").style.display = "none";
+      document.getElementById("formView").style.display = "block";
+      window.scrollTo({top:0, behavior:"smooth"});
+    });
+  </script>
+</body>
+</html>
