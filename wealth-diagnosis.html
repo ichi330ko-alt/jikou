@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="36の質問から、今のあなたがどのように豊かさを感じ、巡らせているかを見つめる時光の無料診断です。" />
+  <title>豊かさの循環診断｜時光</title>
+  <style>
+    :root{
+      --bg:#f7f4ee;
+      --paper:#fffdf8;
+      --ink:#292824;
+      --muted:#736d64;
+      --line:#ddd5ca;
+      --accent:#75604d;
+      --accent-soft:#efe7dc;
+      --accent-pale:#f7f1e8;
+      --good:#536b5a;
+      --thin:#8b635c;
+      --shadow:0 12px 34px rgba(43,41,38,.08);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 85% 0%, rgba(180,155,120,.10), transparent 28rem),
+        var(--bg);
+      font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","YuGothic",Meiryo,sans-serif;
+      line-height:1.78;
+    }
+    .wrap{
+      width:min(920px, calc(100% - 28px));
+      margin:0 auto;
+      padding:30px 0 72px;
+    }
+    .hero{
+      text-align:center;
+      padding:26px 16px 24px;
+    }
+    .eyebrow{
+      margin:0 0 8px;
+      color:var(--muted);
+      font-size:.77rem;
+      letter-spacing:.18em;
+    }
+    h1,h2,h3{
+      font-family:"Yu Mincho","Hiragino Mincho ProN",serif;
+    }
+    h1{
+      margin:0;
+      font-size:clamp(1.9rem,5vw,2.8rem);
+      font-weight:600;
+      letter-spacing:.06em;
+    }
+    .lead{
+      max-width:710px;
+      margin:16px auto 0;
+      color:var(--muted);
+      font-size:.96rem;
+    }
+    .card{
+      margin:18px 0;
+      padding:20px;
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+    }
+    .section-title{
+      margin:0 0 6px;
+      font-size:1.27rem;
+      letter-spacing:.04em;
+    }
+    .section-note{
+      margin:0 0 16px;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+    .notice{
+      max-width:760px;
+      margin:0 auto 22px;
+      padding:14px 16px;
+      color:var(--muted);
+      background:rgba(255,255,255,.58);
+      border:1px solid var(--line);
+      border-radius:14px;
+      font-size:.9rem;
+    }
+    .question{
+      padding:18px 0 20px;
+      border-top:1px solid #ebe5dc;
+    }
+    .question:first-child{border-top:0}
+    .qtext{
+      margin:0 0 12px;
+      font-weight:600;
+    }
+    .qnum{
+      display:inline-block;
+      min-width:2.9em;
+      color:var(--accent);
+      font-weight:700;
+    }
+    .scale{
+      display:grid;
+      grid-template-columns:repeat(5,minmax(0,1fr));
+      gap:8px;
+    }
+    .scale label{
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:58px;
+      padding:8px 4px;
+      text-align:center;
+      line-height:1.35;
+      font-size:.78rem;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:12px;
+      cursor:pointer;
+      user-select:none;
+      transition:.15s ease;
+    }
+    .scale input{
+      position:absolute;
+      opacity:0;
+      pointer-events:none;
+    }
+    .scale label:hover{
+      background:#fbf8f3;
+      border-color:var(--accent);
+    }
+    .scale label:has(input:checked){
+      background:var(--accent-soft);
+      border-color:var(--accent);
+      box-shadow:inset 0 0 0 1px var(--accent);
+      font-weight:700;
+    }
+    .rank-grid{
+      display:grid;
+      gap:12px;
+      margin-top:14px;
+    }
+    .rank-row{
+      display:grid;
+      grid-template-columns:76px 1fr;
+      align-items:center;
+      gap:12px;
+      padding:12px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:12px;
+    }
+    .rank-label{
+      font-family:"Yu Mincho","Hiragino Mincho ProN",serif;
+      font-size:1.05rem;
+      font-weight:700;
+      text-align:center;
+      color:var(--accent);
+    }
+    select{
+      width:100%;
+      padding:11px 12px;
+      color:var(--ink);
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:10px;
+      font:inherit;
+    }
+    .error{
+      display:none;
+      max-width:680px;
+      margin:14px auto 0;
+      padding:10px 14px;
+      color:#994a3e;
+      background:#fff3f0;
+      border:1px solid #ecd0ca;
+      border-radius:10px;
+      font-size:.9rem;
+    }
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:10px;
+      margin-top:24px;
+    }
+    button{
+      appearance:none;
+      border:0;
+      border-radius:999px;
+      padding:13px 22px;
+      font:inherit;
+      font-weight:700;
+      cursor:pointer;
+      transition:.15s ease;
+    }
+    .primary{
+      color:#fff;
+      background:var(--ink);
+    }
+    .secondary{
+      color:var(--ink);
+      background:var(--accent-soft);
+      border:1px solid var(--line);
+    }
+    button:hover{transform:translateY(-1px)}
+    #resultView{display:none}
+    .result-intro{
+      text-align:center;
+      margin:-4px 0 22px;
+      color:var(--muted);
+      font-size:.92rem;
+    }
+    .reading-card{
+      position:relative;
+      overflow:hidden;
+    }
+    .reading-card::before{
+      content:"";
+      position:absolute;
+      inset:0 auto 0 0;
+      width:4px;
+      background:var(--accent);
+      opacity:.65;
+    }
+    .reading-kicker{
+      margin:0 0 4px;
+      color:var(--accent);
+      font-size:.76rem;
+      font-weight:700;
+      letter-spacing:.12em;
+    }
+    .reading-title{
+      margin:0 0 12px;
+      font-size:1.23rem;
+    }
+    .reading-text{
+      margin:0;
+      white-space:pre-line;
+    }
+    .thin-wrap{
+      display:grid;
+      gap:14px;
+      margin-top:14px;
+    }
+    .thin-item{
+      padding:16px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:14px;
+    }
+    .thin-item h3{
+      margin:0 0 8px;
+      font-size:1rem;
+      color:var(--thin);
+    }
+    .thin-item p{margin:0}
+    .rank-result{
+      display:grid;
+      gap:8px;
+      margin-top:12px;
+    }
+    .rank-result-item{
+      display:grid;
+      grid-template-columns:54px 1fr;
+      gap:10px;
+      align-items:start;
+      padding:11px 12px;
+      background:var(--accent-pale);
+      border-radius:12px;
+    }
+    .rank-result-item strong{
+      color:var(--accent);
+      text-align:center;
+    }
+    .scores-toggle{
+      margin-top:14px;
+    }
+    details{
+      border-top:1px solid var(--line);
+      padding-top:12px;
+    }
+    summary{
+      cursor:pointer;
+      color:var(--muted);
+      font-weight:700;
+    }
+    .result-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:8px;
+      margin-top:12px;
+    }
+    .axis{
+      padding:11px 8px;
+      text-align:center;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:10px;
+    }
+    .axis-name{
+      font-family:"Yu Mincho","Hiragino Mincho ProN",serif;
+      font-size:1.05rem;
+    }
+    .axis-score{
+      font-size:.9rem;
+      font-weight:700;
+    }
+    .copybox{
+      width:100%;
+      min-height:180px;
+      margin-top:12px;
+      padding:13px;
+      color:var(--ink);
+      background:#fbfaf7;
+      border:1px solid var(--line);
+      border-radius:12px;
+      font-family:inherit;
+      font-size:.84rem;
+      line-height:1.6;
+      resize:vertical;
+    }
+    .copied{
+      min-height:1.4em;
+      margin-top:8px;
+      text-align:center;
+      color:var(--good);
+      font-size:.9rem;
+    }
+    .small{
+      color:var(--muted);
+      font-size:.82rem;
+    }
+    .footer{
+      margin-top:34px;
+      text-align:center;
+      color:var(--muted);
+      font-size:.78rem;
+    }
+    @media(max-width:680px){
+      .wrap{width:min(100% - 18px,920px);padding-top:18px}
+      .card{padding:15px;border-radius:14px}
+      .scale{gap:5px}
+      .scale label{min-height:64px;padding:6px 2px;font-size:.68rem}
+      .rank-row{grid-template-columns:60px 1fr}
+      .result-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+    }
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <section id="formView">
+    <div class="hero">
+      <p class="eyebrow">JIKOU / WEALTH CIRCULATION</p>
+      <h1>豊かさの循環診断</h1>
+      <p class="lead">
+        お金だけではなく、受け取ること、残すこと、育てること、人へ渡すこと。
+        36の質問から、今のあなたがどのように豊かさを感じ、巡らせているかを見つめます。
+      </p>
+    </div>
+
+    <div class="notice">
+      この診断は、豊かさの「良い・悪い」を判定するものではありません。
+      今よく働いている流れと、少し細くなっている流れを知るためのものです。
+      生活環境や状況によって、必要な流れをあえて細くしている場合もあります。
+    </div>
+
+    <form id="testForm">
+      <section class="card">
+        <h2 class="section-title">36の質問</h2>
+        <p class="section-note">考え込みすぎず、今の自分にいちばん近いものを5段階から選んでください。</p>
+        <div id="questions"></div>
+      </section>
+
+      <section class="card">
+        <h2 class="section-title">あなたが大切にしている豊かさ</h2>
+        <p class="section-note">
+          「これが十分にあると、自分は豊かだ」と感じるものを、
+          <strong>大切だと思う順に1位〜3位</strong>まで選んでください。
+        </p>
+        <div class="rank-grid">
+          <div class="rank-row"><div class="rank-label">1位</div><select id="rank1" aria-label="豊かさ1位"></select></div>
+          <div class="rank-row"><div class="rank-label">2位</div><select id="rank2" aria-label="豊かさ2位"></select></div>
+          <div class="rank-row"><div class="rank-label">3位</div><select id="rank3" aria-label="豊かさ3位"></select></div>
+        </div>
+        <div class="error" id="rankError">1位〜3位まで、重複しない3項目を選んでください。</div>
+      </section>
+
+      <div class="actions">
+        <button class="primary" type="submit">診断結果を見る</button>
+      </div>
+      <div class="error" id="formError">未回答の質問があります。36問すべてに回答してください。</div>
+    </form>
+  </section>
+
+  <section id="resultView">
+    <div class="hero">
+      <p class="eyebrow">JIKOU / RESULT</p>
+      <h1>あなたが感じる豊かさ</h1>
+      <p class="lead">
+        今のあなたにすでにある豊かさと、これからさらに巡らせていけそうなところを読み解きました。
+      </p>
+    </div>
+
+    <p class="result-intro">
+      点数の高さは優劣ではありません。今の生活の中で、どの流れを使いやすいかを見る目安です。
+    </p>
+
+    <section class="card reading-card">
+      <p class="reading-kicker">FOUNDATION</p>
+      <h2 class="reading-title">あなたの豊かさの基盤</h2>
+      <p class="reading-text" id="foundationText"></p>
+    </section>
+
+    <section class="card reading-card">
+      <p class="reading-kicker">DEVELOPMENT</p>
+      <h2 class="reading-title">豊かさを発展させるもの</h2>
+      <p class="reading-text" id="developmentText"></p>
+    </section>
+
+    <section class="card reading-card">
+      <p class="reading-kicker">FRUIT</p>
+      <h2 class="reading-title">あなたが豊かさの先に求めるもの</h2>
+      <p class="reading-text" id="fruitText"></p>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title">さらに豊かにするためには？</h2>
+      <p class="section-note">
+        今は少し細くなっている流れです。欠けているという意味ではなく、
+        今の自分に合う形で使えているかを見直すためのヒントとして読んでみてください。
+      </p>
+      <div class="thin-wrap" id="thinWrap"></div>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title">あなたが大切にしている豊かさ</h2>
+      <p class="section-note">
+        これは「何のために豊かでありたいのか」を知るためのものです。
+      </p>
+      <div class="rank-result" id="rankResult"></div>
+    </section>
+
+    <section class="card scores-toggle">
+      <details>
+        <summary>12作用の点数を見る</summary>
+        <p class="small">点数は診断文を選ぶための目安です。高いほど良い、低いほど悪いという意味ではありません。</p>
+        <div class="result-grid" id="scoreGrid"></div>
+      </details>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title">結果を残す</h2>
+      <p class="section-note">結果文をコピーして、メモや家族・友人との共有に使えます。</p>
+      <textarea id="copyText" class="copybox" readonly></textarea>
+      <div class="actions">
+        <button class="primary" id="copyBtn" type="button">結果をコピー</button>
+        <button class="secondary" id="backBtn" type="button">回答を修正する</button>
+      </div>
+      <div class="copied" id="copiedMsg"></div>
+    </section>
+
+    <div class="notice">
+      この診断は自己理解のための読み物であり、金融・投資・医療などの専門的な助言を行うものではありません。
+    </div>
+  </section>
+
+  <p class="footer">時光｜豊かさの循環診断</p>
+</main>
+
+<script>
+const SCALE = [
+  {value:0,label:"まったく\\n当てはまらない"},
+  {value:1,label:"あまり\\n当てはまらない"},
+  {value:2,label:"どちらとも\\nいえない"},
+  {value:3,label:"やや\\n当てはまる"},
+  {value:4,label:"とても\\n当てはまる"}
+];
+
+const VALUES = {
+  A:"生活の安全・安心",
+  B:"物や快適な環境",
+  C:"家族・友人・人とのつながり",
+  D:"楽しい経験・遊び・旅行",
+  E:"大切な存在と共にいること",
+  F:"学び・成長・創作",
+  G:"人の役に立つこと・与えること",
+  H:"自由な時間・選択肢",
+  I:"お金そのものの余裕"
+};
+
+const VALUE_TO_AXIS = {
+  A:"守", B:"換", C:"結", D:"換", E:"結",
+  F:"育", G:"与", H:"換", I:"留"
+};
+
+const QUESTIONS = [
+  {axis:"留",item:1,text:"予定外のお金が入ったとき、一部を使わず残すことができる。"},
+  {axis:"源",item:1,text:"自分には、お金や仕事につながり得る技能・経験・知識があると思う。"},
+  {axis:"結",item:1,text:"一人では難しいことでも、人とつながることで実現できると思う。"},
+  {axis:"満",item:1,text:"必要な生活費を払ったあとにも、ある程度のお金が残ることが多い。"},
+  {axis:"生",item:1,text:"今あるものを使って、新しいアイデアや方法を考えることができる。"},
+  {axis:"受",item:1,text:"自分が提供した価値には、相応の対価を受け取ってよいと思う。"},
+  {axis:"守",item:1,text:"生活を守るために「ここまでは使わない」という線を決めることができる。"},
+  {axis:"招",item:1,text:"自分が提供できるものを、必要とする人に知ってもらう機会がある。"},
+  {axis:"与",item:1,text:"自分のお金・時間・技能を、人のために使うことがある。"},
+  {axis:"換",item:1,text:"自分が提供できるものに、適切な値段や対価をつけられると思う。"},
+  {axis:"育",item:1,text:"今あるお金・時間・技能の一部を、将来のために使っている。"},
+  {axis:"還",item:1,text:"自分が人へ渡したものが、別の形で自分にも返ってきていると感じることがある。"},
+  {axis:"源",item:2,text:"自分が今すでに持っている「使えるもの」を、いくつか思い浮かべられる。"},
+  {axis:"満",item:2,text:"急な出費があっても、生活を大きく崩さず対応できる。"},
+  {axis:"換",item:2,text:"自分の技能・経験・時間を、収入につながる形にする方法を考えられる。"},
+  {axis:"与",item:2,text:"自分が少し出すことで誰かやその場が豊かになるなら、それを価値あることだと思う。"},
+  {axis:"招",item:2,text:"仕事・収入・援助・機会などが自分に届く入口が、複数あると思う。"},
+  {axis:"留",item:2,text:"使い道の決まっていないお金が手元にあっても、そのまま置いておける。"},
+  {axis:"生",item:2,text:"必要なものがなければ、自分なりに作ったり工夫したりすることがある。"},
+  {axis:"守",item:2,text:"頼まれたり勧められたりしても、自分に必要でなければお金や時間を出さずにいられる。"},
+  {axis:"結",item:2,text:"必要な人・情報・場所へ、自分からつながりを作ることができる。"},
+  {axis:"育",item:2,text:"すぐ成果が出なくても、将来価値を生むと思えば続けられる。"},
+  {axis:"受",item:2,text:"人から物・助け・好意をもらったとき、素直に受け取ることができる。"},
+  {axis:"還",item:2,text:"自分だけが与え続けるのではなく、互いに助け合える関係がある。"},
+  {axis:"満",item:3,text:"お金が理由で、生活に必要なものを諦めることは少ない。"},
+  {axis:"結",item:3,text:"自分の持つものと、誰かが必要としているものを結びつけることがある。"},
+  {axis:"源",item:3,text:"人から評価されたことや、自分では当たり前にできることの中に、価値があると思える。"},
+  {axis:"招",item:3,text:"必要なとき、新しい仕事や収入につながるきっかけを作る行動ができる。"},
+  {axis:"還",item:3,text:"自分が生み出した価値が、人や社会を巡って次の仕事・機会・つながりにつながることがある。"},
+  {axis:"生",item:3,text:"自分の知識・経験・技能から、人に提供できるものを生み出せると思う。"},
+  {axis:"育",item:3,text:"学び・道具・仕事・人間関係など、後で価値を生むものへ資源を回している。"},
+  {axis:"換",item:3,text:"お金を使うとき、それによって得たい価値（便利さ・時間・経験など）をある程度意識している。"},
+  {axis:"留",item:3,text:"将来必要になるもののために、今あるお金を残しておくことができる。"},
+  {axis:"受",item:3,text:"予想以上に多く受け取っても、すぐ同じだけ返さなければとは思わない。"},
+  {axis:"守",item:3,text:"急な変化や出費に備えて、自分なりの準備をしている。"},
+  {axis:"与",item:3,text:"自分に無理のない範囲で、人へ価値を渡すことができる。"}
+];
+
+const AXIS_ORDER = ["源","生","結","換","招","受","満","留","育","守","与","還"];
+
+const READINGS = {
+  "源":{
+    1:"あなたの豊かさの基盤は、経験・知識・技術・得意なこと、環境や人との縁など、あなたがすでに持っているものの中にあるようです。新しく何かを得ることよりも「自分には何があるのか」「すでにあるものに気づけているのか」が重要なポイントです。",
+    2:"あなたが豊かさを発展させるためには、これまで身につけてきた経験や知識、技術、繋がりが鍵になっています。今自分に使えるものを見つけ、更に次の価値へと発展させるために活かすことが、豊かさの流れを広げてくれます。",
+    3:"あなたが豊かさの先に求めるのは、一度得て終わるだけではなく、あなたが持つ技術や知識、経験などが更に次の豊かさを産むための源になることです。使って終わりではなく、得たものが次へのヒントや種まきになる、そんな次のステップのための資源として使えるようになることです。そうすることで豊かさは大きく巡ります。"
+  },
+  "生":{
+    1:"あなたの豊かさには、創造性や生み出す力が働くことがつながっているようです。今ある知識や技術、時間、アイディアをもって、あなただけの方法を考えたり、必要なものを作ることであなた自身も豊かさを感じられるのでしょう。何かが足りない時にこそ「じゃあ代わりになるものはなんだろう？」「別のアプローチで解決できるかな？」と考えることで、あなたの豊かさがどんどん増していきます。",
+    2:"あなたが豊かさを発展させるためには、今あるものから新しい価値を生み出すことが大切です。知識や経験を組み合わせたり、違う角度から物事を考えてみたりすることで、新しい使い方や形を提供できるかもしれません。豊かさは物だけではなく、知恵や見識、経験、発見もまた豊かさといえるでしょう。",
+    3:"あなたが求めるものは、自分が生み出したものが形になり、それが誰かの助けや喜びになる、価値のあるものとして残ることでしょう。考えたことや作ったもの、経験としてそれらがあなたの実生活や仕事に活かされた時、あなた自身は対価だけでなく、充実感という豊かさを実感できるようになります。"
+  },
+  "結":{
+    1:"あなたには、人や情報・場所などと「繋がっている」ことが、とても重要なポイントになっています。全てを自分で背負う必要はなく、誰かに相談することや分担すること、情報を得ること、時には人と人を繋ぐことで、豊かさを強くすることができるでしょう。必要に応じた結びつきは、あなた自身の基盤を安定させる手段にもなります。",
+    2:"あなたが持っている情報や場所、または自分にはないものを持っている人などと繋がる機会をもつことで、一人では成し得なかったことも成し遂げることができるかもしれません。自分だけではなく、それぞれが持つものを結び合わせる。その手を引き合わせる力こそ、豊かさの広がりへと繋がっていきます。",
+    3:"あなたは、大切な人や場所、社会との繋がりも、豊かさのひとつとして捉えているのでしょう。自分が必要とされる場所があること、互いに支え合える関係があること、安心して関わりながら自由に動ける自分であること。そういった繋がり自体が、あなたにとって真の豊かさとして人生を彩ってくれます。"
+  },
+  "換":{
+    1:"あなたは今持っているものを「今必要なもの」へと換えていくことが大切なようです。お金は持っているだけではただのお金ですが、それを使って時間やサービス、物、或いは経験という価値に換えることができるのです。暮らしを整えることは勿論、あなたに心の余白を作る、これもまた豊かさの一つだと思って、必要なものに換えてみる勇気をもってみると良いのかもしれません。",
+    2:"自分が持つ知識や技術、経験や時間を必要としている人に届く形に換えてみることで、自分が誰かの豊かさになっている、という実感を持つとき、あなた自身が豊かさの宝庫であったと気付くのかもしれません。自分の持つ価値を仕事や商品、サービスや対価として一度考えてみた時に、今ある暮らしへ豊かさの新しい流れをつくることができます。",
+    3:"あなたが豊かさとして求めるのは、得たお金や時間、機会などを、自分が大切にしたいものへと換えることなのでしょう。暮らしを良くすることは勿論ですが、好きなところへ行くこと、好きな人と過ごすこと、好きな経験をしてみること、ステップアップのために学ぶことなど、お金そのものではなく、得たものをどう人生の肥やしにしていくか。それによって、あなたは豊かさをさらに実感することができるでしょう。"
+  },
+  "招":{
+    1:"あなたには、必要なものが自分のところに入ってこられる入口を持つことが大切なようです。仕事や収入以外にも、例えば情報・良い機会・助けになる制度など、存在を知ることであなたに届くものが、あなたに豊かさを巡らせてくれます。そのためには周囲に「自分が何ができるのか」「どんな情報を必要としているのか」を伝えたり、そういった場所に出向いていくことも、豊かさの流れを自分につなげることとなるでしょう。",
+    2:"豊かさを発展させるためには、今あるもの以外にも、他の選択肢を持つことが大切です。仕事の方法を変えてみる、自分を別の場所で知ってもらう、誰かの口コミや紹介を活かすなど、入口は様々あります。無理して広く繋げるのではなく、自分の無理のない範囲で入口を増やすことで、豊かさが届く可能性や機会が増えていくでしょう。",
+    3:"あなたが豊かさとして求めるのは、自分に必要なものや機会が自然と巡ってくる状態なのかもしれません。自分から探さなくても仕事の話が届く、必要な情報が手に入る、思いがけない縁が繋がるなど、これまで築いてきたものが入口となり、必要な豊かさがあなた自身を満たしてくれます。自然な流れの中で呼応した豊かさは、あなただけでなく、関わる人々も豊かにすることでしょう。"
+  },
+  "受":{
+    1:"あなたの豊かさには、自分に差し出されたものを素直に受け取ることが大切なようです。仕事への対価、人からの好意や助け、褒められた言葉など、自分に向けて渡されたものまで遠慮して返してしまう必要はありません。「これは受け取っていいもの」と自分の中に収めることで、それは初めてあなた自身の豊かさになります。与えることだけでなく、受け取ることも暮らしを支える大切な力です。",
+    2:"あなたが豊かさを発展させるためには、巡ってきたものを受け取り、それを自分のために活かしていくことが大切です。お金や物だけでなく、誰かの助けによって時間ができること、評価されることで新しい仕事につながること、教えてもらった情報から選択肢が増えることもあります。受け取ったものをそこで終わらせず、自分の暮らしや活動に取り入れることで、豊かさはさらに広がっていくでしょう。",
+    3:"あなたが豊かさとして求めるものには、自分が差し出すだけではなく、自分にも十分なものが返ってくる状態があるのでしょう。自分がした仕事には対価があり、誰かを支えた時には必要な場面で自分も支えてもらえる。好意や感謝を向けられた時には、それをそのまま喜ぶことができる。あなたも、そして与えた人も、豊かさという幸福を味わうことができるのです。"
+  },
+  "満":{
+    1:"あなたの豊かさには、まず生活に必要なものが十分に満たされていることが大切なようです。日々の暮らしに必要なお金や物、時間などが足りない状態では、その不足を補うことに多くの力を使うことになります。まずは自分や生活にとって「これだけあれば大丈夫」と思えるところまで満たすこと。それによって生まれる安心や余裕が、あなたの豊かさを支える基盤になります。",
+    2:"あなたが豊かさを発展させるためには、満たされたものから生まれる余裕を活かすことが大切です。必要なものが足りているからこそ、今までできなかったことを考えたり、時間を別のことに使ったり、少し先のためにお金を回したりすることができます。ただ足りないものを補うためだけではなく、「余裕があるからできること」に目を向けることで、豊かさの使い道はさらに広がっていくでしょう。",
+    3:"あなたが豊かさとして求めるものは、「足りないものを数えなくてもいい」と思えるほど満たされた状態なのかもしれません。必要なものがあり、したいことを選べる余裕があり、突然何かが必要になった時にも慌てなくていい。たくさん持つことよりも、自分にとって十分なものがあると感じられること。その満足感そのものが、あなたの求める豊かさなのでしょう。"
+  },
+  "留":{
+    1:"あなたの豊かさには、今あるものを全て使い切らず、自分のために残しておくことが大切なようです。お金だけでなく、時間や体力も、余っているから残すのではなく「ここまでは残しておく」と決めることで、いざという時に使える余裕になります。何かのために使うことだけを考えず、使わずに持っていることにも意味があると思えることが、あなたの暮らしを支えてくれるでしょう。",
+    2:"あなたが豊かさを発展させるためには、巡ってきたものの一部を、次に使える形で残しておくことが大切です。得たものをその時に全て使うのではなく、お金なら次のための資金として、時間なら予定を詰めない余白として、自分の中に残しておく。その余力があることで、必要な時に選べることやできることが増え、豊かさをさらに育てるためにも使えるようになります。",
+    3:"あなたが豊かさとして求めるものは、得たものが自分を通過していくだけではなく、形として残ることがとても重要なのかもしれません。得たものをすべて使うのではなく、成果として目に見える形で残す。そうすることで、自分自身を労うことができるのでしょう。ただ留めるのではなく、それが自分を褒め、鼓舞するものにもなり、次の活力になっていく。得たものを自分のもとに留めることで、あなたは豊かさを次へと繋いでいけるようです。"
+  },
+  "育":{
+    1:"あなたの豊かさには、今あるものに時間や手間をかけて、じっくり育てていくことが大切なようです。知識を深める、技術を磨く、経験を重ねる、人との関係を築いていくなど、すぐには結果が見えないことにも価値があります。今すぐ何になるかだけで判断せず、時間をかけることでより良いものになると考えられることが、あなたの豊かさを支えてくれるでしょう。",
+    2:"あなたが豊かさを発展させるためには、すでに持っているものをさらに磨き、その価値を高めていくことが大切です。身につけた知識をより深く学ぶ、技術を繰り返し磨く、仕事の方法を改善するなど、今あるものにもまだ育つ余地があります。すぐに結果が出なくても、時間や手間をかけて研磨することで、それまで以上の価値を持つものへと育っていくでしょう。",
+    3:"あなたが豊かさとして求めるものは、時間をかけて育ててきたものが成熟し、自分の確かな財産となることなのかもしれません。身につけた知識や技術が自分の力として定着すること、続けてきた仕事が実績になること、大切にしてきた関係が信頼になること。すぐに手に入れたものではなく、自分が時間と手間をかけて育ててきたからこそ得られるものに、あなたは大きな価値と豊かさを感じるのでしょう。"
+  },
+  "守":{
+    1:"あなたの豊かさには、自分の暮らしや大切なものを守るための線引きが必要なようです。お金や時間、体力には限りがあるからこそ、「ここまでは使える」「これは残しておきたい」と自分なりの基準を持つことで、必要なものまで失わずに済みます。誰かのために使うことや欲しいものを得ることと同じように、自分や生活を守るために使わないという選択も、豊かさを支える大切な判断です。",
+    2:"あなたが豊かさを発展させるためには、増やすことだけではなく、今ある豊かさを損なわないことも大切です。何にお金や時間を使うのか、どこまでなら無理なく引き受けられるのか、自分にとって必要なものは何なのか。その基準を持つことで、本当に大切にしたいものへ使える余力を守ることができます。広げるものと守るものを選び分けることが、豊かさを長く保つことにつながるでしょう。",
+    3:"あなたが豊かさとして求めるものには、自分が築いてきた暮らしや大切なものを、安心して守っていける状態も含まれているのでしょう。お金や物だけではなく、自分の時間、家族との生活、仕事、心身の余裕など、「これは大切にしたい」と思うものを簡単には手放さなくていいこと。自分にとって大切なものを守れるだけの余裕があることが、あなたにとっての豊かさなのかもしれません。"
+  },
+  "与":{
+    1:"あなたの豊かさには、自分が持っているものを、無理のない範囲で誰かのために使えることが大切なようです。お金や物だけではなく、時間や知識、技術、気遣いなど、あなたが渡せるものには様々な形があります。ただし、自分まで足りなくなるほど差し出す必要はありません。自分にも必要なものを残しながら「今の自分ならこれを渡せる」と思えることが、あなたと周囲の豊かさを支えてくれるでしょう。",
+    2:"あなたが豊かさを発展させるためには、自分が持つものを誰かのために活かすことが大切です。自分にとっては小さなことでも、それを必要としている人に渡れば、大きな価値になることがあります。誰に、何を、どのように渡すのかを考えることで、自分の中にあった豊かさは外へ広がり、そこから新しい関係や経験、喜びが生まれることもあるでしょう。自分だけで完結させず、周囲も豊かにすることで、その価値はさらに大きくなっていきます。",
+    3:"あなたが豊かさとして求めるものには、自分が持つものによって、誰かを豊かにできることも含まれているのでしょう。大切な人を喜ばせること、困っている人を助けること、自分の知識や技術を役立てることなど、「自分にあるものが誰かのためになった」と感じられることそのものが、あなたにとっての喜びになります。自分だけが満たされるのではなく、自分の豊かさによって誰かの生活や気持ちにも豊かさが生まれること。それが、あなた自身の幸福にもつながっているのでしょう。"
+  },
+  "還":{
+    1:"あなたの豊かさには、自分だけが与え続けたり、反対に受け取り続けたりするのではなく、互いに行き来できる関係があることが大切なようです。助けたことが別の場面で助けとして返ってくる、誰かから得たものをまた別の誰かへ渡すなど、同じものがそのまま戻らなくても構いません。豊かさが一方通行にならず、自分もその巡りの中にいられることが、あなたの生活を支えてくれるでしょう。",
+    2:"あなたが豊かさを発展させるためには、自分が生み出したものを、その場だけで終わらせず次へと繋げていくことが大切です。仕事が誰かの役に立つことで信頼が生まれる、その信頼から紹介や新しい仕事が生まれる、得た知識を誰かへ渡すことで新しい関係が生まれるなど、一つの価値から次の流れが生まれることがあります。何かを渡した相手から直接返ってこなくても、巡った価値が別の形となって次へ繋がることで、豊かさの循環は大きくなっていくでしょう。",
+    3:"あなたが豊かさとして求めるものは、自分が生み出したものや誰かへ渡したものが、その場で消えて終わらず、様々な人や場所を巡りながら新しい豊かさを生み続けることなのかもしれません。自分の仕事が誰かの生活を豊かにし、その人の豊かさがまた別の誰かへと渡っていく。その巡りの中で、自分にも必要なものが別の形で還ってくる。自分だけの豊かさで完結せず、関わる人たちと共に豊かさが巡り続けることが、あなたにとって大きな実りとなるのでしょう。"
+  }
+};
+
+const THIN = {
+  "源":{title:"すでに持っているものに目を向けること",text:"さらに豊かさを広げるためには、まず自分がすでに持っているものに目を向けてみるとよいかもしれません。知識や経験、技術、得意なこと、人との縁や環境など、自分にとって当たり前になっているものの中にも、まだ使われていない価値があります。「自分には何があるだろう」と改めて見渡してみることで、これからの豊かさにつながる材料を見つけられるでしょう。"},
+  "生":{title:"今あるものから、新しいものを生み出すこと",text:"さらに豊かさを広げるためには、今あるものから新しい方法や形を生み出すことを意識してみるとよいかもしれません。必要なものがないときも、すぐに諦めるのではなく、今持っている知識や経験、時間などを組み合わせることで、別の方法が見つかることがあります。「これで何ができるだろう」と考えてみることが、新しい豊かさを生み出すきっかけになるでしょう。"},
+  "結":{title:"人や情報、場所とのつながりに目を向けること",text:"さらに豊かさを広げるためには、一人でできることだけではなく、人や情報、場所とのつながりにも目を向けてみるとよいかもしれません。誰かに相談する、必要な情報を探す、自分とは違うものを持つ人と力を合わせることで、一人では難しかったことが可能になる場合があります。すべてを自分だけで抱えず、必要なもの同士を結ぶことも、豊かさを広げる方法のひとつです。"},
+  "換":{title:"今あるものを、必要な価値へ換えること",text:"さらに豊かさを広げるためには、自分が持っているものを、今必要な価値へ換えることを考えてみるとよいかもしれません。知識や技術を仕事やサービスにする、お金を時間や経験へ換えるなど、豊かさは形を変えることで使えるものになります。持っているものを「何に換えたら今の自分にとって役立つだろう」と考えることで、今ある豊かさをより活かせるでしょう。"},
+  "招":{title:"必要なものが届く入口をつくること",text:"さらに豊かさを広げるためには、必要な仕事や情報、機会などが自分へ届く入口について考えてみるとよいかもしれません。自分のできることを誰かに伝える、必要な情報がある場所を知るなど、小さな入口から新しい流れが生まれることがあります。ただし、入口は多ければよいわけではありません。自分に無理のない範囲で、必要なものが届く道があるかを見てみるとよいでしょう。"},
+  "受":{title:"自分へ差し出されたものを受け取ること",text:"さらに豊かさを広げるためには、自分へ差し出されたものを受け取ることにも目を向けてみるとよいかもしれません。仕事への対価、人からの好意や助け、評価や機会など、自分に向けられたものまで遠慮して返す必要はありません。与えることだけでなく、「これは受け取ってよいもの」と自分の中に収めることも、豊かさを巡らせるための大切な働きです。"},
+  "満":{title:"自分にとっての「十分」を満たすこと",text:"さらに豊かさを広げるためには、まず自分や暮らしに必要なものが十分に行き渡っているかを見てみるとよいかもしれません。日々必要なお金や物、時間などが足りない状態では、その不足を補うことに多くの力を使います。今は何が足りていて、何が足りていないのかを知り、自分にとっての「十分」を少しずつ満たしていくことが、次の豊かさを考えるための余裕につながります。"},
+  "留":{title:"使い切らず、自分のところにも残しておくこと",text:"さらに豊かさを広げるためには、入ってきたものをすべて使い切らず、自分のところにも残しておくことを意識してみるとよいかもしれません。お金だけでなく、時間や体力にも、すぐには使わない余裕があることで、必要なときに選べることが増えていきます。何かに使うことだけでなく、「今は使わずに持っておく」という選択にも、豊かさを支える役割があります。"},
+  "育":{title:"時間をかけて価値を育てること",text:"さらに豊かさを広げるためには、すぐに結果になるものだけでなく、時間をかけることで価値が増していくものにも目を向けてみるとよいかもしれません。知識を深める、技術を磨く、経験を重ねる、人との関係を築くなど、今すぐ成果にならなくても、後から大きな財産になるものがあります。今持っているものの中に「もう少し育ててみたいもの」がないか探してみるのもよいでしょう。"},
+  "守":{title:"大切なものを守るための線を引くこと",text:"さらに豊かさを広げるためには、増やすことだけでなく、今あるものを損なわないための線引きにも目を向けてみるとよいかもしれません。お金や時間、体力をどこまで使うのか、何を自分や生活のために確保しておくのか。その基準があることで、本当に大切なものを守りながら豊かさを広げることができます。「出さない・引き受けない」という選択も、必要なものを守るための大切な判断です。"},
+  "与":{title:"無理のない範囲で、持っているものを分かち合うこと",text:"さらに豊かさを広げるためには、自分が持っているものの中から、無理なく誰かへ渡せるものがあるかを考えてみるとよいかもしれません。お金や物だけでなく、時間、知識、技術、気遣いなど、自分にとって小さなものでも誰かにとって価値になることがあります。自分を足りなくさせる必要はありません。自分にも必要なものを残しながら、渡せるものを分かち合うことで、豊かさは自分の外にも広がっていきます。"},
+  "還":{title:"豊かさを一方通行にせず、巡らせること",text:"さらに豊かさを広げるためには、与えることと受け取ることが一方通行になっていないかを見てみるとよいかもしれません。自分が渡したものが別の人や場所で役立ち、そこから新しい仕事や縁、助けなどが生まれることもあります。同じ相手から同じものが返ってくる必要はありません。自分も豊かさの巡りの中に入り、受け取り、また必要なところへ渡せることが、流れを長く続けていくことにつながります。"}
+};
+
+const questionsEl = document.getElementById("questions");
+const form = document.getElementById("testForm");
+const formError = document.getElementById("formError");
+const rankError = document.getElementById("rankError");
+
+QUESTIONS.forEach((q,idx)=>{
+  const wrap=document.createElement("div");
+  wrap.className="question";
+  const p=document.createElement("p");
+  p.className="qtext";
+  p.innerHTML=`<span class="qnum">Q${String(idx+1).padStart(2,"0")}</span>${q.text}`;
+  wrap.appendChild(p);
+
+  const scale=document.createElement("div");
+  scale.className="scale";
+  SCALE.forEach(s=>{
+    const label=document.createElement("label");
+    const input=document.createElement("input");
+    input.type="radio";
+    input.name=`q${idx+1}`;
+    input.value=String(s.value);
+    const span=document.createElement("span");
+    span.innerHTML=s.label.replace("\\n","<br>");
+    label.append(input,span);
+    scale.appendChild(label);
+  });
+  wrap.appendChild(scale);
+  questionsEl.appendChild(wrap);
+});
+
+function fillRanks(){
+  ["rank1","rank2","rank3"].forEach(id=>{
+    const sel=document.getElementById(id);
+    sel.innerHTML='<option value="">選んでください</option>';
+    Object.entries(VALUES).forEach(([key,label])=>{
+      const op=document.createElement("option");
+      op.value=key;
+      op.textContent=`${key}：${label}`;
+      sel.appendChild(op);
+    });
+  });
+}
+fillRanks();
+
+function getRanks(){
+  return ["rank1","rank2","rank3"].map(id=>document.getElementById(id).value);
+}
+function ranksValid(ranks){
+  return ranks.every(Boolean) && new Set(ranks).size===3;
+}
+
+function preferenceWeight(axis,ranks){
+  const weights=[3,2,1];
+  let total=0;
+  ranks.forEach((key,i)=>{
+    if(VALUE_TO_AXIS[key]===axis) total+=weights[i];
+  });
+  return total;
+}
+
+function selectHighAxes(scores,ranks){
+  const sorted=[...AXIS_ORDER].sort((a,b)=>{
+    if(scores[b].sum!==scores[a].sum) return scores[b].sum-scores[a].sum;
+    const pb=preferenceWeight(b,ranks), pa=preferenceWeight(a,ranks);
+    if(pb!==pa) return pb-pa;
+    return AXIS_ORDER.indexOf(a)-AXIS_ORDER.indexOf(b);
+  });
+  return [sorted[0],sorted[1]];
+}
+
+function selectThinAxes(scores,usedAxes){
+  const min=Math.min(...AXIS_ORDER.map(a=>scores[a].sum));
+  const tied=AXIS_ORDER.filter(a=>scores[a].sum===min);
+  tied.sort((a,b)=>{
+    const au=usedAxes.includes(a)?1:0;
+    const bu=usedAxes.includes(b)?1:0;
+    if(au!==bu) return au-bu;
+    return AXIS_ORDER.indexOf(a)-AXIS_ORDER.indexOf(b);
+  });
+  return tied.slice(0,2);
+}
+
+form.addEventListener("submit",e=>{
+  e.preventDefault();
+
+  const answers=[];
+  let allAnswered=true;
+  QUESTIONS.forEach((q,idx)=>{
+    const checked=document.querySelector(`input[name="q${idx+1}"]:checked`);
+    if(!checked) allAnswered=false;
+    else answers.push({
+      displayNumber:idx+1,
+      axis:q.axis,item:q.item,text:q.text,value:Number(checked.value)
+    });
+  });
+
+  const ranks=getRanks();
+  formError.style.display=allAnswered?"none":"block";
+  rankError.style.display=ranksValid(ranks)?"none":"block";
+
+  if(!allAnswered || !ranksValid(ranks)){
+    const target=!allAnswered?formError:rankError;
+    target.scrollIntoView({behavior:"smooth",block:"center"});
+    return;
+  }
+
+  const scores={};
+  AXIS_ORDER.forEach(a=>scores[a]={sum:0,items:[]});
+  answers.forEach(a=>{
+    scores[a.axis].sum+=a.value;
+    scores[a.axis].items.push(a);
+  });
+
+  renderResults(scores,ranks);
+});
+
+function renderResults(scores,ranks){
+  const [foundationAxis,developmentAxis]=selectHighAxes(scores,ranks);
+  const fruitAxis=VALUE_TO_AXIS[ranks[0]];
+  const thinAxes=selectThinAxes(scores,[foundationAxis,developmentAxis,fruitAxis]);
+
+  document.getElementById("foundationText").textContent=READINGS[foundationAxis][1];
+  document.getElementById("developmentText").textContent=READINGS[developmentAxis][2];
+  document.getElementById("fruitText").textContent=READINGS[fruitAxis][3];
+
+  const thinWrap=document.getElementById("thinWrap");
+  thinWrap.innerHTML="";
+  thinAxes.forEach(axis=>{
+    const box=document.createElement("div");
+    box.className="thin-item";
+    box.innerHTML=`<h3>${THIN[axis].title}</h3><p>${THIN[axis].text}</p>`;
+    thinWrap.appendChild(box);
+  });
+
+  const rankResult=document.getElementById("rankResult");
+  rankResult.innerHTML="";
+  ranks.forEach((key,i)=>{
+    const row=document.createElement("div");
+    row.className="rank-result-item";
+    row.innerHTML=`<strong>${i+1}位</strong><span>${VALUES[key]}</span>`;
+    rankResult.appendChild(row);
+  });
+
+  const scoreGrid=document.getElementById("scoreGrid");
+  scoreGrid.innerHTML="";
+  AXIS_ORDER.forEach(axis=>{
+    const box=document.createElement("div");
+    box.className="axis";
+    box.innerHTML=`<div class="axis-name">${axis}</div><div class="axis-score">${scores[axis].sum} / 12</div>`;
+    scoreGrid.appendChild(box);
+  });
+
+  const copyLines=[
+    "【豊かさの循環診断】","",
+    "■ あなたの豊かさの基盤",
+    READINGS[foundationAxis][1],"",
+    "■ 豊かさを発展させるもの",
+    READINGS[developmentAxis][2],"",
+    "■ あなたが豊かさの先に求めるもの",
+    READINGS[fruitAxis][3],"",
+    "■ さらに豊かにするためには？"
+  ];
+  thinAxes.forEach(axis=>{
+    copyLines.push(`・${THIN[axis].title}`);
+    copyLines.push(THIN[axis].text);
+  });
+  copyLines.push("","■ あなたが大切にしている豊かさ");
+  ranks.forEach((key,i)=>copyLines.push(`${i+1}位：${VALUES[key]}`));
+  copyLines.push("","■ 12作用");
+  AXIS_ORDER.forEach(a=>copyLines.push(`${a}：${scores[a].sum}/12`));
+
+  document.getElementById("copyText").value=copyLines.join("\n");
+  document.getElementById("formView").style.display="none";
+  document.getElementById("resultView").style.display="block";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+document.getElementById("copyBtn").addEventListener("click",async()=>{
+  const textarea=document.getElementById("copyText");
+  const msg=document.getElementById("copiedMsg");
+  try{
+    await navigator.clipboard.writeText(textarea.value);
+  }catch(err){
+    textarea.focus(); textarea.select(); document.execCommand("copy");
+  }
+  msg.textContent="コピーしました。";
+  setTimeout(()=>msg.textContent="",3000);
+});
+
+document.getElementById("backBtn").addEventListener("click",()=>{
+  document.getElementById("resultView").style.display="none";
+  document.getElementById("formView").style.display="block";
+  window.scrollTo({top:0,behavior:"smooth"});
+});
+</script>
+</body>
+</html>
