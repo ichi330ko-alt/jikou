@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="36の質問から、今のあなたがどのように豊かさを感じ、巡らせているかを見つめる時光の無料診断です。" />
-  <title>豊かさの循環診断｜時光</title>
+  <title>あなたの金運の巡り方診断｜時光</title>
   <style>
     :root{
       --bg:#f7f4ee;
@@ -204,9 +204,25 @@
       background:var(--ink);
     }
     .secondary{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
       color:var(--ink);
       background:var(--accent-soft);
       border:1px solid var(--line);
+      border-radius:999px;
+      padding:13px 22px;
+      font:inherit;
+      font-weight:700;
+      line-height:1.2;
+      text-decoration:none;
+      cursor:pointer;
+      transition:.15s ease;
+    }
+
+    a.secondary:hover,
+    a.secondary:focus-visible{
+      transform:translateY(-1px);
     }
     button:hover{transform:translateY(-1px)}
     #resultView{display:none}
@@ -357,10 +373,10 @@
   <section id="formView">
     <div class="hero">
       <p class="eyebrow">JIKOU / WEALTH CIRCULATION</p>
-      <h1>豊かさの循環診断</h1>
+      <h1>あなたの金運の巡り方診断</h1>
       <p class="lead">
-        お金だけではなく、受け取ること、残すこと、育てること、人へ渡すこと。
-        36の質問から、今のあなたがどのように豊かさを感じ、巡らせているかを見つめます。
+        金運は「お金が入ってくること」だけではありません。
+        36の質問から、あなたが豊かさを感じやすいところと、今、金運につながるために必要なところを見つけます。
       </p>
     </div>
 
@@ -401,9 +417,9 @@
   <section id="resultView">
     <div class="hero">
       <p class="eyebrow">JIKOU / RESULT</p>
-      <h1>あなたが感じる豊かさ</h1>
+      <h1>あなたの金運の巡り方</h1>
       <p class="lead">
-        今のあなたにすでにある豊かさと、これからさらに巡らせていけそうなところを読み解きました。
+        今のあなたが大切にしている豊かさと、それを支える流れ、そして金運につながるために必要なところを読み解きました。
       </p>
     </div>
 
@@ -412,14 +428,20 @@
     </p>
 
     <section class="card reading-card">
-      <p class="reading-kicker">FOUNDATION</p>
-      <h2 class="reading-title">あなたの豊かさの基盤</h2>
+      <p class="reading-kicker">YOUR WEALTH</p>
+      <h2 class="reading-title">あなたが思う豊かさとは</h2>
+      <p class="reading-text" id="wealthMeaningText"></p>
+    </section>
+
+    <section class="card reading-card">
+      <p class="reading-kicker">KEY 01</p>
+      <h2 class="reading-title">あなたを豊かにする鍵は</h2>
       <p class="reading-text" id="foundationText"></p>
     </section>
 
     <section class="card reading-card">
-      <p class="reading-kicker">DEVELOPMENT</p>
-      <h2 class="reading-title">豊かさを発展させるもの</h2>
+      <p class="reading-kicker">KEY 02</p>
+      <h2 class="reading-title">さらにその豊かさを広げる力</h2>
       <p class="reading-text" id="developmentText"></p>
     </section>
 
@@ -430,7 +452,7 @@
     </section>
 
     <section class="card">
-      <h2 class="section-title">さらに豊かにするためには？</h2>
+      <h2 class="section-title">今、豊かさにつながるために必要なことは？</h2>
       <p class="section-note">
         今は少し細くなっている流れです。欠けているという意味ではなく、
         今の自分に合う形で使えているかを見直すためのヒントとして読んでみてください。
@@ -465,12 +487,24 @@
       <div class="copied" id="copiedMsg"></div>
     </section>
 
+
+    <section class="card">
+      <h2 class="section-title">豊かさの護符</h2>
+      <p class="section-note">診断とは別に、願う流れに合わせた固定護符も準備しています。</p>
+      <div class="actions">
+        <a class="secondary" href="wealth-charms.html" style="text-decoration:none;display:inline-block;">護符を見る</a>
+      </div>
+    </section>
+    <div class="actions">
+      <a class="secondary" href="index.html">時光トップへ戻る</a>
+    </div>
+
     <div class="notice">
       この診断は自己理解のための読み物であり、金融・投資・医療などの専門的な助言を行うものではありません。
     </div>
   </section>
 
-  <p class="footer">時光｜豊かさの循環診断</p>
+  <p class="footer">時光｜あなたの金運の巡り方診断</p>
 </main>
 
 <script>
@@ -739,6 +773,7 @@ function renderResults(scores,ranks){
   const fruitAxis=VALUE_TO_AXIS[ranks[0]];
   const thinAxes=selectThinAxes(scores,[foundationAxis,developmentAxis,fruitAxis]);
 
+  document.getElementById("wealthMeaningText").textContent=`あなたが一番大切にしている豊かさは「${VALUES[ranks[0]]}」です。これは、あなたが豊かになった先で、何を大切にしたいのかを表しています。`;
   document.getElementById("foundationText").textContent=READINGS[foundationAxis][1];
   document.getElementById("developmentText").textContent=READINGS[developmentAxis][2];
   document.getElementById("fruitText").textContent=READINGS[fruitAxis][3];
@@ -771,14 +806,16 @@ function renderResults(scores,ranks){
   });
 
   const copyLines=[
-    "【豊かさの循環診断】","",
-    "■ あなたの豊かさの基盤",
+    "【あなたの金運の巡り方診断】","",
+    "■ あなたが思う豊かさとは",
+    `1位：${VALUES[ranks[0]]}`,"",
+    "■ あなたを豊かにする鍵は",
     READINGS[foundationAxis][1],"",
-    "■ 豊かさを発展させるもの",
+    "■ さらにその豊かさを広げる力",
     READINGS[developmentAxis][2],"",
     "■ あなたが豊かさの先に求めるもの",
     READINGS[fruitAxis][3],"",
-    "■ さらに豊かにするためには？"
+    "■ 今、豊かさにつながるために必要なことは？"
   ];
   thinAxes.forEach(axis=>{
     copyLines.push(`・${THIN[axis].title}`);
