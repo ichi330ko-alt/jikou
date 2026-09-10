@@ -995,6 +995,105 @@
       }
     }
 
+
+    /* ========================================
+       あなたの金運の巡り方診断
+    ======================================== */
+    .wealth-home-section {
+      position: relative;
+      padding: 112px 24px;
+      overflow: hidden;
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(216, 194, 148, 0.18), transparent 34%),
+        linear-gradient(180deg, #f8f5f1 0%, #eee8ec 100%);
+    }
+
+    .wealth-home-section::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 42px;
+      width: min(420px, 72vw);
+      aspect-ratio: 1;
+      border: 1px solid rgba(170, 144, 100, 0.12);
+      border-radius: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .wealth-home-inner {
+      position: relative;
+      z-index: 2;
+      width: min(720px, 100%);
+      margin: 0 auto;
+    }
+
+    .wealth-home-symbol {
+      margin-bottom: 18px;
+      color: var(--gold);
+      font-size: 1.35rem;
+      letter-spacing: 0.32em;
+      padding-left: 0.32em;
+    }
+
+    .wealth-home-kicker {
+      margin-bottom: 12px;
+      color: var(--gold);
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
+      padding-left: 0.3em;
+    }
+
+    .wealth-home-title {
+      margin-bottom: 27px;
+      color: #443e47;
+      font-size: clamp(1.8rem, 4vw, 2.55rem);
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      padding-left: 0.14em;
+    }
+
+    .wealth-home-text {
+      color: var(--text-soft);
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      line-height: 2.25;
+      letter-spacing: 0.09em;
+    }
+
+    .wealth-home-button {
+      display: inline-block;
+      min-width: 245px;
+      margin-top: 37px;
+      padding: 14px 30px;
+      border: 1px solid rgba(145, 116, 75, 0.48);
+      border-radius: 100px;
+      color: #5a4d52;
+      background: rgba(255, 255, 255, 0.46);
+      font-size: 0.9rem;
+      letter-spacing: 0.16em;
+      transition: transform 0.35s ease, background 0.35s ease;
+    }
+
+    .wealth-home-button:hover,
+    .wealth-home-button:focus-visible {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.75);
+    }
+
+    .wealth-home-note {
+      margin-top: 16px;
+      color: #91878e;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+    }
+
+    @media (max-width: 700px) {
+      .wealth-home-section {
+        padding: 92px 23px;
+      }
+    }
+
 </style>
 </head>
 
@@ -1155,6 +1254,36 @@
 
         <p class="omikuji-home-note">
           一日一籤
+        </p>
+
+      </div>
+    </section>
+
+
+    <!-- あなたの金運の巡り方診断 -->
+    <section class="wealth-home-section">
+      <div class="wealth-home-inner reveal">
+
+        <div class="wealth-home-symbol" aria-hidden="true">◇</div>
+
+        <p class="wealth-home-kicker">WEALTH FLOW</p>
+
+        <h2 class="wealth-home-title">
+          あなたの金運の巡り方診断
+        </h2>
+
+        <p class="wealth-home-text">
+          金運は、「お金が入ってくること」だけではありません。<br>
+          36の質問から、あなたが豊かさを感じやすいところと、<br>
+          今、金運につながるために必要なところを見つけます。
+        </p>
+
+        <a href="wealth-diagnosis.html" class="wealth-home-button">
+          無料で診断する
+        </a>
+
+        <p class="wealth-home-note">
+          36問・無料
         </p>
 
       </div>
