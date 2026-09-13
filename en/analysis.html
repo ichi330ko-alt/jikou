@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Start your JIKŌ reading.">
+<title>JIKŌ Reading | 時光</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="analysis-page">
+<header><div class="header-inner"><a href="index.html" class="logo">時光</a>
+<nav aria-label="Main navigation"><ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About JIKŌ</a></li>
+<li><a href="analysis.html" aria-current="page">Reading</a></li>
+</ul></nav></div></header>
+
+<div class="hero"><div><p>ANALYSIS</p><h1>JIKŌ Reading</h1></div></div>
+
+<main class="analysis-main">
+<div class="analysis-intro fade">
+<p>Read the patterns you were born with</p>
+<p>and the way your inner movement tends to unfold.</p>
+</div>
+
+<form class="analysis-form fade" id="analysis-form" novalidate>
+<div class="form-section">
+<label class="form-label" for="birth-date">Date of birth <span class="required">Required</span></label>
+<input class="form-control" type="date" id="birth-date" name="birthDate" required>
+</div>
+
+<div class="form-section">
+<label class="form-label" for="birth-time">Time of birth <span class="optional">Optional</span></label>
+<input class="form-control" type="time" id="birth-time" name="birthTime">
+<p class="form-help">If known, your birth time is used for a more detailed reading.</p>
+</div>
+
+<div class="form-section">
+<label class="form-label" for="timezone-offset">Birthplace time zone <span class="required">Required</span></label>
+<select class="form-control" id="timezone-offset" name="timezoneOffset" required>
+<option value="" selected disabled>Select UTC offset</option>
+<option value="-12">UTC−12</option><option value="-11">UTC−11</option><option value="-10">UTC−10</option>
+<option value="-9">UTC−9</option><option value="-8">UTC−8</option><option value="-7">UTC−7</option>
+<option value="-6">UTC−6</option><option value="-5">UTC−5</option><option value="-4">UTC−4</option>
+<option value="-3">UTC−3</option><option value="-2">UTC−2</option><option value="-1">UTC−1</option>
+<option value="0">UTC±0</option><option value="1">UTC+1</option><option value="2">UTC+2</option>
+<option value="3">UTC+3</option><option value="4">UTC+4</option><option value="5">UTC+5</option>
+<option value="5.5">UTC+5:30</option><option value="5.75">UTC+5:45</option>
+<option value="6">UTC+6</option><option value="6.5">UTC+6:30</option><option value="7">UTC+7</option>
+<option value="8">UTC+8</option><option value="9">UTC+9 (Japan)</option><option value="9.5">UTC+9:30</option>
+<option value="10">UTC+10</option><option value="11">UTC+11</option><option value="12">UTC+12</option>
+<option value="13">UTC+13</option><option value="14">UTC+14</option>
+</select>
+<p class="form-help">Choose the UTC offset that applied at your birthplace and birth date.</p>
+</div>
+
+<div class="form-section">
+<label class="form-label" for="birth-place">Place of birth <span class="required">Required</span></label>
+<input class="form-control" type="text" id="birth-place" name="birthPlace" placeholder="e.g. London, UK" required>
+</div>
+
+<div class="form-section">
+<label class="form-label" for="nickname">Name you are usually called <span class="optional">Optional</span></label>
+<input class="form-control" type="text" id="nickname" name="nickname" placeholder="e.g. Sono">
+<p class="form-help">For non-Japanese names, the Katakamuna name-sound layer is omitted.</p>
+</div>
+
+<fieldset class="form-section"><legend class="form-label">Gender <span class="optional">Optional</span></legend>
+<div class="radio-group">
+<label class="radio-option"><input type="radio" name="gender" value="female"><span>Female</span></label>
+<label class="radio-option"><input type="radio" name="gender" value="male"><span>Male</span></label>
+<label class="radio-option"><input type="radio" name="gender" value="other"><span>Other</span></label>
+<label class="radio-option"><input type="radio" name="gender" value="no-answer"><span>Prefer not to answer</span></label>
+</div></fieldset>
+
+<fieldset class="form-section"><legend class="form-label">One more question <span class="required">Required</span></legend>
+<p class="form-help">Imagine money, time, work, family, and other people's preferences do not matter. How would you choose a restaurant?</p>
+<div class="radio-group cycle-choice-group">
+<label class="radio-option"><input type="radio" name="cycle" value="1" required><span>I choose whatever I most feel like eating in that moment.</span></label>
+<label class="radio-option"><input type="radio" name="cycle" value="2"><span>I compare a few options and choose the one that seems best.</span></label>
+<label class="radio-option"><input type="radio" name="cycle" value="3"><span>I would rather try somewhere new or taste something I have never tried.</span></label>
+</div></fieldset>
+
+<div class="analysis-submit"><button type="submit" id="analysis-submit-button">Begin JIKŌ Reading</button></div>
+<p id="analysis-status" class="form-help" role="status" aria-live="polite"></p>
+</form>
+</main>
+
+<footer>© 2026 JIKOU</footer>
+<script src="analysis-en.js?v=1"></script>
+</body>
+</html>
