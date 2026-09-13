@@ -907,7 +907,7 @@
 
     const value = axisCandidate.trim();
 
-    if (window.RESONANCE_DATA_EN?.[value]) return value;
+    if (window.RESONANCE_DATA?.[value]) return value;
 
     if (window.RESONANCE_NAME_TO_KEY?.[value]) {
 
@@ -917,7 +917,7 @@
 
     const shortCharacter = value.charAt(0);
 
-    return window.RESONANCE_DATA_EN?.[shortCharacter] ? shortCharacter : null;
+    return window.RESONANCE_DATA?.[shortCharacter] ? shortCharacter : null;
 
   }
 
@@ -1202,9 +1202,9 @@
 
   function renderResult(result, primaryAxisKey, selectedCycle) {
 
-    const axisData = window.getResonanceAxisDataEN(primaryAxisKey);
+    const axisData = window.getResonanceAxisData(primaryAxisKey);
 
-    const symbolData = window.getResonanceCycleDataEN(primaryAxisKey, selectedCycle);
+    const symbolData = window.getResonanceCycleData(primaryAxisKey, selectedCycle);
 
     if (!axisData || !symbolData) {
 
@@ -1261,13 +1261,13 @@
 
     if (
 
-      !window.RESONANCE_DATA_EN ||
+      !window.RESONANCE_DATA ||
 
       !window.FLOWER_DATA_EN ||
 
-      typeof window.getResonanceAxisDataEN !== "function" ||
+      typeof window.getResonanceAxisData !== "function" ||
 
-      typeof window.getResonanceCycleDataEN !== "function" ||
+      typeof window.getResonanceCycleData !== "function" ||
 
       typeof window.getFlowerCycleDataEN !== "function"
 
