@@ -480,6 +480,225 @@
 
   };
 
+  const JEWEL_EN = {
+  "天響の座": {
+    "en": "Seat of Heavenly Resonance",
+    "action": "Resonate",
+    "desc": "You tend to notice subtle signals before they become fully visible, allowing intuition to resonate through you.",
+    "cycle": "Heavenly Resonance → Descending Light → Clear Insight → Heavenly Resonance…"
+  },
+  "降光の座": {
+    "en": "Seat of Descending Light",
+    "action": "Receive Insight",
+    "desc": "Insight often arrives as something received rather than forced, becoming clearer when you give it space to descend.",
+    "cycle": "Heavenly Resonance → Descending Light → Clear Insight → Heavenly Resonance…"
+  },
+  "透解の座": {
+    "en": "Seat of Clear Insight",
+    "action": "See Through",
+    "desc": "You are inclined to look through surface appearances and find the structure or meaning beneath them.",
+    "cycle": "Heavenly Resonance → Descending Light → Clear Insight → Heavenly Resonance…"
+  },
+  "言霊の座": {
+    "en": "Seat of Word-Spirit",
+    "action": "Deliver",
+    "desc": "Your expression gains power when inner meaning is carried outward through words, voice, or form.",
+    "cycle": "Inner Expression → Chanting → Word-Spirit → Inner Expression…"
+  },
+  "詠唱の座": {
+    "en": "Seat of Chanting",
+    "action": "Express",
+    "desc": "You give shape to what lives inside you by expressing it in a form that can be felt or understood by others.",
+    "cycle": "Inner Expression → Chanting → Word-Spirit → Inner Expression…"
+  },
+  "現心の座": {
+    "en": "Seat of Inner Expression",
+    "action": "Manifest",
+    "desc": "What is held within you tends to seek visible form, turning inner intention into something present in the world.",
+    "cycle": "Inner Expression → Chanting → Word-Spirit → Inner Expression…"
+  },
+  "結縁の座": {
+    "en": "Seat of Forming Bonds",
+    "action": "Connect",
+    "desc": "New movement begins for you through meaningful encounters and the bonds created between people.",
+    "cycle": "Forming Bonds → Widening Bonds → Walking Together → Forming Bonds…"
+  },
+  "絆広の座": {
+    "en": "Seat of Widening Bonds",
+    "action": "Expand",
+    "desc": "Connections tend to widen your world, opening perspectives and possibilities that were not available alone.",
+    "cycle": "Forming Bonds → Widening Bonds → Walking Together → Forming Bonds…"
+  },
+  "共歩の座": {
+    "en": "Seat of Walking Together",
+    "action": "Move Together",
+    "desc": "You often create momentum by moving alongside others, sharing a path without erasing individual differences.",
+    "cycle": "Forming Bonds → Widening Bonds → Walking Together → Forming Bonds…"
+  },
+  "天門の座": {
+    "en": "Seat of the Heavenly Gate",
+    "action": "Open",
+    "desc": "Trust can function as a gate for you, allowing a new direction or possibility to become accessible.",
+    "cycle": "Heavenly Gate → Flash of Trust → Guiding Sign → Heavenly Gate…"
+  },
+  "道標の座": {
+    "en": "Seat of the Guiding Sign",
+    "action": "Set Direction",
+    "desc": "You strengthen trust by giving it direction, turning a vague sense of possibility into a path you can follow.",
+    "cycle": "Heavenly Gate → Flash of Trust → Guiding Sign → Heavenly Gate…"
+  },
+  "信閃の座": {
+    "en": "Seat of the Flash of Trust",
+    "action": "Ignite",
+    "desc": "Trust may appear suddenly as a spark of certainty that lights up what had previously been unclear.",
+    "cycle": "Heavenly Gate → Flash of Trust → Guiding Sign → Heavenly Gate…"
+  },
+  "心眼の座": {
+    "en": "Seat of the Inner Eye",
+    "action": "See",
+    "desc": "Understanding begins by looking carefully, including at what cannot be recognized from surface information alone.",
+    "cycle": "Inner Eye → Clear Mirror → Spring of Knowledge → Inner Eye…"
+  },
+  "明鏡の座": {
+    "en": "Seat of the Clear Mirror",
+    "action": "Reflect",
+    "desc": "You understand by reflecting reality clearly, separating what is present from what has merely been assumed.",
+    "cycle": "Inner Eye → Clear Mirror → Spring of Knowledge → Inner Eye…"
+  },
+  "知泉の座": {
+    "en": "Seat of the Spring of Knowledge",
+    "action": "Emerge",
+    "desc": "Knowledge tends to gather until understanding rises naturally, like water emerging from a spring.",
+    "cycle": "Inner Eye → Clear Mirror → Spring of Knowledge → Inner Eye…"
+  },
+  "飛翔の座": {
+    "en": "Seat of Flight",
+    "action": "Begin Moving",
+    "desc": "Movement begins when you allow yourself to leave the ground and act before every detail is settled.",
+    "cycle": "Flight → Manifestation → New Page → Flight…"
+  },
+  "現化の座": {
+    "en": "Seat of Manifestation",
+    "action": "Make Real",
+    "desc": "You are oriented toward turning ideas and intentions into concrete reality that can be seen and used.",
+    "cycle": "Flight → Manifestation → New Page → Flight…"
+  },
+  "開頁の座": {
+    "en": "Seat of the New Page",
+    "action": "Begin the Next",
+    "desc": "Action for you often means opening the next page once the present stage has reached its limit.",
+    "cycle": "Flight → Manifestation → New Page → Flight…"
+  },
+  "調律の座": {
+    "en": "Seat of Attunement",
+    "action": "Adjust Distance",
+    "desc": "You create balance by adjusting distance and relationship until each part can exist without unnecessary strain.",
+    "cycle": "Clear Boundary → Shared Difference → Attunement → Clear Boundary…"
+  },
+  "清界の座": {
+    "en": "Seat of the Clear Boundary",
+    "action": "Define Boundaries",
+    "desc": "Clarity comes from knowing where your own responsibility, space, and identity begin and end.",
+    "cycle": "Clear Boundary → Shared Difference → Attunement → Clear Boundary…"
+  },
+  "共別の座": {
+    "en": "Seat of Shared Difference",
+    "action": "Recognize Difference",
+    "desc": "You can remain connected while recognizing that two people or things do not need to become the same.",
+    "cycle": "Clear Boundary → Shared Difference → Attunement → Clear Boundary…"
+  },
+  "解放の座": {
+    "en": "Seat of Release",
+    "action": "Let Go",
+    "desc": "You move forward by loosening your hold on what has completed its role rather than carrying it indefinitely.",
+    "cycle": "Release → Return → New Cycle → Release…"
+  },
+  "還元の座": {
+    "en": "Seat of Return",
+    "action": "Return",
+    "desc": "What is released is not simply lost; it can be returned to a wider flow where its value may take another form.",
+    "cycle": "Release → Return → New Cycle → Release…"
+  },
+  "新巡の座": {
+    "en": "Seat of the New Cycle",
+    "action": "Begin a New Cycle",
+    "desc": "Once space has been created, you naturally begin to notice where the next cycle wants to start.",
+    "cycle": "Release → Return → New Cycle → Release…"
+  },
+  "安息の座": {
+    "en": "Seat of Rest",
+    "action": "Settle",
+    "desc": "Your strength grows when you can place yourself somewhere that feels safe enough to stop constantly adapting.",
+    "cycle": "Return Home → Rest → Guiding Light → Return Home…"
+  },
+  "還憧の座": {
+    "en": "Seat of Returning Home",
+    "action": "Know Where You Belong",
+    "desc": "A sense of belonging comes from recognizing the place, people, or values to which you genuinely want to return.",
+    "cycle": "Return Home → Rest → Guiding Light → Return Home…"
+  },
+  "灯火の座": {
+    "en": "Seat of the Guiding Light",
+    "action": "Make a Place Your Own",
+    "desc": "You create belonging by tending a place until it becomes warm, recognizable, and able to support life.",
+    "cycle": "Return Home → Rest → Guiding Light → Return Home…"
+  },
+  "和心の座": {
+    "en": "Seat of Harmonious Heart",
+    "action": "Let Things Coexist",
+    "desc": "You are capable of holding different feelings or realities together without forcing one to erase the other.",
+    "cycle": "Open Palm → Melting Heart → Harmonious Heart → Open Palm…"
+  },
+  "溶心の座": {
+    "en": "Seat of the Melting Heart",
+    "action": "Let It Pass Inward",
+    "desc": "Experience becomes meaningful when you allow it to pass inward and be processed rather than stopping at the surface.",
+    "cycle": "Open Palm → Melting Heart → Harmonious Heart → Open Palm…"
+  },
+  "掌心の座": {
+    "en": "Seat of the Open Palm",
+    "action": "Receive",
+    "desc": "Receiving is one of your important movements: allowing support, experience, or feeling to enter before deciding what it means.",
+    "cycle": "Open Palm → Melting Heart → Harmonious Heart → Open Palm…"
+  },
+  "天巡の座": {
+    "en": "Seat of the Heavenly Cycle",
+    "action": "Read the Flow",
+    "desc": "You tend to notice larger movement and timing, sensing where events are heading before choosing how to respond.",
+    "cycle": "Heavenly Cycle → Peak of Time → Dawn Bell → Heavenly Cycle…"
+  },
+  "時極の座": {
+    "en": "Seat of the Peak of Time",
+    "action": "Discern the Present",
+    "desc": "Your judgment becomes strongest when you identify what this particular moment is asking for, rather than relying only on general rules.",
+    "cycle": "Heavenly Cycle → Peak of Time → Dawn Bell → Heavenly Cycle…"
+  },
+  "暁鐘の座": {
+    "en": "Seat of the Dawn Bell",
+    "action": "Announce the Time",
+    "desc": "You may become the one who recognizes that a turning point has arrived and gives that change a clear signal.",
+    "cycle": "Heavenly Cycle → Peak of Time → Dawn Bell → Heavenly Cycle…"
+  },
+  "共鳴の座": {
+    "en": "Seat of Resonance",
+    "action": "Resonate",
+    "desc": "Emotion often begins as resonance: something in the world touches you and produces a clear inner response.",
+    "cycle": "Resonance → Heart-Wave → Seeing the Ripples → Resonance…"
+  },
+  "心波の座": {
+    "en": "Seat of the Heart-Wave",
+    "action": "Become a Wave",
+    "desc": "Feeling becomes movement when it is allowed to travel through you instead of remaining fixed in one place.",
+    "cycle": "Resonance → Heart-Wave → Seeing the Ripples → Resonance…"
+  },
+  "漣見の座": {
+    "en": "Seat of Seeing the Ripples",
+    "action": "See the Ripples",
+    "desc": "You often understand emotion by observing the effects it creates in yourself, in relationships, and in the surrounding world.",
+    "cycle": "Resonance → Heart-Wave → Seeing the Ripples → Resonance…"
+  }
+};
+
   const JEWEL_BY_AXIS_CYCLE = {
 
     "感": ["天響の座", "降光の座", "透解の座"],
@@ -820,6 +1039,12 @@
 
   }
 
+
+  function jewelDisplay(jewelName) {
+    const meta = JEWEL_EN[jewelName];
+    return meta ? `${jewelName} — ${meta.en}` : jewelName;
+  }
+
   function getJewelData(symbolName, axisKey, cycle) {
 
     const direct = JEWEL_DATA[String(symbolName || "").trim()];
@@ -850,21 +1075,27 @@
 
     point.style.top = `${jewel.y}%`;
 
-    byId("jewel-map-point-label").textContent = jewel.name;
+    const jewelEn = JEWEL_EN[jewel.name];
 
-    byId("jewel-action").textContent = `${jewel.axis} cycle | ${jewel.action}`;
+    byId("jewel-map-point-label").textContent = jewelDisplay(jewel.name);
 
-    byId("jewel-description-title").textContent = jewel.name;
+    const axisEnglish = AXIS_PROFILE.find((item) => item.key === jewel.axis)?.description || jewel.axis;
+    byId("jewel-action").textContent = `${jewel.axis} · ${axisEnglish} cycle | ${jewelEn?.action || jewel.action}`;
 
-    createTextParagraphs(byId("jewel-description-text"), jewel.description);
+    byId("jewel-description-title").textContent = jewelDisplay(jewel.name);
 
-    byId("jewel-cycle").textContent = jewel.cycle;
+    createTextParagraphs(
+      byId("jewel-description-text"),
+      jewelEn?.desc || jewel.description
+    );
+
+    byId("jewel-cycle").textContent = jewelEn?.cycle || jewel.cycle;
 
     point.setAttribute(
 
       "aria-label",
 
-      `${jewel.name}。内界領域から外界領域、創造性から現実化の座標上に表示しています。`
+      `${jewelDisplay(jewel.name)}. Displayed between inner and outer orientation, and between creativity and manifestation.`
 
     );
 
@@ -986,11 +1217,11 @@
 
     const image = byId("gem-card-image");
 
-    image.src = axisData.image;
+    const imagePath = String(axisData.image || "");
+    image.src = imagePath.startsWith("../") ? imagePath : `../${imagePath}`;
+    image.alt = `${axisData.name} Jewel Card`;
 
-    image.alt = `${axisData.name}の宝石カード`;
-
-    byId("symbol-name").textContent = symbolData.symbolName;
+    byId("symbol-name").textContent = jewelDisplay(symbolData.symbolName);
 
     byId("symbol-romaji").textContent = symbolData.romaji;
 
@@ -1004,7 +1235,12 @@
 
     setSectionHeading("flower-heading", "../img/icon-kan.png", "How your flower grows");
 
-    setSectionHeading("movement-heading", axisData.icon, "How your pattern tends to move");
+    const movementIcon = String(axisData.icon || "");
+    setSectionHeading(
+      "movement-heading",
+      movementIcon.startsWith("../") ? movementIcon : `../${movementIcon}`,
+      "How your pattern tends to move"
+    );
 
     renderThreeCycleSection("flower-text", rankedAxisKeys, "flower");
 
@@ -1020,7 +1256,7 @@
 
     byId("result-content").hidden = false;
 
-    document.title = `${symbolData.symbolName} | JIKŌ Reading`;
+    document.title = `${jewelDisplay(symbolData.symbolName)} | JIKŌ Reading`;
 
   }
 
