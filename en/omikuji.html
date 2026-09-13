@@ -1,1 +1,148 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="JIKŌ Tsuki Omikuji — a monthly-style Japanese oracle experience with 252 possible messages, presented with English guidance.">
+  <title>JIKŌ — Tsuki Omikuji 月御籤</title>
+  <meta name="theme-color" content="#15243d">
+  <link rel="apple-touch-icon" href="../icon-512.png">
+  <link rel="stylesheet" href="../css/omikuji.css">
+  <style>
+    .origin-mini-link { margin-top: 1.15rem; text-align:center; }
+    .origin-mini-link a, .language-link {
+      display:inline-block; color:#d8c79b; text-decoration:none;
+      border-bottom:1px solid rgba(216,199,155,.58);
+      padding:0 0 .28rem; letter-spacing:.06em;
+    }
+    .english-reading {
+      margin: 1.5rem 0;
+      padding: 1.2rem 1.25rem;
+      border: 1px solid rgba(216,199,155,.35);
+      background: rgba(7,16,31,.36);
+    }
+    .english-reading h3 {
+      margin:0 0 .6rem;
+      font-size:.9rem;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:#d8c79b;
+    }
+    .english-reading p { margin:.4rem 0; line-height:1.8; }
+    .jp-label {
+      margin-top: 1rem;
+      font-size:.75rem;
+      letter-spacing:.13em;
+      color:#d8c79b;
+      text-transform:uppercase;
+    }
+    .oracle-poem { white-space:pre-line; }
+    .language-link { margin-left:1rem; }
+  </style>
+</head>
+<body class="omikuji-page">
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="index.html" aria-label="JIKŌ home">時光</a>
+        <div>
+          <a class="home-link" href="index.html">Home</a>
+          <a class="language-link" href="../omikuji.html">日本語</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="omikuji-hero" aria-labelledby="page-title">
+        <p class="eyebrow">JIKŌ · TSUKI OMIKUJI</p>
+        <h1 id="page-title">月御籤 <span style="font-size:.58em; font-weight:400;">Tsuki Omikuji</span></h1>
+        <p class="hero-copy">
+          The moon waxes, wanes, and returns.<br>
+          Receive one message reflected in the phase of your present moment.
+        </p>
+
+        <div class="moon-stage" aria-hidden="true">
+          <div class="moon-halo"></div>
+          <div class="moon"></div>
+          <div class="moon-reflection"></div>
+        </div>
+
+        <p class="draw-guidance">
+          This is not meant to choose an answer for you.<br>
+          Hold one matter quietly in mind, then touch the moon and receive today’s oracle.
+        </p>
+        <button id="drawButton" class="draw-button" type="button">
+          Press and hold the moon to open your oracle
+        </button>
+        <p class="draw-note">One draw per day. The same oracle remains open until the date changes.</p>
+      </section>
+
+      <section id="resultSection" class="result-wrap" aria-live="polite" hidden>
+        <article class="omikuji-paper">
+          <header class="result-head">
+            <div id="phaseMark" class="phase-mark" aria-hidden="true">☾</div>
+            <p id="resultNumber" class="result-number">Phase 3 — Response 1</p>
+            <h2 id="resultState">Revelation</h2>
+            <p id="motherLine" class="mother-line">A message from the present phase</p>
+          </header>
+
+          <div class="oracle-block">
+            <p class="oracle-label">Your response: <span id="responseName">Begin</span></p>
+            <div class="english-reading">
+              <h3>English Reading</h3>
+              <p id="stateReading"></p>
+              <p id="responseReading"></p>
+            </div>
+            <p class="jp-label">Original Japanese Verse</p>
+            <p id="oraclePoem" class="oracle-poem">The original Japanese verse will appear here.</p>
+          </div>
+
+          <div class="details" aria-label="Guidance by area">
+            <dl class="detail-row"><dt>Wish</dt><dd id="detailWish">—</dd></dl>
+            <dl class="detail-row"><dt>Daily Life</dt><dd id="detailLife">—</dd></dl>
+            <dl class="detail-row"><dt>Work / Study</dt><dd id="detailWork">—</dd></dl>
+            <dl class="detail-row"><dt>Money</dt><dd id="detailMoney">—</dd></dl>
+            <dl class="detail-row"><dt>Connection</dt><dd id="detailWaiting">—</dd></dl>
+            <dl class="detail-row"><dt>Health</dt><dd id="detailHealth">—</dd></dl>
+          </div>
+        </article>
+
+        <aside class="support-card">
+          <p class="support-kicker">Support JIKŌ</p>
+          <p>
+            If this oracle stayed with you,<br>
+            you can support the continuing work of JIKŌ.
+          </p>
+          <a class="support-button" href="https://square.link/u/Le17l9j6" target="_blank" rel="noopener">
+            Support JIKŌ
+          </a>
+        </aside>
+      </section>
+
+      <section class="origin-card" aria-labelledby="origin-title">
+        <p class="origin-kicker">From one poem</p>
+        <h2 id="origin-title">How Tsuki Omikuji was born</h2>
+        <p>
+          One mother poem describes a human journey through eighteen changing scenes.
+          Fourteen responses were woven into each scene, creating 252 possible oracles.
+        </p>
+        <p class="origin-mini-link">
+          <a href="omikuji-origin.html">Read the story and the mother poem →</a>
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>時光 ─ JIKŌ</p>
+      <nav aria-label="Site navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About JIKŌ</a>
+        <a href="wealth-diagnosis.html">Prosperity Flow</a>
+      </nav>
+    </footer>
+  </div>
+
+  <script src="omikuji-en.js"></script>
+</body>
+</html>
