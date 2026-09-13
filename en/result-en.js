@@ -907,7 +907,7 @@
 
     const value = axisCandidate.trim();
 
-    if (window.RESONANCE_DATA?.[value]) return value;
+    if (window.RESONANCE_DATA_EN?.[value]) return value;
 
     if (window.RESONANCE_NAME_TO_KEY?.[value]) {
 
@@ -917,7 +917,7 @@
 
     const shortCharacter = value.charAt(0);
 
-    return window.RESONANCE_DATA?.[shortCharacter] ? shortCharacter : null;
+    return window.RESONANCE_DATA_EN?.[shortCharacter] ? shortCharacter : null;
 
   }
 
@@ -1084,10 +1084,7 @@
 
     byId("jewel-description-title").textContent = jewelDisplay(jewel.name);
 
-    createTextParagraphs(
-      byId("jewel-description-text"),
-      jewelEn?.desc || jewel.description
-    );
+    createTextParagraphs(byId("jewel-description-text"), symbolData?.text || jewelEn?.desc || jewel.description);
 
     byId("jewel-cycle").textContent = jewelEn?.cycle || jewel.cycle;
 
@@ -1205,9 +1202,9 @@
 
   function renderResult(result, primaryAxisKey, selectedCycle) {
 
-    const axisData = window.getResonanceAxisData(primaryAxisKey);
+    const axisData = window.getResonanceAxisDataEN(primaryAxisKey);
 
-    const symbolData = window.getResonanceCycleData(primaryAxisKey, selectedCycle);
+    const symbolData = window.getResonanceCycleDataEN(primaryAxisKey, selectedCycle);
 
     if (!axisData || !symbolData) {
 
@@ -1264,13 +1261,13 @@
 
     if (
 
-      !window.RESONANCE_DATA ||
+      !window.RESONANCE_DATA_EN ||
 
       !window.FLOWER_DATA_EN ||
 
-      typeof window.getResonanceAxisData !== "function" ||
+      typeof window.getResonanceAxisDataEN !== "function" ||
 
-      typeof window.getResonanceCycleData !== "function" ||
+      typeof window.getResonanceCycleDataEN !== "function" ||
 
       typeof window.getFlowerCycleDataEN !== "function"
 
