@@ -1,1 +1,834 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A free JIKŌ reading with 36 questions to explore how prosperity currently flows through your life." />
+  <title>Prosperity Flow Reading | JIKŌ</title>
+  <style>
+    :root{
+      --bg:#f7f4ee;
+      --paper:#fffdf8;
+      --ink:#292824;
+      --muted:#736d64;
+      --line:#ddd5ca;
+      --accent:#75604d;
+      --accent-soft:#efe7dc;
+      --accent-pale:#f7f1e8;
+      --good:#536b5a;
+      --thin:#8b635c;
+      --shadow:0 12px 34px rgba(43,41,38,.08);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 85% 0%, rgba(180,155,120,.10), transparent 28rem),
+        var(--bg);
+      font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","YuGothic",Meiryo,sans-serif;
+      line-height:1.78;
+    }
+    .wrap{
+      width:min(920px, calc(100% - 28px));
+      margin:0 auto;
+      padding:30px 0 72px;
+    }
+    .hero{
+      text-align:center;
+      padding:26px 16px 24px;
+    }
+    .eyebrow{
+      margin:0 0 8px;
+      color:var(--muted);
+      font-size:.77rem;
+      letter-spacing:.18em;
+    }
+    h1,h2,h3{
+      font-family:"Yu Mincho","Hiragino Mincho ProN",serif;
+    }
+    h1{
+      margin:0;
+      font-size:clamp(1.9rem,5vw,2.8rem);
+      font-weight:600;
+      letter-spacing:.06em;
+    }
+    .lead{
+      max-width:710px;
+      margin:16px auto 0;
+      color:var(--muted);
+      font-size:.96rem;
+    }
+    .card{
+      margin:18px 0;
+      padding:20px;
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+    }
+    .section-title{
+      margin:0 0 6px;
+      font-size:1.27rem;
+      letter-spacing:.04em;
+    }
+    .section-note{
+      margin:0 0 16px;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+    .notice{
+      max-width:760px;
+      margin:0 auto 22px;
+      padding:14px 16px;
+      color:var(--muted);
+      background:rgba(255,255,255,.58);
+      border:1px solid var(--line);
+      border-radius:14px;
+      font-size:.9rem;
+    }
+    .question{
+      padding:18px 0 20px;
+      border-top:1px solid #ebe5dc;
+    }
+    .question:first-child{border-top:0}
+    .qtext{
+      margin:0 0 12px;
+      font-weight:600;
+    }
+    .qnum{
+      display:inline-block;
+      min-width:2.9em;
+      color:var(--accent);
+      font-weight:700;
+    }
+    .scale{
+      display:grid;
+      grid-template-columns:repeat(5,minmax(0,1fr));
+      gap:8px;
+    }
+    .scale label{
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:58px;
+      padding:8px 4px;
+      text-align:center;
+      line-height:1.35;
+      font-size:.78rem;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:12px;
+      cursor:pointer;
+      user-select:none;
+      transition:.15s ease;
+    }
+    .scale input{
+      position:absolute;
+      opacity:0;
+      pointer-events:none;
+    }
+    .scale label:hover{
+      background:#fbf8f3;
+      border-color:var(--accent);
+    }
+    .scale label:has(input:checked){
+      background:var(--accent-soft);
+      border-color:var(--accent);
+      box-shadow:inset 0 0 0 1px var(--accent);
+      font-weight:700;
+    }
+    .rank-grid{
+      display:grid;
+      gap:12px;
+      margin-top:14px;
+    }
+    .rank-row{
+      display:grid;
+      grid-template-columns:76px 1fr;
+      align-items:center;
+      gap:12px;
+      padding:12px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:12px;
+    }
+    .rank-label{
+      font-family:"Yu Mincho","Hiragino Mincho ProN",serif;
+      font-size:1.05rem;
+      font-weight:700;
+      text-align:center;
+      color:var(--accent);
+    }
+    select{
+      width:100%;
+      padding:11px 12px;
+      color:var(--ink);
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:10px;
+      font:inherit;
+    }
+    .error{
+      display:none;
+      max-width:680px;
+      margin:14px auto 0;
+      padding:10px 14px;
+      color:#994a3e;
+      background:#fff3f0;
+      border:1px solid #ecd0ca;
+      border-radius:10px;
+      font-size:.9rem;
+    }
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:10px;
+      margin-top:24px;
+    }
+    button{
+      appearance:none;
+      border:0;
+      border-radius:999px;
+      padding:13px 22px;
+      font:inherit;
+      font-weight:700;
+      cursor:pointer;
+      transition:.15s ease;
+    }
+    .primary{
+      color:#fff;
+      background:var(--ink);
+    }
+    .secondary{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--ink);
+      background:var(--accent-soft);
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:13px 22px;
+      font:inherit;
+      font-weight:700;
+      line-height:1.2;
+      text-decoration:none;
+      cursor:pointer;
+      transition:.15s ease;
+    }
+
+    a.secondary:hover,
+    a.secondary:focus-visible{
+      transform:translateY(-1px);
+    }
+    button:hover{transform:translateY(-1px)}
+    #resultView{display:none}
+    .result-intro{
+      text-align:center;
+      margin:-4px 0 22px;
+      color:var(--muted);
+      font-size:.92rem;
+    }
+    .reading-card{
+      position:relative;
+      overflow:hidden;
+    }
+    .reading-card::before{
+      content:"";
+      position:absolute;
+      inset:0 auto 0 0;
+      width:4px;
+      background:var(--accent);
+      opacity:.65;
+    }
+    .reading-kicker{
+      margin:0 0 4px;
+      color:var(--accent);
+      font-size:.76rem;
+      font-weight:700;
+      letter-spacing:.12em;
+    }
+    .reading-title{
+      margin:0 0 12px;
+      font-size:1.23rem;
+    }
+    .reading-text{
+      margin:0;
+      white-space:pre-line;
+    }
+    .thin-wrap{
+      display:grid;
+      gap:14px;
+      margin-top:14px;
+    }
+    .thin-item{
+      padding:16px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:14px;
+    }
+    .thin-item h3{
+      margin:0 0 8px;
+      font-size:1rem;
+      color:var(--thin);
+    }
+    .thin-item p{margin:0}
+    .rank-result{
+      display:grid;
+      gap:8px;
+      margin-top:12px;
+    }
+    .rank-result-item{
+      display:grid;
+      grid-template-columns:54px 1fr;
+      gap:10px;
+      align-items:start;
+      padding:11px 12px;
+      background:var(--accent-pale);
+      border-radius:12px;
+    }
+    .rank-result-item strong{
+      color:var(--accent);
+      text-align:center;
+    }
+    .scores-toggle{
+      margin-top:14px;
+    }
+    details{
+      border-top:1px solid var(--line);
+      padding-top:12px;
+    }
+    summary{
+      cursor:pointer;
+      color:var(--muted);
+      font-weight:700;
+    }
+    .result-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:8px;
+      margin-top:12px;
+    }
+    .axis{
+      padding:11px 8px;
+      text-align:center;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:10px;
+    }
+    .axis-name{
+      font-family:"Yu Mincho","Hiragino Mincho ProN",serif;
+      font-size:1.05rem;
+    }
+    .axis-score{
+      font-size:.9rem;
+      font-weight:700;
+    }
+    .copybox{
+      width:100%;
+      min-height:180px;
+      margin-top:12px;
+      padding:13px;
+      color:var(--ink);
+      background:#fbfaf7;
+      border:1px solid var(--line);
+      border-radius:12px;
+      font-family:inherit;
+      font-size:.84rem;
+      line-height:1.6;
+      resize:vertical;
+    }
+    .copied{
+      min-height:1.4em;
+      margin-top:8px;
+      text-align:center;
+      color:var(--good);
+      font-size:.9rem;
+    }
+    .small{
+      color:var(--muted);
+      font-size:.82rem;
+    }
+    .footer{
+      margin-top:34px;
+      text-align:center;
+      color:var(--muted);
+      font-size:.78rem;
+    }
+    @media(max-width:680px){
+      .wrap{width:min(100% - 18px,920px);padding-top:18px}
+      .card{padding:15px;border-radius:14px}
+      .scale{gap:5px}
+      .scale label{min-height:64px;padding:6px 2px;font-size:.68rem}
+      .rank-row{grid-template-columns:60px 1fr}
+      .result-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+    }
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <section id="formView">
+    <div class="hero">
+      <p class="eyebrow">JIKŌ / PROSPERITY FLOW</p>
+      <h1>Prosperity Flow Reading</h1>
+      <p class="lead">
+        Prosperity is not only about money coming in. Through 36 questions, this reading looks at where abundance already moves easily in your life—and where the flow may need a little more support right now.
+      </p>
+    </div>
+
+    <div class="notice">
+      This reading does not judge your relationship with prosperity as “good” or “bad.” It simply shows which flows are active now and which may be quieter. Sometimes a flow is intentionally narrow because of your current circumstances, priorities, or season of life.
+    </div>
+
+    <form id="testForm">
+      <section class="card">
+        <h2 class="section-title">36 Questions</h2>
+        <p class="section-note">Do not overthink your answers. Choose the option that feels closest to your life right now.</p>
+        <div id="questions"></div>
+      </section>
+
+      <section class="card">
+        <h2 class="section-title">What feels like prosperity to you?</h2>
+        <p class="section-note">Choose your <strong>top three</strong>, in order, from the things that make you feel, “If I have enough of this, I am prosperous.”</p>
+        <div class="rank-grid">
+          <div class="rank-row"><div class="rank-label">1st</div><select id="rank1" aria-label="First prosperity value"></select></div>
+          <div class="rank-row"><div class="rank-label">2nd</div><select id="rank2" aria-label="Second prosperity value"></select></div>
+          <div class="rank-row"><div class="rank-label">3rd</div><select id="rank3" aria-label="Third prosperity value"></select></div>
+        </div>
+        <div class="error" id="rankError">Please choose three different items for 1st, 2nd, and 3rd place.</div>
+      </section>
+
+      <div class="actions"><button class="primary" type="submit">See My Reading</button></div>
+      <div class="error" id="formError">Some questions are unanswered. Please answer all 36 questions.</div>
+    </form>
+  </section>
+
+  <section id="resultView">
+    <div class="hero">
+      <p class="eyebrow">JIKŌ / RESULT</p>
+      <h1>Your Prosperity Flow</h1>
+      <p class="lead">This reading brings together what you value most, the flows that support it, and the areas that may help prosperity circulate more fully in your life.</p>
+    </div>
+
+    <p class="result-intro">Higher scores are not “better.” They simply show which flows are easier for you to use in your life right now.</p>
+
+    <section class="card reading-card">
+      <p class="reading-kicker">YOUR WEALTH</p>
+      <h2 class="reading-title">What prosperity means to you</h2>
+      <p class="reading-text" id="wealthMeaningText"></p>
+    </section>
+
+    <section class="card reading-card">
+      <p class="reading-kicker">KEY 01</p>
+      <h2 class="reading-title">Your foundation for prosperity</h2>
+      <p class="reading-text" id="foundationText"></p>
+    </section>
+
+    <section class="card reading-card">
+      <p class="reading-kicker">KEY 02</p>
+      <h2 class="reading-title">What can expand your prosperity</h2>
+      <p class="reading-text" id="developmentText"></p>
+    </section>
+
+    <section class="card reading-card">
+      <p class="reading-kicker">FRUIT</p>
+      <h2 class="reading-title">What you seek beyond prosperity</h2>
+      <p class="reading-text" id="fruitText"></p>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title">What may help your prosperity flow now?</h2>
+      <p class="section-note">These are flows that are quieter right now. They are not flaws or missing pieces; read them as gentle places to review in a way that fits your present life.</p>
+      <div class="thin-wrap" id="thinWrap"></div>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title">The prosperity you value most</h2>
+      <p class="section-note">This section points to what you ultimately want prosperity to support.</p>
+      <div class="rank-result" id="rankResult"></div>
+    </section>
+
+    <section class="card scores-toggle">
+      <details>
+        <summary>See the 12 Flow scores</summary>
+        <p class="small">These scores are used to select your reading. High is not good, and low is not bad.</p>
+        <div class="result-grid" id="scoreGrid"></div>
+      </details>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title">Save your result</h2>
+      <p class="section-note">Copy the result to save it in your notes or share it with someone.</p>
+      <textarea id="copyText" class="copybox" readonly></textarea>
+      <div class="actions">
+        <button class="primary" id="copyBtn" type="button">Copy Result</button>
+        <button class="secondary" id="backBtn" type="button">Edit Answers</button>
+      </div>
+      <div class="copied" id="copiedMsg"></div>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title">Prosperity Talismans</h2>
+      <p class="section-note">Explore original JIKŌ talismans created around different movements of prosperity.</p>
+      <div class="actions"><a class="secondary" href="wealth-charms.html" style="text-decoration:none;display:inline-block;">View Talismans</a></div>
+    </section>
+
+    <div class="actions"><a class="secondary" href="index.html">Back to JIKŌ</a></div>
+
+    <div class="notice">This reading is for reflection and self-understanding. It is not financial, investment, medical, or other professional advice.</div>
+  </section>
+
+  <p class="footer">JIKŌ | Prosperity Flow Reading</p>
+</main>
+
+<script>
+const SCALE = [
+  {value:0,label:"Not at all"},
+  {value:1,label:"Not very much"},
+  {value:2,label:"Neither / unsure"},
+  {value:3,label:"Somewhat"},
+  {value:4,label:"Very much"}
+];
+
+const VALUES = {
+  A:"Safety and stability in daily life",
+  B:"Comfortable surroundings and material things",
+  C:"Family, friends, and human connection",
+  D:"Enjoyable experiences, play, and travel",
+  E:"Being with the people or beings I cherish",
+  F:"Learning, growth, and creativity",
+  G:"Helping others and being able to give",
+  H:"Free time and freedom of choice",
+  I:"Having financial breathing room"
+};
+
+const VALUE_TO_AXIS = {
+  A:"守", B:"換", C:"結", D:"換", E:"結",
+  F:"育", G:"与", H:"換", I:"留"
+};
+
+const QUESTIONS = [
+  {axis:"留",item:1,text:"When unexpected money comes in, I can leave some of it unspent."},
+  {axis:"源",item:1,text:"I have skills, experience, or knowledge that could lead to work or income."},
+  {axis:"結",item:1,text:"I believe connecting with other people can make possible what would be difficult alone."},
+  {axis:"満",item:1,text:"After paying necessary living expenses, I often still have some money left."},
+  {axis:"生",item:1,text:"I can use what I already have to come up with new ideas or methods."},
+  {axis:"受",item:1,text:"I believe it is okay to receive fair compensation for the value I provide."},
+  {axis:"守",item:1,text:"I can set a clear line for what I will not spend in order to protect my daily life."},
+  {axis:"招",item:1,text:"I have opportunities for people who need what I offer to learn about it."},
+  {axis:"与",item:1,text:"I sometimes use my money, time, or skills for the benefit of others."},
+  {axis:"換",item:1,text:"I feel able to place an appropriate price or exchange value on what I offer."},
+  {axis:"育",item:1,text:"I use some of my money, time, or skills for my future."},
+  {axis:"還",item:1,text:"I sometimes feel that what I give to others returns to me in another form."},
+  {axis:"源",item:2,text:"I can name several useful resources, abilities, or advantages I already have."},
+  {axis:"満",item:2,text:"I can handle an unexpected expense without seriously disrupting daily life."},
+  {axis:"換",item:2,text:"I can think of ways to turn my skills, experience, or time into income."},
+  {axis:"与",item:2,text:"I see value in contributing something small if it makes a person or place richer."},
+  {axis:"招",item:2,text:"I believe I have more than one doorway through which work, income, support, or opportunity can reach me."},
+  {axis:"留",item:2,text:"I can leave money in my possession even when it has no immediate purpose."},
+  {axis:"生",item:2,text:"If I do not have what I need, I often make, adapt, or improvise something myself."},
+  {axis:"守",item:2,text:"Even when asked or encouraged, I can choose not to spend money or time on something I do not need."},
+  {axis:"結",item:2,text:"I can actively create connections to the people, information, or places I need."},
+  {axis:"育",item:2,text:"I can continue something even without quick results if I believe it may create future value."},
+  {axis:"受",item:2,text:"When someone gives me help, kindness, or something useful, I can receive it without discomfort."},
+  {axis:"還",item:2,text:"I have relationships where support moves both ways rather than only from me to others."},
+  {axis:"満",item:3,text:"I rarely have to give up necessities because of money."},
+  {axis:"結",item:3,text:"I sometimes connect what I have with what someone else needs."},
+  {axis:"源",item:3,text:"I can recognize value in things others have praised me for, or in things that feel ordinary to me."},
+  {axis:"招",item:3,text:"When needed, I can take action that may lead to new work or income."},
+  {axis:"還",item:3,text:"The value I create sometimes circulates through people or society and leads to new work, opportunities, or connections."},
+  {axis:"生",item:3,text:"I believe I can create something useful for others from my knowledge, experience, or skills."},
+  {axis:"育",item:3,text:"I invest resources in things that may create value later, such as learning, tools, work, or relationships."},
+  {axis:"換",item:3,text:"When I spend money, I am usually aware of the value I want in return—such as convenience, time, or experience."},
+  {axis:"留",item:3,text:"I can keep money now for things I may need in the future."},
+  {axis:"受",item:3,text:"If I receive more than expected, I do not immediately feel I must return the exact same amount."},
+  {axis:"守",item:3,text:"I make some preparation for sudden changes or unexpected expenses."},
+  {axis:"与",item:3,text:"I can give value to others without overextending myself."}
+];
+
+const AXIS_ORDER = ["源","生","結","換","招","受","満","留","育","守","与","還"];
+
+const AXIS_EN = {"源": "Source", "生": "Create", "結": "Connect", "換": "Exchange", "招": "Invite", "受": "Receive", "満": "Enough", "留": "Keep", "育": "Grow", "守": "Protect", "与": "Give", "還": "Return"};
+
+const READINGS = {
+  "源":{
+    1:'Your foundation of prosperity seems to lie in what you already have: experience, knowledge, skills, strengths, environment, and relationships. More than gaining something new, an important question for you is whether you can recognize the resources that are already yours.',
+    2:'To expand prosperity, use what you have already built—your experience, knowledge, skills, and connections—as material for the next form of value. Seeing what is available to you now and putting it to work can widen the flow around you.',
+    3:'What you may seek beyond prosperity is for what you gain to become a source of further abundance. Rather than being used once and ending there, your skills, knowledge, experience, and resources can become seeds for the next step. When one gain becomes the source of another, prosperity begins to circulate more deeply.'
+  },
+  "生":{
+    1:'Creativity and the ability to produce something new seem closely connected to your prosperity. By combining the knowledge, skills, time, and ideas already available to you, you can create your own solutions. Especially when something is missing, asking “What else could work?” can open a new flow.',
+    2:'To expand prosperity, create new value from what is already present. Combining experience and knowledge, or looking from a different angle, can reveal new uses, forms, products, or services. Wealth can also take the form of insight, discovery, and practical wisdom.',
+    3:'What you may seek beyond prosperity is to see what you create take form and become useful or meaningful to someone. When your ideas, creations, and experiences become part of real life or work, the reward is not only material—it can also be the richness of fulfillment.'
+  },
+  "結":{
+    1:'Connection—to people, information, and places—seems especially important to your prosperity. You do not have to carry everything alone. Asking, sharing, learning, and sometimes connecting people to one another can strengthen your foundation and create stability.',
+    2:'By connecting with people, information, or places that hold what you do not, you may accomplish things that would be difficult alone. Bringing different resources together can create a larger field of possibility than any one person could make by themselves.',
+    3:'You may experience connection itself as a form of prosperity: having people and places where you belong, relationships of mutual support, and the freedom to move while still feeling connected. Those bonds can become part of what makes life feel truly rich.'
+  },
+  "換":{
+    1:'For you, prosperity may grow when what you already have is exchanged for what you need now. Money can become time, services, objects, comfort, or experience. Allowing resources to change form—rather than only holding them—can create room and ease in your life.',
+    2:'To expand prosperity, consider how your knowledge, skills, experience, or time could be translated into something others can receive: work, a service, a product, or another fair exchange. Recognizing your own value as something exchangeable can open a new stream into your daily life.',
+    3:'What you may seek beyond prosperity is the freedom to transform money, time, and opportunity into what matters to you: better daily life, travel, time with loved ones, meaningful experiences, or learning. The deeper question is not simply what you have, but what you can turn it into.'
+  },
+  "招":{
+    1:'Your prosperity benefits from having doorways through which what you need can reach you. These may include work and income, but also information, opportunities, systems of support, or introductions. Letting others know what you can offer—and what you are looking for—can connect you to those flows.',
+    2:'To expand prosperity, it may help to create more than one possible doorway. This might mean trying a different way of working, being visible in another place, or making use of referrals and introductions. The goal is not to spread yourself everywhere, but to create a few sustainable openings.',
+    3:'What you may seek beyond prosperity is a life in which fitting opportunities arrive more naturally: work comes to you, useful information reaches you, or an unexpected connection opens a path. Over time, what you have built becomes an entrance through which needed abundance can find you.'
+  },
+  "受":{
+    1:'Receiving what is offered to you seems important to your prosperity. Payment for work, help, kindness, praise, and opportunity do not always need to be returned immediately. When you can let something become yours, it finally becomes part of your own abundance. Receiving is as important as giving.',
+    2:'To expand prosperity, receive what reaches you and allow it to support your life. Help can create time, recognition can lead to new work, and information can create choices. When what you receive is integrated rather than immediately passed back, it can become the basis for further abundance.',
+    3:'What you may seek beyond prosperity is reciprocity: not only giving, but also having enough return to you. Work is met with fair reward, support can be received when you need it, and appreciation can simply be enjoyed. Prosperity becomes something both you and others are able to experience.'
+  },
+  "満":{
+    1:'Your prosperity may begin with having enough for everyday life. When money, time, or basic resources are too scarce, much of your energy goes into filling the shortage. Reaching a personal sense of “this is enough for now” can create the safety and space that support the rest of your flow.',
+    2:'To expand prosperity, make use of the room that comes from having enough. When necessities are covered, time and money can be directed toward things that were previously difficult: planning ahead, trying something new, or investing in the future. Abundance grows when surplus becomes possibility.',
+    3:'What you may seek beyond prosperity is a state where you no longer have to count every lack. You have what you need, room to choose what you want, and enough resilience to face an unexpected need without panic. More than having “a lot,” the feeling of having enough may be the richness you truly want.'
+  },
+  "留":{
+    1:'Your prosperity is supported by keeping some of what comes to you instead of using everything. This applies not only to money, but also time and energy. Deliberately leaving a reserve creates space you can use when something important appears. Keeping something is also a meaningful use of abundance.',
+    2:'To expand prosperity, leave part of what circulates to you in a form that can be used later. Money can remain as future capital; time can remain as unscheduled space. A reserve increases your choices and gives you something from which future growth can begin.',
+    3:'What you may seek beyond prosperity is for what you gain to remain with you in a tangible way instead of simply passing through. Savings, results, achievements, or other lasting forms can become evidence of what you have built, support self-respect, and provide energy for the next step.'
+  },
+  "育":{
+    1:'Your prosperity seems to benefit from giving time and care to what you already have. Knowledge, skills, experience, work, and relationships can all become more valuable through steady cultivation. Not everything needs to show an immediate result to be worth nurturing.',
+    2:'To expand prosperity, refine and deepen what is already yours. Learn further, practice your skills, improve how you work, and strengthen relationships. Even without immediate results, patient investment can turn existing resources into something of greater value.',
+    3:'What you may seek beyond prosperity is maturity: seeing what you have carefully grown become a lasting asset. Knowledge becomes ability, sustained work becomes a track record, and relationships become trust. The richness lies partly in knowing that you helped it grow.'
+  },
+  "守":{
+    1:'Your prosperity may require clear boundaries that protect your life and what matters to you. Money, time, and energy are finite. Knowing what you can spend, what you want to preserve, and when to say no can prevent you from losing what you need in order to remain secure.',
+    2:'To expand prosperity, protect what already exists as well as seeking more. Decide what deserves your money and time, what you can reasonably take on, and what your life needs to keep. Choosing what to expand and what to defend helps prosperity remain sustainable.',
+    3:'What you may seek beyond prosperity includes the ability to safely protect the life and people you value: your time, family life, work, health, energy, and resources. Having enough room that you do not have to give up what is precious to you can itself be a form of wealth.'
+  },
+  "与":{
+    1:'Your prosperity includes being able to use some of what you have for others without depleting yourself. Money, objects, time, knowledge, skills, and care can all be gifts. The important part is not sacrifice, but being able to say, “I have enough to share this.”',
+    2:'To expand prosperity, let some of what you hold become useful to someone else. Something small to you may have great value to the person who needs it. Thinking about what to give, to whom, and in what form can create new relationships, experiences, and joy around the value you already carry.',
+    3:'What you may seek beyond prosperity includes being able to enrich someone else through what you have. Helping, sharing, teaching, or delighting someone can become part of your own sense of abundance. Your prosperity feels fuller when it also creates richness around you.'
+  },
+  "還":{
+    1:'Your prosperity seems to thrive in reciprocal circulation rather than one-way giving or receiving. Support may return in a different situation, or what you receive from one person may be passed to another. It does not need to come back in the same form. What matters is that you remain part of the circulation too.',
+    2:'To expand prosperity, allow the value you create to continue beyond a single exchange. Good work can create trust, trust can create referrals, knowledge shared can create relationships, and one contribution can become the beginning of another flow. Circulation grows when value keeps moving.',
+    3:'What you may seek beyond prosperity is for what you create and give to continue generating richness as it moves through people and places. Your work enriches someone, their abundance reaches another, and something you need returns in another form. Prosperity becomes a shared circulation rather than a private endpoint.'
+  }
+};
+
+const THIN = {
+  "源":{title:'Notice what you already have',text:'Look again at the resources already present in your life—knowledge, experience, skills, strengths, relationships, and environment. Things that feel ordinary to you may still contain unused value. Asking “What do I already have?” can reveal material for your next flow of prosperity.'},
+  "生":{title:'Create something new from what is here',text:'When something is missing, try combining the knowledge, experience, time, or tools you already have in a different way. Asking “What could I make from this?” can turn limitation into a starting point for new value.'},
+  "結":{title:'Look toward connection',text:'Prosperity does not have to be built alone. A conversation, useful information, the right place, or someone with a complementary strength may make possible what is difficult by yourself. Connecting what needs to meet can be part of the flow.'},
+  "換":{title:'Transform what you have into needed value',text:'Consider what form your existing resources need to take now. Knowledge can become a service; money can become time or experience. Asking “What could this become?” may help you use the abundance that is already present.'},
+  "招":{title:'Create a doorway for what you need',text:'Think about how work, information, support, or opportunity can find you. Letting people know what you can do or knowing where useful information exists can create a doorway. You do not need many—just enough sustainable openings for the right things to reach you.'},
+  "受":{title:'Allow yourself to receive',text:'Notice what is being offered to you: payment, help, kindness, recognition, or opportunity. You do not need to immediately return everything. Receiving and letting something support you is an essential part of circulation.'},
+  "満":{title:'Meet your own sense of “enough”',text:'Before expanding, check whether the basics of your life have enough support. When money, time, or necessary resources are too scarce, much of your energy goes toward filling the gap. Gradually meeting your own definition of “enough” creates room for the next step.'},
+  "留":{title:'Keep some of what comes to you',text:'Try not to use everything that enters your life immediately. A little money, time, or energy left in reserve increases your future choices. Keeping something for later is not stopping the flow; it can be what makes the next flow possible.'},
+  "育":{title:'Cultivate value over time',text:'Some forms of abundance need time. Knowledge, skill, experience, work, and relationships may become much more valuable through steady care. Look for something you already have that deserves to be grown rather than replaced.'},
+  "守":{title:'Draw a line around what matters',text:'Expansion also requires protection. Consider how much money, time, or energy you can spend and what needs to remain secure. Saying “no,” declining a request, or choosing not to spend can be an act of protecting the foundation that lets prosperity continue.'},
+  "与":{title:'Share without depleting yourself',text:'Look for something you can give without making yourself scarce: time, knowledge, skill, care, money, or another form of value. Something small to you may be meaningful to someone else. Giving works best when you also leave enough for yourself.'},
+  "還":{title:'Let prosperity circulate rather than move one way',text:'Notice whether giving and receiving have become one-sided. Value may travel through different people and return in a different form. You do not need repayment from the same person; you only need to remain part of a circulation in which you can both give and receive.'}
+};
+
+const questionsEl = document.getElementById("questions");
+const form = document.getElementById("testForm");
+const formError = document.getElementById("formError");
+const rankError = document.getElementById("rankError");
+
+QUESTIONS.forEach((q,idx)=>{
+  const wrap=document.createElement("div");
+  wrap.className="question";
+  const p=document.createElement("p");
+  p.className="qtext";
+  p.innerHTML=`<span class="qnum">Q${String(idx+1).padStart(2,"0")}</span>${q.text}`;
+  wrap.appendChild(p);
+
+  const scale=document.createElement("div");
+  scale.className="scale";
+  SCALE.forEach(s=>{
+    const label=document.createElement("label");
+    const input=document.createElement("input");
+    input.type="radio";
+    input.name=`q${idx+1}`;
+    input.value=String(s.value);
+    const span=document.createElement("span");
+    span.innerHTML=s.label.replace("\\n","<br>");
+    label.append(input,span);
+    scale.appendChild(label);
+  });
+  wrap.appendChild(scale);
+  questionsEl.appendChild(wrap);
+});
+
+function fillRanks(){
+  ["rank1","rank2","rank3"].forEach(id=>{
+    const sel=document.getElementById(id);
+    sel.innerHTML='<option value="">Choose one</option>';
+    Object.entries(VALUES).forEach(([key,label])=>{
+      const op=document.createElement("option");
+      op.value=key;
+      op.textContent=`${key}：${label}`;
+      sel.appendChild(op);
+    });
+  });
+}
+fillRanks();
+
+function getRanks(){
+  return ["rank1","rank2","rank3"].map(id=>document.getElementById(id).value);
+}
+function ranksValid(ranks){
+  return ranks.every(Boolean) && new Set(ranks).size===3;
+}
+
+function preferenceWeight(axis,ranks){
+  const weights=[3,2,1];
+  let total=0;
+  ranks.forEach((key,i)=>{
+    if(VALUE_TO_AXIS[key]===axis) total+=weights[i];
+  });
+  return total;
+}
+
+function selectHighAxes(scores,ranks){
+  const sorted=[...AXIS_ORDER].sort((a,b)=>{
+    if(scores[b].sum!==scores[a].sum) return scores[b].sum-scores[a].sum;
+    const pb=preferenceWeight(b,ranks), pa=preferenceWeight(a,ranks);
+    if(pb!==pa) return pb-pa;
+    return AXIS_ORDER.indexOf(a)-AXIS_ORDER.indexOf(b);
+  });
+  return [sorted[0],sorted[1]];
+}
+
+function selectThinAxes(scores,usedAxes){
+  const min=Math.min(...AXIS_ORDER.map(a=>scores[a].sum));
+  const tied=AXIS_ORDER.filter(a=>scores[a].sum===min);
+  tied.sort((a,b)=>{
+    const au=usedAxes.includes(a)?1:0;
+    const bu=usedAxes.includes(b)?1:0;
+    if(au!==bu) return au-bu;
+    return AXIS_ORDER.indexOf(a)-AXIS_ORDER.indexOf(b);
+  });
+  return tied.slice(0,2);
+}
+
+form.addEventListener("submit",e=>{
+  e.preventDefault();
+
+  const answers=[];
+  let allAnswered=true;
+  QUESTIONS.forEach((q,idx)=>{
+    const checked=document.querySelector(`input[name="q${idx+1}"]:checked`);
+    if(!checked) allAnswered=false;
+    else answers.push({
+      displayNumber:idx+1,
+      axis:q.axis,item:q.item,text:q.text,value:Number(checked.value)
+    });
+  });
+
+  const ranks=getRanks();
+  formError.style.display=allAnswered?"none":"block";
+  rankError.style.display=ranksValid(ranks)?"none":"block";
+
+  if(!allAnswered || !ranksValid(ranks)){
+    const target=!allAnswered?formError:rankError;
+    target.scrollIntoView({behavior:"smooth",block:"center"});
+    return;
+  }
+
+  const scores={};
+  AXIS_ORDER.forEach(a=>scores[a]={sum:0,items:[]});
+  answers.forEach(a=>{
+    scores[a.axis].sum+=a.value;
+    scores[a.axis].items.push(a);
+  });
+
+  renderResults(scores,ranks);
+});
+
+function renderResults(scores,ranks){
+  const [foundationAxis,developmentAxis]=selectHighAxes(scores,ranks);
+  const fruitAxis=VALUE_TO_AXIS[ranks[0]];
+  const thinAxes=selectThinAxes(scores,[foundationAxis,developmentAxis,fruitAxis]);
+
+  document.getElementById("wealthMeaningText").textContent=`The form of prosperity you value most is “${VALUES[ranks[0]]}.” This points to what you most want prosperity to support in your life.`;
+  document.getElementById("foundationText").textContent=READINGS[foundationAxis][1];
+  document.getElementById("developmentText").textContent=READINGS[developmentAxis][2];
+  document.getElementById("fruitText").textContent=READINGS[fruitAxis][3];
+
+  const thinWrap=document.getElementById("thinWrap");
+  thinWrap.innerHTML="";
+  thinAxes.forEach(axis=>{
+    const box=document.createElement("div");
+    box.className="thin-item";
+    box.innerHTML=`<h3>${THIN[axis].title}</h3><p>${THIN[axis].text}</p>`;
+    thinWrap.appendChild(box);
+  });
+
+  const rankResult=document.getElementById("rankResult");
+  rankResult.innerHTML="";
+  ranks.forEach((key,i)=>{
+    const row=document.createElement("div");
+    row.className="rank-result-item";
+    row.innerHTML=`<strong>${["1st","2nd","3rd"][i]}</strong><span>${VALUES[key]}</span>`;
+    rankResult.appendChild(row);
+  });
+
+  const scoreGrid=document.getElementById("scoreGrid");
+  scoreGrid.innerHTML="";
+  AXIS_ORDER.forEach(axis=>{
+    const box=document.createElement("div");
+    box.className="axis";
+    box.innerHTML=`<div class="axis-name">${axis}<br><span style="font-size:.68rem;font-family:inherit;font-weight:500">${AXIS_EN[axis]}</span></div><div class="axis-score">${scores[axis].sum} / 12</div>`;
+    scoreGrid.appendChild(box);
+  });
+
+  const copyLines=[
+    "【JIKŌ Prosperity Flow Reading】","",
+    "■ What prosperity means to you",
+    `1st: ${VALUES[ranks[0]]}`,"",
+    "■ Your foundation for prosperity",
+    READINGS[foundationAxis][1],"",
+    "■ What can expand your prosperity",
+    READINGS[developmentAxis][2],"",
+    "■ What you seek beyond prosperity",
+    READINGS[fruitAxis][3],"",
+    "■ What may help your prosperity flow now?"
+  ];
+  thinAxes.forEach(axis=>{
+    copyLines.push(`・${THIN[axis].title}`);
+    copyLines.push(THIN[axis].text);
+  });
+  copyLines.push("","■ The prosperity you value most");
+  ranks.forEach((key,i)=>copyLines.push(`${["1st","2nd","3rd"][i]}: ${VALUES[key]}`));
+  copyLines.push("","■ 12 Flows");
+  AXIS_ORDER.forEach(a=>copyLines.push(`${a} ${AXIS_EN[a]}: ${scores[a].sum}/12`));
+
+  document.getElementById("copyText").value=copyLines.join("\n");
+  document.getElementById("formView").style.display="none";
+  document.getElementById("resultView").style.display="block";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+document.getElementById("copyBtn").addEventListener("click",async()=>{
+  const textarea=document.getElementById("copyText");
+  const msg=document.getElementById("copiedMsg");
+  try{
+    await navigator.clipboard.writeText(textarea.value);
+  }catch(err){
+    textarea.focus(); textarea.select(); document.execCommand("copy");
+  }
+  msg.textContent="Copied.";
+  setTimeout(()=>msg.textContent="",3000);
+});
+
+document.getElementById("backBtn").addEventListener("click",()=>{
+  document.getElementById("resultView").style.display="none";
+  document.getElementById("formView").style.display="block";
+  window.scrollTo({top:0,behavior:"smooth"});
+});
+</script>
+</body>
+</html>
