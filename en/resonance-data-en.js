@@ -14,7 +14,7 @@
 
  
 
-window.RESONANCE_DATA_EN = Object.freeze({
+window.RESONANCE_DATA = Object.freeze({
 
   "感": {
 
@@ -32,7 +32,7 @@ window.RESONANCE_DATA_EN = Object.freeze({
 
         cycle: 1,
 
-        symbolName: "天響の座 — Seat of Heavenly Resonance",
+        symbolName: "天響の座",
 
         romaji: "Tenkyo no Za",
 
@@ -48,7 +48,7 @@ To other people, that kind of perception may sometimes look unsupported or basel
 
         cycle: 2,
 
-        symbolName: "降光の座 — Seat of Descending Light",
+        symbolName: "降光の座",
 
         romaji: "Koko no Za",
 
@@ -70,7 +70,7 @@ You do not have to carry every ray of light that descends toward you. By selecti
 
         cycle: 3,
 
-        symbolName: "透解の座 — Seat of Clear Insight",
+        symbolName: "透解の座",
 
         romaji: "Tokai no Za",
 
@@ -106,7 +106,7 @@ Seeing the whole picture and valuing your own feelings are not mutually exclusiv
 
         cycle: 1,
 
-        symbolName: "言霊の座 — Seat of Word-Spirit",
+        symbolName: "言霊の座",
 
         romaji: "Kotodama no Za",
 
@@ -122,7 +122,7 @@ Because of that, something may not feel complete while it remains only inside yo
 
         cycle: 2,
 
-        symbolName: "詠唱の座 — Seat of Chanting",
+        symbolName: "詠唱の座",
 
         romaji: "Eisho no Za",
 
@@ -140,7 +140,7 @@ On the other hand, if you prioritize being understood too strongly, your own tru
 
         cycle: 3,
 
-        symbolName: "現心の座 — Seat of Inner Manifestation",
+        symbolName: "現心の座",
 
         romaji: "Genshin no Za",
 
@@ -180,7 +180,7 @@ When you use this ability for something you genuinely desire, what once existed 
 
         cycle: 1,
 
-        symbolName: "結縁の座 — Seat of Forming Bonds",
+        symbolName: "結縁の座",
 
         romaji: "Ketsuen no Za",
 
@@ -198,7 +198,7 @@ For people with this Seat, it may help to develop the habit of calmly asking bef
 
         cycle: 2,
 
-        symbolName: "絆広の座 — Seat of Widening Bonds",
+        symbolName: "絆広の座",
 
         romaji: "Banko no Za",
 
@@ -214,7 +214,7 @@ While you can enjoy difference itself, being involved with many sides at once ca
 
         cycle: 3,
 
-        symbolName: "共歩の座 — Seat of Walking Together",
+        symbolName: "共歩の座",
 
         romaji: "Kyoho no Za",
 
@@ -252,7 +252,7 @@ Because each person can stand on their own feet, when you do come together, you 
 
         cycle: 1,
 
-        symbolName: "天門の座 — Seat of the Heavenly Gate",
+        symbolName: "天門の座",
 
         romaji: "Tenmon no Za",
 
@@ -270,7 +270,7 @@ For people with this Seat, it can matter greatly whether something belongs insid
 
         cycle: 2,
 
-        symbolName: "道標の座 — Seat of the Guiding Sign",
+        symbolName: "道標の座",
 
         romaji: "Michishirube no Za",
 
@@ -294,7 +294,7 @@ Conviction matters. Flexibility matters too. Remembering both allows your inner 
 
         cycle: 3,
 
-        symbolName: "信閃の座 — Seat of the Flash of Trust",
+        symbolName: "信閃の座",
 
         romaji: "Shinsen no Za",
 
@@ -332,7 +332,7 @@ Being able to trust, and being trusted. Take care of both sides of that wheel. A
 
         cycle: 1,
 
-        symbolName: "心眼の座 — Seat of the Inner Eye",
+        symbolName: "心眼の座",
 
         romaji: "Shingan no Za",
 
@@ -352,7 +352,7 @@ Even so, you are generally someone who tries hard to understand. So if you final
 
         cycle: 2,
 
-        symbolName: "明鏡の座 — Seat of the Clear Mirror",
+        symbolName: "明鏡の座",
 
         romaji: "Meikyo no Za",
 
@@ -370,7 +370,7 @@ A mirror becomes clear when you wipe away the fog, but it does not need to inven
 
         cycle: 3,
 
-        symbolName: "知泉の座 — Seat of the Spring of Knowledge",
+        symbolName: "知泉の座",
 
         romaji: "Chisen no Za",
 
@@ -406,7 +406,7 @@ A spring remains clear not because water simply collects, but because new water 
 
         cycle: 1,
 
-        symbolName: "飛翔の座 — Seat of Flight",
+        symbolName: "飛翔の座",
 
         romaji: "Hisho no Za",
 
@@ -424,7 +424,7 @@ When trouble comes, the Seat of Flight is a reliable presence—the person who s
 
         cycle: 2,
 
-        symbolName: "現化の座 — Seat of Manifestation",
+        symbolName: "現化の座",
 
         romaji: "Genka no Za",
 
@@ -444,7 +444,7 @@ A little inspection along the way allows your momentum to become not merely spee
 
         cycle: 3,
 
-        symbolName: "開頁の座 — Seat of the New Page",
+        symbolName: "開頁の座",
 
         romaji: "Kaiyo no Za",
 
@@ -482,7 +482,7 @@ Some walls can be crossed without being destroyed, and some old things can remai
 
         cycle: 1,
 
-        symbolName: "調律の座 — Seat of Attunement",
+        symbolName: "調律の座",
 
         romaji: "Choritsu no Za",
 
@@ -500,7 +500,7 @@ The ability to create that kind of attunement—that is the nature of your Seat.
 
         cycle: 2,
 
-        symbolName: "清界の座 — Seat of the Clear Boundary",
+        symbolName: "清界の座",
 
         romaji: "Seikai no Za",
 
@@ -520,7 +520,7 @@ That ability allows your power to protect to create safety rather than isolation
 
         cycle: 3,
 
-        symbolName: "共別の座 — Seat of Shared Difference",
+        symbolName: "共別の座",
 
         romaji: "Kyobetsu no Za",
 
@@ -558,7 +558,7 @@ Balance does not mean making everything the same. It means finding a place where
 
         cycle: 1,
 
-        symbolName: "解放の座 — Seat of Release",
+        symbolName: "解放の座",
 
         romaji: "Kaiho no Za",
 
@@ -578,7 +578,7 @@ What you encounter afterward may become a new stage of your life—something tha
 
         cycle: 2,
 
-        symbolName: "還元の座 — Seat of Return",
+        symbolName: "還元の座",
 
         romaji: "Kangen no Za",
 
@@ -596,7 +596,7 @@ At the same time, if you decide too quickly that “its role is over,” you may
 
         cycle: 3,
 
-        symbolName: "新巡の座 — Seat of the New Cycle",
+        symbolName: "新巡の座",
 
         romaji: "Shinmeguri no Za",
 
@@ -634,7 +634,7 @@ That single breath allows you to carry the previous time with you while opening 
 
         cycle: 1,
 
-        symbolName: "安息の座 — Seat of Rest",
+        symbolName: "安息の座",
 
         romaji: "Ansoku no Za",
 
@@ -654,7 +654,7 @@ Safety does not exist only in being with other people. Being able to create a pl
 
         cycle: 2,
 
-        symbolName: "還憧の座 — Seat of Returning Home",
+        symbolName: "還憧の座",
 
         romaji: "Kando no Za",
 
@@ -676,7 +676,7 @@ Holding both of those truths is the kind of safety carried by the Seat of Return
 
         cycle: 3,
 
-        symbolName: "灯火の座 — Seat of the Guiding Light",
+        symbolName: "灯火の座",
 
         romaji: "Tomoshibi no Za",
 
@@ -714,7 +714,7 @@ Being able to return to yourself—then allowing that stability to naturally rea
 
         cycle: 1,
 
-        symbolName: "和心の座 — Seat of Harmonious Heart",
+        symbolName: "和心の座",
 
         romaji: "Washin no Za",
 
@@ -738,7 +738,7 @@ The ability both to receive and to return is what allows your generous capacity 
 
         cycle: 2,
 
-        symbolName: "溶心の座 — Seat of the Melting Heart",
+        symbolName: "溶心の座",
 
         romaji: "Yoshin no Za",
 
@@ -764,7 +764,7 @@ Being able to go, see, and then return to yourself—that flexible movement is t
 
         cycle: 3,
 
-        symbolName: "掌心の座 — Seat of the Open Palm",
+        symbolName: "掌心の座",
 
         romaji: "Shoshin no Za",
 
@@ -806,7 +806,7 @@ That is the mature acceptance of the Seat of the Open Palm.`
 
         cycle: 1,
 
-        symbolName: "天巡の座 — Seat of the Heavenly Cycle",
+        symbolName: "天巡の座",
 
         romaji: "Tenjun no Za",
 
@@ -830,7 +830,7 @@ Knowing how to make that switch is the strength of the Seat of the Heavenly Cycl
 
         cycle: 2,
 
-        symbolName: "時極の座 — Seat of the Peak of Time",
+        symbolName: "時極の座",
 
         romaji: "Jikyoku no Za",
 
@@ -856,7 +856,7 @@ Choosing what to do now—and being willing to reorder it when necessary—is pa
 
         cycle: 3,
 
-        symbolName: "暁鐘の座 — Seat of the Dawn Bell",
+        symbolName: "暁鐘の座",
 
         romaji: "Gyosho no Za",
 
@@ -896,7 +896,7 @@ If you can confirm that distinction, you can ring the bell when it is truly need
 
         cycle: 1,
 
-        symbolName: "共鳴の座 — Seat of Resonance",
+        symbolName: "共鳴の座",
 
         romaji: "Kyomei no Za",
 
@@ -922,7 +922,7 @@ That is the strength of the Seat of Resonance.`
 
         cycle: 2,
 
-        symbolName: "心波の座 — Seat of the Heart-Wave",
+        symbolName: "心波の座",
 
         romaji: "Shinpa no Za",
 
@@ -946,7 +946,7 @@ Knowing the boundary between the two allows your rich empathy to become a power 
 
         cycle: 3,
 
-        symbolName: "漣見の座 — Seat of Seeing the Ripples",
+        symbolName: "漣見の座",
 
         romaji: "Renken no Za",
 
@@ -986,7 +986,7 @@ By becoming able to choose what kind of wave you send outward, your rich emotion
 
  */
 
-window.RESONANCE_NAME_TO_KEY_EN = Object.freeze({
+window.RESONANCE_NAME_TO_KEY = Object.freeze({
   "Intuition": "感", "直感": "感",
   "Expression": "現", "表現": "現",
   "Connection": "関", "関係": "関",
@@ -1017,17 +1017,17 @@ window.RESONANCE_NAME_TO_KEY_EN = Object.freeze({
 
  */
 
-window.getResonanceAxisDataEN = function getResonanceAxisDataEN(axis) {
+window.getResonanceAxisData = function getResonanceAxisDataEN(axis) {
 
-  const key = window.RESONANCE_DATA_EN[axis]
+  const key = window.RESONANCE_DATA[axis]
 
     ? axis
 
-    : window.RESONANCE_NAME_TO_KEY_EN[axis];
+    : window.RESONANCE_NAME_TO_KEY[axis];
 
  
 
-  return key ? window.RESONANCE_DATA_EN[key] : null;
+  return key ? window.RESONANCE_DATA[key] : null;
 
 };
 
@@ -1065,9 +1065,9 @@ window.getResonanceAxisDataEN = function getResonanceAxisDataEN(axis) {
 
  */
 
-window.getResonanceCycleDataEN = function getResonanceCycleDataEN(axis, cycle) {
+window.getResonanceCycleData = function getResonanceCycleDataEN(axis, cycle) {
 
-  const axisData = window.getResonanceAxisDataEN(axis);
+  const axisData = window.getResonanceAxisData(axis);
 
   const cycleNumber = Number(cycle);
 
@@ -1104,3 +1104,4 @@ window.getResonanceCycleDataEN = function getResonanceCycleDataEN(axis, cycle) {
   };
 
 };
+
