@@ -618,6 +618,34 @@
 
     }
 
+    const explanations = $("birth-gem-explanations");
+
+    explanations.replaceChildren();
+
+    for (let cycle = 1; cycle <= 3; cycle++) {
+
+      const data = window.getResonanceCycleData?.(origin, cycle);
+
+      if (!data?.text || !data?.symbolName) throw new Error("正式宝石の解説を確認できませんでした。");
+
+      const details = document.createElement("details");
+
+      details.dataset.gem = data.symbolName.replace(/の座$/, "");
+
+      const title = document.createElement("summary");
+
+      title.textContent = `${cycle}巡目：${data.symbolName}`;
+
+      const description = document.createElement("p");
+
+      description.textContent = data.text;
+
+      details.append(title, description);
+
+      explanations.append(details);
+
+    }
+
     $("birth-gem-origin").textContent = `${origin}・${seat.name}`;
 
     $("birth-gem-panel").hidden = false;
@@ -669,6 +697,16 @@
     $("ring-history").open = false;
 
   }
+
+  $("birth-gem").addEventListener("change", (event) => {
+
+    for (const details of $("birth-gem-explanations").querySelectorAll("details")) {
+
+      if (details.dataset.gem === event.target.value) details.open = true;
+
+    }
+
+  });
 
   document.addEventListener("jikou:calculated", (event) => {
 
