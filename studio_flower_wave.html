@@ -1,620 +1,1173 @@
 <!DOCTYPE html>
+
 <html lang="ja">
+
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>時光解析スタジオ</title>
 
+
   <style>
+
     * { box-sizing: border-box; }
 
+
     body {
+
       margin: 0;
+
       padding: 24px;
+
       font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
+
         "Yu Gothic", sans-serif;
+
       color: #2f2f2f;
+
       background: #f3f4f6;
+
       line-height: 1.6;
+
     }
+
 
     button, input, select, textarea { font: inherit; }
 
+
     .studio {
+
       width: min(1180px, 100%);
+
       margin: 0 auto;
+
     }
+
 
     .studio-header { margin-bottom: 24px; }
+
     .studio-header h1 { margin: 0 0 6px; font-size: 1.8rem; }
+
     .studio-header p { margin: 0; color: #666; font-size: .95rem; }
 
+
     .panel {
+
       margin-bottom: 20px;
+
       padding: 22px;
+
       border: 1px solid #d7dbe0;
+
       border-radius: 12px;
+
       background: #fff;
+
     }
+
 
     .panel h2 { margin: 0 0 8px; font-size: 1.15rem; }
+
     .panel-description {
+
       margin: 0 0 18px;
+
       color: #68707a;
+
       font-size: .88rem;
+
     }
+
 
     .form-grid {
+
       display: grid;
+
       grid-template-columns: repeat(2, minmax(0, 1fr));
+
       gap: 18px;
+
     }
 
+
     .field {
+
       display: flex;
+
       flex-direction: column;
+
       gap: 7px;
+
       min-width: 0;
+
     }
+
 
     .field.full { grid-column: 1 / -1; }
 
+
     label, legend {
+
       font-weight: 700;
+
       font-size: .92rem;
+
     }
+
 
     input, select, textarea {
+
       width: 100%;
+
       min-width: 0;
+
       border: 1px solid #c9ced6;
+
       border-radius: 8px;
+
       background: #fff;
+
       padding: 11px 12px;
+
       color: #222;
+
     }
 
+
     input:focus, select:focus, textarea:focus {
+
       outline: 2px solid #93a4b8;
+
       outline-offset: 1px;
+
     }
+
 
     textarea { min-height: 150px; resize: vertical; }
 
+
     .help {
+
       margin: 0;
+
       color: #6b7280;
+
       font-size: .8rem;
+
     }
+
 
     .radio-row {
+
       display: flex;
+
       flex-wrap: wrap;
+
       gap: 12px 22px;
+
       padding-top: 6px;
+
     }
 
+
     .radio-row label {
+
       display: inline-flex;
+
       align-items: center;
+
       gap: 7px;
+
       font-weight: 400;
+
     }
+
 
     .radio-row input { width: auto; }
 
+
     .calculation-summary {
+
       display: grid;
+
       grid-template-columns: repeat(2, minmax(0, 1fr));
+
       gap: 14px;
+
       margin-bottom: 18px;
+
     }
+
 
     .summary-box {
+
       padding: 15px;
+
       border: 1px solid #d7dbe0;
+
       border-radius: 9px;
+
       background: #fafafa;
+
     }
+
 
     .summary-box h3 {
+
       margin: 0 0 8px;
+
       font-size: .95rem;
+
     }
+
 
     .summary-box p {
+
       margin: 3px 0;
+
       font-size: .84rem;
+
       overflow-wrap: anywhere;
+
     }
+
 
     .seat-grid {
+
       display: grid;
+
       grid-template-columns: repeat(4, minmax(0, 1fr));
+
       gap: 12px;
+
     }
+
 
     .seat-box {
+
       min-height: 160px;
+
       padding: 14px;
+
       border: 1px solid #d7dbe0;
+
       border-radius: 9px;
+
       background: #fafafa;
+
     }
+
 
     .seat-heading {
+
       display: flex;
+
       align-items: center;
+
       gap: 10px;
+
     }
+
 
     .seat-heading strong, .seat-heading small { display: block; }
+
     .seat-heading small { color: #747b84; font-size: .75rem; }
 
+
     .seat-short {
+
       display: grid;
+
       width: 34px;
+
       height: 34px;
+
       place-items: center;
+
       border: 1px solid #bfc5cd;
+
       border-radius: 50%;
+
       background: #fff;
+
       font-weight: 700;
+
     }
 
+
     .seat-main-value {
+
       margin: 12px 0;
+
       font-size: 1.35rem;
+
       font-weight: 700;
+
     }
+
 
     .seat-details { margin: 0; font-size: .78rem; }
 
+
     .seat-details div {
+
       display: flex;
+
       justify-content: space-between;
+
       gap: 10px;
+
       border-top: 1px solid #e5e7eb;
+
       padding: 4px 0;
+
     }
+
 
     .seat-details dt, .seat-details dd { margin: 0; }
 
+
     .summary {
+
       display: grid;
+
       gap: 4px;
+
       margin-top: 18px;
+
       padding: 14px;
+
       border-radius: 8px;
+
       background: #f4f5f7;
+
       font-size: .88rem;
+
     }
+
 
     .tarot-grid {
+
       display: grid;
+
       grid-template-columns: repeat(3, minmax(0, 1fr));
+
       gap: 16px;
+
     }
+
 
     .tarot-card {
+
       padding: 16px;
+
       border: 1px solid #d7dbe0;
+
       border-radius: 10px;
+
       background: #fafafa;
+
     }
+
 
     .tarot-card h3 { margin: 0 0 12px; font-size: 1rem; }
+
     .tarot-card .field + .field { margin-top: 12px; }
 
+
     .actions {
+
       display: flex;
+
       flex-wrap: wrap;
+
       gap: 12px;
+
       justify-content: flex-end;
+
     }
 
+
     button {
+
       border: 0;
+
       border-radius: 8px;
+
       padding: 12px 20px;
+
       cursor: pointer;
+
     }
+
 
     button:disabled { cursor: wait; opacity: .55; }
 
+
     .button-secondary { background: #e5e7eb; color: #222; }
+
     .button-primary { background: #374151; color: #fff; }
 
+
     .status {
+
       margin: 12px 0 0;
+
       min-height: 1.5em;
+
       color: #4b5563;
+
       font-size: .9rem;
+
     }
+
 
     .error { color: #a33131; }
 
+
     #candidate-text {
+
       margin-top: 18px;
+
       min-height: 250px;
+
       background: #fbfbfc;
+
     }
+
 
 
     .flower-wrap {
+
       display: grid;
+
       place-items: center;
+
       overflow: hidden;
+
       min-height: 340px;
+
     }
+
 
     .flower-svg {
+
       display: block;
+
       width: min(620px, 100%);
+
       height: auto;
+
     }
+
 
     .flower-guide { fill: none; stroke: #e4e7eb; stroke-width: 1; }
+
     .flower-axis { stroke: #eceff2; stroke-width: 1; }
+
     .flower-wave-shape {
+
       fill: rgba(55, 65, 81, .08);
+
       stroke: #4b5563;
+
       stroke-width: 2.2;
+
       stroke-linejoin: round;
+
     }
+
     .flower-point { fill: #fff; stroke: #4b5563; stroke-width: 1.6; }
+
     .flower-center { fill: #4b5563; }
+
     .flower-label text { fill: #374151; font-size: 14px; }
+
     .flower-label .flower-label-value { fill: #7b828c; font-size: 12px; }
 
+
     @media (max-width: 900px) {
+
       .seat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
     }
+
 
     @media (max-width: 700px) {
+
       body { padding: 14px; }
+
       .form-grid, .calculation-summary, .seat-grid, .tarot-grid {
+
         grid-template-columns: 1fr;
+
       }
+
       .actions { justify-content: stretch; }
+
       .actions button { width: 100%; }
+
     }
+
+    .gem-explanations { margin-top: 12px; }
+
+    .gem-explanations details { border-top: 1px solid #e2e5e9; padding: 10px 0; }
+
+    .gem-explanations summary { cursor: pointer; font-weight: 700; }
+
+    .gem-explanations p { white-space: pre-wrap; margin: 10px 0; }
+
     .ring-years { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+
     .ring-card { padding: 18px; background: #f8f9fb; border: 1px solid #e2e5e9; border-radius: 10px; }
+
     .ring-card h3 { margin: 0 0 6px; }
+
     .ring-card p { margin: 0 0 12px; color: #535b65; }
+
     .ring-card dl { margin: 0; }
+
     .ring-card dt { font-weight: 700; margin-top: 10px; }
+
     .ring-card dd { margin: 2px 0 0; }
+
     #ring-groups p { margin: 8px 0; }
+
     #ring-history { margin-top: 20px; }
+
     #ring-history summary { cursor: pointer; font-weight: 700; }
+
     .ring-history-scroll { overflow-x: auto; margin-top: 12px; }
+
     .ring-history-table { border-collapse: collapse; width: 100%; min-width: 640px; }
+
     .ring-history-table th, .ring-history-table td { padding: 8px; border-bottom: 1px solid #e2e5e9; text-align: left; }
+
     .ring-current-row { background: #f1f4f8; font-weight: 700; }
+
     @media (max-width: 700px) { .ring-years { grid-template-columns: 1fr; } }
+
   </style>
+
 </head>
 
+
 <body>
+
   <main class="studio">
+
     <header class="studio-header">
+
       <h1>時光解析スタジオ</h1>
+
       <p>出生情報から西洋・東洋・カバラ・名前音を算定し、12座へ変換します。</p>
+
       <p class="status" id="engine-status" aria-live="polite"></p>
+
     </header>
 
+
     <form id="studio-form">
+
       <section class="panel">
+
         <h2>基本情報</h2>
 
+
         <div class="form-grid">
-          <div class="field">
-            <label for="birth-date">生年月日</label>
-            <input type="date" id="birth-date" name="birthDate" required>
-          </div>
 
           <div class="field">
-            <label for="birth-time">出生時間（任意）</label>
-            <input type="time" id="birth-time" name="birthTime">
-            <p class="help">不明の場合は、ASC・MCを除く10天体で算定します。</p>
+
+            <label for="birth-date">生年月日</label>
+
+            <input type="date" id="birth-date" name="birthDate" required>
+
           </div>
+
+
+          <div class="field">
+
+            <label for="birth-time">出生時間（任意）</label>
+
+            <input type="time" id="birth-time" name="birthTime">
+
+            <p class="help">不明の場合は、ASC・MCを除く10天体で算定します。</p>
+
+          </div>
+
 
           <div class="field full">
+
             <label for="birth-place">出生地</label>
+
             <select id="birth-place" name="birthPlace">
+
               <option value="">未選択</option>
+
               <option value="北海道">北海道</option>
+
               <option value="青森県">青森県</option>
+
               <option value="岩手県">岩手県</option>
+
               <option value="宮城県">宮城県</option>
+
               <option value="秋田県">秋田県</option>
+
               <option value="山形県">山形県</option>
+
               <option value="福島県">福島県</option>
+
               <option value="茨城県">茨城県</option>
+
               <option value="栃木県">栃木県</option>
+
               <option value="群馬県">群馬県</option>
+
               <option value="埼玉県">埼玉県</option>
+
               <option value="千葉県">千葉県</option>
+
               <option value="東京都">東京都</option>
+
               <option value="神奈川県">神奈川県</option>
+
               <option value="新潟県">新潟県</option>
+
               <option value="富山県">富山県</option>
+
               <option value="石川県">石川県</option>
+
               <option value="福井県">福井県</option>
+
               <option value="山梨県">山梨県</option>
+
               <option value="長野県">長野県</option>
+
               <option value="岐阜県">岐阜県</option>
+
               <option value="静岡県">静岡県</option>
+
               <option value="愛知県">愛知県</option>
+
               <option value="三重県">三重県</option>
+
               <option value="滋賀県">滋賀県</option>
+
               <option value="京都府">京都府</option>
+
               <option value="大阪府">大阪府</option>
+
               <option value="兵庫県">兵庫県</option>
+
               <option value="奈良県">奈良県</option>
+
               <option value="和歌山県">和歌山県</option>
+
               <option value="鳥取県">鳥取県</option>
+
               <option value="島根県">島根県</option>
+
               <option value="岡山県">岡山県</option>
+
               <option value="広島県">広島県</option>
+
               <option value="山口県">山口県</option>
+
               <option value="徳島県">徳島県</option>
+
               <option value="香川県">香川県</option>
+
               <option value="愛媛県">愛媛県</option>
+
               <option value="高知県">高知県</option>
+
               <option value="福岡県">福岡県</option>
+
               <option value="佐賀県">佐賀県</option>
+
               <option value="長崎県">長崎県</option>
+
               <option value="熊本県">熊本県</option>
+
               <option value="大分県">大分県</option>
+
               <option value="宮崎県">宮崎県</option>
+
               <option value="鹿児島県">鹿児島県</option>
+
               <option value="沖縄県">沖縄県</option>
+
             </select>
+
           </div>
 
+
           <div class="field">
+
             <label for="latitude">緯度</label>
+
             <input
+
               type="number"
+
               id="latitude"
+
               name="latitude"
+
               step="0.0001"
+
               min="-90"
+
               max="90"
+
               placeholder="例：35.3813"
+
             >
+
           </div>
 
+
           <div class="field">
+
             <label for="longitude">経度</label>
+
             <input
+
               type="number"
+
               id="longitude"
+
               name="longitude"
+
               step="0.0001"
+
               min="-180"
+
               max="180"
+
               placeholder="例：139.9249"
+
             >
+
             <p class="help">東経はプラス、西経はマイナスです。</p>
+
           </div>
 
+
           <div class="field">
+
             <label for="timezone">出生地のUTC時差</label>
+
             <input
+
               type="number"
+
               id="timezone"
+
               name="timezone"
+
               step="0.25"
+
               min="-12"
+
               max="14"
+
               value="9"
+
               required
+
             >
+
             <p class="help">日本は「9」です。</p>
+
           </div>
 
+
           <div class="field">
+
             <label for="nickname">呼び名（ひらがな・任意）</label>
+
             <input
+
               type="text"
+
               id="nickname"
+
               name="nickname"
+
               placeholder="例：そのこ"
+
               pattern="[ぁ-ゖー\s]*"
+
             >
+
             <p class="help">入力した場合は、カタカムナの名前音を加えます。</p>
+
           </div>
+
 
           <fieldset class="field full">
+
             <legend>性別（任意）</legend>
+
             <div class="radio-row">
+
               <label><input type="radio" name="gender" value="女性">女性</label>
+
               <label><input type="radio" name="gender" value="男性">男性</label>
+
               <label><input type="radio" name="gender" value="その他">その他</label>
+
               <label><input type="radio" name="gender" value="回答しない">回答しない</label>
+
             </div>
+
           </fieldset>
+
         </div>
+
       </section>
 
+
       <section class="panel">
+
         <h2>出生要素の自動算定</h2>
+
         <p class="panel-description">
+
           Excel内の個別結果リストは参照せず、生年月日などの入力値から毎回計算します。
+
         </p>
+
 
         <div class="calculation-summary">
-          <div class="summary-box">
-            <h3>西洋</h3>
-            <p id="western-elements">未算定</p>
-          </div>
 
           <div class="summary-box">
-            <h3>東洋</h3>
-            <p id="eastern-pillars">干支：未算定</p>
-            <p id="eastern-stars">十大主星5点：未算定</p>
+
+            <h3>西洋</h3>
+
+            <p id="western-elements">未算定</p>
+
           </div>
+
+
+          <div class="summary-box">
+
+            <h3>東洋</h3>
+
+            <p id="eastern-pillars">干支：未算定</p>
+
+            <p id="eastern-stars">十大主星5点：未算定</p>
+
+          </div>
+
         </div>
+
       </section>
 
+
       <section class="panel">
+
         <h2>12座の算定結果</h2>
+
         <p class="panel-description">
+
           大きな数値は西洋と東洋を50：50で統合した値です。カバラと名前音は別列で表示します。
+
         </p>
+
 
         <div class="seat-grid" id="seat-grid"></div>
 
+
         <div class="summary">
+
           <span id="ranking-summary">天地統合の上位：未算定</span>
+
           <span id="kabbalah-summary">カバラ4秘数：未算定</span>
+
           <span id="katakamuna-summary">名前音：未算定</span>
+
         </div>
+
 
         <div class="actions" style="margin-top:18px;">
+
           <button type="button" class="button-secondary" id="calculate-seats">
+
             12座を算定
+
           </button>
+
         </div>
+
 
         <p class="status" id="seat-status" aria-live="polite"></p>
+
       </section>
+
 
       <section class="panel" id="flower-wave-panel" hidden>
+
         <h2>花の波形</h2>
+
         <p class="panel-description">
+
           天地統合の12座を、花の循環順（感→受→理→時→動→境→安→関→現→情→信→放）で描いています。
+
         </p>
+
         <div class="flower-wrap" id="flower-wave">
+
           <p class="help">12座を算定すると、ここに花の波形が表示されます。</p>
+
         </div>
+
       </section>
+
 
       <section class="panel" id="birth-gem-panel" hidden>
+
         <h2>出生宝石</h2>
+
         <p>天地統合第1位：<strong id="birth-gem-origin"></strong></p>
+
         <div class="field">
+
           <label for="birth-gem">出生宝石（鑑定者が選択）</label>
+
           <select id="birth-gem" name="birthGem"><option value="">未選択</option></select>
+
         </div>
+
+        <p class="help" style="margin-top:14px;">第1位座に属する3宝石の正式な解説です。宝石名を押すと本文を確認できます。</p>
+
+        <div id="birth-gem-explanations" class="gem-explanations"></div>
+
       </section>
+
 
       <section class="panel" id="ring-panel" hidden>
+
         <h2>年輪</h2>
+
         <p class="panel-description">風向きは出す。進路は決めない。</p>
+
         <div class="ring-years" id="ring-years"></div>
+
         <h3>3年間の流れ</h3>
+
         <div id="ring-groups"></div>
+
         <details id="ring-history">
+
           <summary>これまでの年輪を見る</summary>
+
           <div class="ring-history-scroll">
+
             <table class="ring-history-table">
+
               <thead><tr><th>年齢</th><th>期間</th><th>座</th><th>巡</th><th>宝石</th></tr></thead>
+
               <tbody id="ring-history-body"></tbody>
+
             </table>
+
           </div>
+
         </details>
+
       </section>
+
       <p class="status error" id="ring-error" role="status"></p>
 
+
       <section class="panel">
+
         <h2>タロット3枚</h2>
 
+
         <div class="tarot-grid">
+
           <div class="tarot-card">
+
             <h3>現在</h3>
+
             <div class="field">
+
               <label for="tarot-current-card">カード</label>
+
               <select id="tarot-current-card" name="tarotCurrentCard">
+
                 <option value="">選択してください</option>
+
               </select>
+
             </div>
+
             <div class="field">
+
               <label for="tarot-current-direction">向き</label>
+
               <select id="tarot-current-direction" name="tarotCurrentDirection">
+
                 <option value="">選択してください</option>
+
                 <option value="正位置">正位置</option>
+
                 <option value="逆位置">逆位置</option>
+
               </select>
+
             </div>
+
           </div>
 
+
           <div class="tarot-card">
+
             <h3>課題</h3>
+
             <div class="field">
+
               <label for="tarot-challenge-card">カード</label>
+
               <select id="tarot-challenge-card" name="tarotChallengeCard">
+
                 <option value="">選択してください</option>
+
               </select>
+
             </div>
+
             <div class="field">
+
               <label for="tarot-challenge-direction">向き</label>
+
               <select id="tarot-challenge-direction" name="tarotChallengeDirection">
+
                 <option value="">選択してください</option>
+
                 <option value="正位置">正位置</option>
+
                 <option value="逆位置">逆位置</option>
+
               </select>
+
             </div>
+
           </div>
+
 
           <div class="tarot-card">
+
             <h3>鍵</h3>
+
             <div class="field">
+
               <label for="tarot-key-card">カード</label>
+
               <select id="tarot-key-card" name="tarotKeyCard">
+
                 <option value="">選択してください</option>
+
               </select>
+
             </div>
+
             <div class="field">
+
               <label for="tarot-key-direction">向き</label>
+
               <select id="tarot-key-direction" name="tarotKeyDirection">
+
                 <option value="">選択してください</option>
+
                 <option value="正位置">正位置</option>
+
                 <option value="逆位置">逆位置</option>
+
               </select>
+
             </div>
+
           </div>
+
         </div>
+
       </section>
 
+
       <section class="panel">
+
         <h2>補足メモ</h2>
+
         <div class="field">
+
           <label for="notes">メモ</label>
+
           <textarea
+
             id="notes"
+
             name="notes"
+
             placeholder="本人から聞いたこと、確認したい点、リーディングの補足など"
+
           ></textarea>
+
         </div>
+
       </section>
 
+
       <section class="panel">
+
         <div class="actions">
+
           <button type="button" class="button-primary" id="create-result">
+
             解析結果を作成する
+
           </button>
+
         </div>
+
 
         <p class="status" id="result-status" aria-live="polite"></p>
 
+
         <textarea
+
           id="candidate-text"
+
           aria-label="解析候補文"
+
           hidden
+
         ></textarea>
+
       </section>
+
     </form>
+
   </main>
 
+
   <script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/lunar-javascript@1.7.7/lunar.js"></script>
+
   <script src="js/resonance-data.js"></script>
-  <script src="js/jikou-ring.js?v=20260926-1"></script>
+
+  <script src="js/jikou-ring.js?v=20260926-2"></script>
+
   <script src="js/flower-wave.js?v=20260926-1"></script>
+
 </body>
+
 </html>
