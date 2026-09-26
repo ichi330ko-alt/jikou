@@ -32,11 +32,11 @@
 
   const PLANETS = [
 
-    ["太陽", "Sun"], ["月", "Moon"], ["水星", "Mercury"], ["金星", "Venus"],
+    ["å¤ªé™½", "Sun"], ["æœˆ", "Moon"], ["æ°´æ˜Ÿ", "Mercury"], ["é‡‘æ˜Ÿ", "Venus"],
 
-    ["火星", "Mars"], ["木星", "Jupiter"], ["土星", "Saturn"],
+    ["ç«æ˜Ÿ", "Mars"], ["æœ¨æ˜Ÿ", "Jupiter"], ["åœŸæ˜Ÿ", "Saturn"],
 
-    ["天王星", "Uranus"], ["海王星", "Neptune"], ["冥王星", "Pluto"]
+    ["å¤©çŽ‹æ˜Ÿ", "Uranus"], ["æµ·çŽ‹æ˜Ÿ", "Neptune"], ["å†¥çŽ‹æ˜Ÿ", "Pluto"]
 
   ];
 
@@ -44,9 +44,9 @@
 
   const ZODIAC = [
 
-    "牡羊座", "牡牛座", "双子座", "蟹座", "獅子座", "乙女座",
+    "ç‰¡ç¾Šåº§", "ç‰¡ç‰›åº§", "åŒå­åº§", "èŸ¹åº§", "ç…å­åº§", "ä¹™å¥³åº§",
 
-    "天秤座", "蠍座", "射手座", "山羊座", "水瓶座", "魚座"
+    "å¤©ç§¤åº§", "è åº§", "å°„æ‰‹åº§", "å±±ç¾Šåº§", "æ°´ç“¶åº§", "é­šåº§"
 
   ];
 
@@ -54,15 +54,15 @@
 
   const STEM_INFO = {
 
-    "甲": { element: "木", polarity: "陽" }, "乙": { element: "木", polarity: "陰" },
+    "ç”²": { element: "æœ¨", polarity: "é™½" }, "ä¹™": { element: "æœ¨", polarity: "é™°" },
 
-    "丙": { element: "火", polarity: "陽" }, "丁": { element: "火", polarity: "陰" },
+    "ä¸™": { element: "ç«", polarity: "é™½" }, "ä¸": { element: "ç«", polarity: "é™°" },
 
-    "戊": { element: "土", polarity: "陽" }, "己": { element: "土", polarity: "陰" },
+    "æˆŠ": { element: "åœŸ", polarity: "é™½" }, "å·±": { element: "åœŸ", polarity: "é™°" },
 
-    "庚": { element: "金", polarity: "陽" }, "辛": { element: "金", polarity: "陰" },
+    "åºš": { element: "é‡‘", polarity: "é™½" }, "è¾›": { element: "é‡‘", polarity: "é™°" },
 
-    "壬": { element: "水", polarity: "陽" }, "癸": { element: "水", polarity: "陰" }
+    "å£¬": { element: "æ°´", polarity: "é™½" }, "ç™¸": { element: "æ°´", polarity: "é™°" }
 
   };
 
@@ -70,27 +70,27 @@
 
   const BRANCH_MAIN_STEM = {
 
-    "子": "癸", "丑": "己", "寅": "甲", "卯": "乙", "辰": "戊", "巳": "丙",
+    "å­": "ç™¸", "ä¸‘": "å·±", "å¯…": "ç”²", "å¯": "ä¹™", "è¾°": "æˆŠ", "å·³": "ä¸™",
 
-    "午": "丁", "未": "己", "申": "庚", "酉": "辛", "戌": "戊", "亥": "壬"
+    "åˆ": "ä¸", "æœª": "å·±", "ç”³": "åºš", "é…‰": "è¾›", "æˆŒ": "æˆŠ", "äº¥": "å£¬"
 
   };
 
  
 
-  const GENERATES = { "木": "火", "火": "土", "土": "金", "金": "水", "水": "木" };
+  const GENERATES = { "æœ¨": "ç«", "ç«": "åœŸ", "åœŸ": "é‡‘", "é‡‘": "æ°´", "æ°´": "æœ¨" };
 
-  const CONTROLS = { "木": "土", "土": "水", "水": "火", "火": "金", "金": "木" };
+  const CONTROLS = { "æœ¨": "åœŸ", "åœŸ": "æ°´", "æ°´": "ç«", "ç«": "é‡‘", "é‡‘": "æœ¨" };
 
  
 
-  const FLOWER_ORDER = ["感", "受", "理", "時", "動", "境", "安", "関", "現", "情", "信", "放"];
+  const FLOWER_ORDER = ["æ„Ÿ", "å—", "ç†", "æ™‚", "å‹•", "å¢ƒ", "å®‰", "é–¢", "ç¾", "æƒ…", "ä¿¡", "æ”¾"];
 
   const FLOWER_NAMES = {
 
-    "感": "直感", "受": "受容", "理": "理解", "時": "時", "動": "行動", "境": "境界",
+    "æ„Ÿ": "ç›´æ„Ÿ", "å—": "å—å®¹", "ç†": "ç†è§£", "æ™‚": "æ™‚", "å‹•": "è¡Œå‹•", "å¢ƒ": "å¢ƒç•Œ",
 
-    "安": "安心", "関": "関係", "現": "表現", "情": "感情", "信": "信頼", "放": "手放し"
+    "å®‰": "å®‰å¿ƒ", "é–¢": "é–¢ä¿‚", "ç¾": "è¡¨ç¾", "æƒ…": "æ„Ÿæƒ…", "ä¿¡": "ä¿¡é ¼", "æ”¾": "æ‰‹æ”¾ã—"
 
   };
 
@@ -98,9 +98,9 @@
 
   const TAROT_MAJOR = [
 
-    "愚者", "魔術師", "女教皇", "女帝", "皇帝", "教皇", "恋人", "戦車", "力", "隠者",
+    "æ„šè€…", "é­”è¡“å¸«", "å¥³æ•™çš‡", "å¥³å¸", "çš‡å¸", "æ•™çš‡", "æ‹äºº", "æˆ¦è»Š", "åŠ›", "éš è€…",
 
-    "運命の輪", "正義", "吊るされた男", "死神", "節制", "悪魔", "塔", "星", "月", "太陽", "審判", "世界"
+    "é‹å‘½ã®è¼ª", "æ­£ç¾©", "åŠã‚‹ã•ã‚ŒãŸç”·", "æ­»ç¥ž", "ç¯€åˆ¶", "æ‚ªé­”", "å¡”", "æ˜Ÿ", "æœˆ", "å¤ªé™½", "å¯©åˆ¤", "ä¸–ç•Œ"
 
   ];
 
@@ -202,7 +202,7 @@
 
         existing.addEventListener("load", resolve, { once: true });
 
-        existing.addEventListener("error", () => reject(new Error(`${url} を読み込めませんでした。`)), { once: true });
+        existing.addEventListener("error", () => reject(new Error(`${url} ã‚’èª­ã¿è¾¼ã‚ã¾ã›ã‚“ã§ã—ãŸã€‚`)), { once: true });
 
         return;
 
@@ -216,9 +216,9 @@
 
       script.crossOrigin = "anonymous";
 
-      script.addEventListener("load", () => readyTest() ? resolve() : reject(new Error(`${url} の機能を確認できませんでした。`)), { once: true });
+      script.addEventListener("load", () => readyTest() ? resolve() : reject(new Error(`${url} ã®æ©Ÿèƒ½ã‚’ç¢ºèªã§ãã¾ã›ã‚“ã§ã—ãŸã€‚`)), { once: true });
 
-      script.addEventListener("error", () => reject(new Error(`${url} を読み込めませんでした。`)), { once: true });
+      script.addEventListener("error", () => reject(new Error(`${url} ã‚’èª­ã¿è¾¼ã‚ã¾ã›ã‚“ã§ã—ãŸã€‚`)), { once: true });
 
       document.head.appendChild(script);
 
@@ -242,11 +242,11 @@
 
     const response = await fetch(new URL(path, document.baseURI), { cache: "no-store" });
 
-    if (!response.ok) throw new Error(`${path}（HTTP ${response.status}）を読み込めませんでした。`);
+    if (!response.ok) throw new Error(`${path}ï¼ˆHTTP ${response.status}ï¼‰ã‚’èª­ã¿è¾¼ã‚ã¾ã›ã‚“ã§ã—ãŸã€‚`);
 
     try { return await response.json(); }
 
-    catch { throw new Error(`${path} のJSON形式を確認してください。`); }
+    catch { throw new Error(`${path} ã®JSONå½¢å¼ã‚’ç¢ºèªã—ã¦ãã ã•ã„ã€‚`); }
 
   }
 
@@ -272,15 +272,15 @@
 
     const axes = state.data.axis.axes;
 
-    if (!Array.isArray(axes) || axes.length !== 12) throw new Error("12座定義が12件ではありません。");
+    if (!Array.isArray(axes) || axes.length !== 12) throw new Error("12åº§å®šç¾©ãŒ12ä»¶ã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚");
 
-    if (new Set(axes.map((axis) => axis.id)).size !== 12) throw new Error("12座IDが重複しています。");
+    if (new Set(axes.map((axis) => axis.id)).size !== 12) throw new Error("12åº§IDãŒé‡è¤‡ã—ã¦ã„ã¾ã™ã€‚");
 
     state.data.western.elements.forEach((item) => {
 
       if (Object.values(item.scores).reduce((sum, value) => sum + Number(value), 0) !== 20) {
 
-        throw new Error(`西洋変換表 ${item.name} の合計が20ではありません。`);
+        throw new Error(`è¥¿æ´‹å¤‰æ›è¡¨ ${item.name} ã®åˆè¨ˆãŒ20ã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚`);
 
       }
 
@@ -290,7 +290,7 @@
 
       if (Object.values(item.scores).reduce((sum, value) => sum + Number(value), 0) !== 20) {
 
-        throw new Error(`東洋変換表 ${item.name} の合計が20ではありません。`);
+        throw new Error(`æ±æ´‹å¤‰æ›è¡¨ ${item.name} ã®åˆè¨ˆãŒ20ã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚`);
 
       }
 
@@ -308,9 +308,9 @@
 
     const timezone = Number(byId("timezone").value);
 
-    if (!dateValue) throw new Error("生年月日を入力してください。");
+    if (!dateValue) throw new Error("ç”Ÿå¹´æœˆæ—¥ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚");
 
-    if (!Number.isFinite(timezone)) throw new Error("UTC時差を確認してください。");
+    if (!Number.isFinite(timezone)) throw new Error("UTCæ™‚å·®ã‚’ç¢ºèªã—ã¦ãã ã•ã„ã€‚");
 
     const [year, month, day] = dateValue.split("-").map(Number);
 
@@ -326,7 +326,7 @@
 
   function planetLongitude(bodyName, date) {
 
-    if (!window.Astronomy) throw new Error("西洋計算ライブラリを読み込めませんでした。");
+    if (!window.Astronomy) throw new Error("è¥¿æ´‹è¨ˆç®—ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’èª­ã¿è¾¼ã‚ã¾ã›ã‚“ã§ã—ãŸã€‚");
 
     let longitude;
 
@@ -338,13 +338,13 @@
 
       const body = Astronomy.Body[bodyName];
 
-      if (!body) throw new Error(`${bodyName} の天体定義を確認できませんでした。`);
+      if (!body) throw new Error(`${bodyName} ã®å¤©ä½“å®šç¾©ã‚’ç¢ºèªã§ãã¾ã›ã‚“ã§ã—ãŸã€‚`);
 
       longitude = Astronomy.Ecliptic(Astronomy.GeoVector(body, date, true)).elon;
 
     }
 
-    if (!Number.isFinite(longitude)) throw new Error(`${bodyName} の黄経を取得できませんでした。`);
+    if (!Number.isFinite(longitude)) throw new Error(`${bodyName} ã®é»„çµŒã‚’å–å¾—ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚`);
 
     return normalizeDegrees(longitude);
 
@@ -372,21 +372,21 @@
 
     const target = STEM_INFO[targetStem];
 
-    if (!day || !target) throw new Error("十大主星の算定に使う干を確認してください。");
+    if (!day || !target) throw new Error("åå¤§ä¸»æ˜Ÿã®ç®—å®šã«ä½¿ã†å¹²ã‚’ç¢ºèªã—ã¦ãã ã•ã„ã€‚");
 
     const samePolarity = day.polarity === target.polarity;
 
-    if (day.element === target.element) return samePolarity ? "貫索星" : "石門星";
+    if (day.element === target.element) return samePolarity ? "è²«ç´¢æ˜Ÿ" : "çŸ³é–€æ˜Ÿ";
 
-    if (GENERATES[day.element] === target.element) return samePolarity ? "鳳閣星" : "調舒星";
+    if (GENERATES[day.element] === target.element) return samePolarity ? "é³³é–£æ˜Ÿ" : "èª¿èˆ’æ˜Ÿ";
 
-    if (CONTROLS[day.element] === target.element) return samePolarity ? "禄存星" : "司禄星";
+    if (CONTROLS[day.element] === target.element) return samePolarity ? "ç¦„å­˜æ˜Ÿ" : "å¸ç¦„æ˜Ÿ";
 
-    if (CONTROLS[target.element] === day.element) return samePolarity ? "車騎星" : "牽牛星";
+    if (CONTROLS[target.element] === day.element) return samePolarity ? "è»Šé¨Žæ˜Ÿ" : "ç‰½ç‰›æ˜Ÿ";
 
-    if (GENERATES[target.element] === day.element) return samePolarity ? "玉堂星" : "龍高星";
+    if (GENERATES[target.element] === day.element) return samePolarity ? "çŽ‰å ‚æ˜Ÿ" : "é¾é«˜æ˜Ÿ";
 
-    throw new Error(`${dayStem}と${targetStem}の関係を判定できませんでした。`);
+    throw new Error(`${dayStem}ã¨${targetStem}ã®é–¢ä¿‚ã‚’åˆ¤å®šã§ãã¾ã›ã‚“ã§ã—ãŸã€‚`);
 
   }
 
@@ -394,7 +394,7 @@
 
   function calculateEasternElements(birth) {
 
-    if (!window.Solar || typeof Solar.fromYmdHms !== "function") throw new Error("東洋計算ライブラリを読み込めませんでした。");
+    if (!window.Solar || typeof Solar.fromYmdHms !== "function") throw new Error("æ±æ´‹è¨ˆç®—ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’èª­ã¿è¾¼ã‚ã¾ã›ã‚“ã§ã—ãŸã€‚");
 
     const lunar = Solar.fromYmdHms(birth.year, birth.month, birth.day, birth.hour, birth.minute, 0).getLunar();
 
@@ -412,17 +412,17 @@
 
     const targetStems = [
 
-      { source: "年干", stem: yearGan }, { source: "月干", stem: monthGan },
+      { source: "å¹´å¹²", stem: yearGan }, { source: "æœˆå¹²", stem: monthGan },
 
-      { source: "年支本元", stem: BRANCH_MAIN_STEM[yearZhi] },
+      { source: "å¹´æ”¯æœ¬å…ƒ", stem: BRANCH_MAIN_STEM[yearZhi] },
 
-      { source: "月支本元", stem: BRANCH_MAIN_STEM[monthZhi] },
+      { source: "æœˆæ”¯æœ¬å…ƒ", stem: BRANCH_MAIN_STEM[monthZhi] },
 
-      { source: "日支本元", stem: BRANCH_MAIN_STEM[dayZhi] }
+      { source: "æ—¥æ”¯æœ¬å…ƒ", stem: BRANCH_MAIN_STEM[dayZhi] }
 
     ];
 
-    if (targetStems.some((item) => !item.stem)) throw new Error("地支本元の対応を確認できませんでした。");
+    if (targetStems.some((item) => !item.stem)) throw new Error("åœ°æ”¯æœ¬å…ƒã®å¯¾å¿œã‚’ç¢ºèªã§ãã¾ã›ã‚“ã§ã—ãŸã€‚");
 
     return {
 
@@ -526,7 +526,7 @@
 
   function hiraganaToKatakana(text) {
 
-    return text.replace(/[ぁ-ゖ]/g, (character) => String.fromCharCode(character.charCodeAt(0) + 0x60));
+    return text.replace(/[ã-ã‚–]/g, (character) => String.fromCharCode(character.charCodeAt(0) + 0x60));
 
   }
 
@@ -536,13 +536,13 @@
 
     return hiraganaToKatakana((value || "").trim())
 
-      .replace(/[・･\s]/g, "").replace(/[ァ]/g, "ア").replace(/[ィ]/g, "イ")
+      .replace(/[ãƒ»ï½¥\s]/g, "").replace(/[ã‚¡]/g, "ã‚¢").replace(/[ã‚£]/g, "ã‚¤")
 
-      .replace(/[ゥ]/g, "ウ").replace(/[ェ]/g, "エ").replace(/[ォ]/g, "オ")
+      .replace(/[ã‚¥]/g, "ã‚¦").replace(/[ã‚§]/g, "ã‚¨").replace(/[ã‚©]/g, "ã‚ª")
 
-      .replace(/[ヵ]/g, "カ").replace(/[ヶ]/g, "ケ").replace(/[ッ]/g, "ツ")
+      .replace(/[ãƒµ]/g, "ã‚«").replace(/[ãƒ¶]/g, "ã‚±").replace(/[ãƒƒ]/g, "ãƒ„")
 
-      .replace(/[ャ]/g, "ヤ").replace(/[ュ]/g, "ユ").replace(/[ョ]/g, "ヨ").replace(/ー/g, "");
+      .replace(/[ãƒ£]/g, "ãƒ¤").replace(/[ãƒ¥]/g, "ãƒ¦").replace(/[ãƒ§]/g, "ãƒ¨").replace(/ãƒ¼/g, "");
 
   }
 
@@ -568,7 +568,7 @@
 
       let item = soundMap.get(sound);
 
-      if (sound === "ン" && previousMappedSound) item = soundMap.get(previousMappedSound);
+      if (sound === "ãƒ³" && previousMappedSound) item = soundMap.get(previousMappedSound);
 
       if (!item) { unknownSounds.push(sound); return; }
 
@@ -576,7 +576,7 @@
 
       sounds.push({ input: sound, used: item.sound, no: item.no });
 
-      if (sound !== "ン") previousMappedSound = sound;
+      if (sound !== "ãƒ³") previousMappedSound = sound;
 
     });
 
@@ -660,11 +660,11 @@
 
     byId("western-elements").textContent = result.westernElements
 
-      .map((item) => `${item.label}：${item.sign} ${item.degree}°`).join(" ／ ");
+      .map((item) => `${item.label}ï¼š${item.sign} ${item.degree}Â°`).join(" ï¼ ");
 
-    byId("eastern-pillars").textContent = `干支：年柱 ${result.easternElements.pillars.year} ／ 月柱 ${result.easternElements.pillars.month} ／ 日柱 ${result.easternElements.pillars.day}`;
+    byId("eastern-pillars").textContent = `å¹²æ”¯ï¼šå¹´æŸ± ${result.easternElements.pillars.year} ï¼ æœˆæŸ± ${result.easternElements.pillars.month} ï¼ æ—¥æŸ± ${result.easternElements.pillars.day}`;
 
-    byId("eastern-stars").textContent = `十大主星5点：${result.easternElements.stars.map((item) => item.star).join("・")}`;
+    byId("eastern-stars").textContent = `åå¤§ä¸»æ˜Ÿ5ç‚¹ï¼š${result.easternElements.stars.map((item) => item.star).join("ãƒ»")}`;
 
   }
 
@@ -692,13 +692,13 @@
 
         <dl class="seat-details">
 
-          <div><dt>西洋</dt><dd>${result.western.normalized[id].toFixed(1)}</dd></div>
+          <div><dt>è¥¿æ´‹</dt><dd>${result.western.normalized[id].toFixed(1)}</dd></div>
 
-          <div><dt>東洋</dt><dd>${result.eastern.normalized[id].toFixed(1)}</dd></div>
+          <div><dt>æ±æ´‹</dt><dd>${result.eastern.normalized[id].toFixed(1)}</dd></div>
 
-          <div><dt>カバラ</dt><dd>${result.kabbalah.values100[id].toFixed(1)}</dd></div>
+          <div><dt>ã‚«ãƒãƒ©</dt><dd>${result.kabbalah.values100[id].toFixed(1)}</dd></div>
 
-          <div><dt>名前音</dt><dd>${Number(result.katakamuna.raw[id] || 0).toFixed(1)}</dd></div>
+          <div><dt>åå‰éŸ³</dt><dd>${Number(result.katakamuna.raw[id] || 0).toFixed(1)}</dd></div>
 
         </dl>
 
@@ -708,19 +708,19 @@
 
  
 
-    const top = result.ranking.slice(0, 3).map((axis) => `${axis.short || axis.id}${axis.name} ${axis.value.toFixed(1)}`).join(" ／ ");
+    const top = result.ranking.slice(0, 3).map((axis) => `${axis.short || axis.id}${axis.name} ${axis.value.toFixed(1)}`).join(" ï¼ ");
 
-    byId("ranking-summary").textContent = `天地統合の上位：${top}`;
+    byId("ranking-summary").textContent = `å¤©åœ°çµ±åˆã®ä¸Šä½ï¼š${top}`;
 
     const n = result.kabbalah.numbers;
 
-    byId("kabbalah-summary").textContent = `カバラ4秘数：月${n.month}・日${n.day}・年${n.year}・総数${n.total}`;
+    byId("kabbalah-summary").textContent = `ã‚«ãƒãƒ©4ç§˜æ•°ï¼šæœˆ${n.month}ãƒ»æ—¥${n.day}ãƒ»å¹´${n.year}ãƒ»ç·æ•°${n.total}`;
 
     byId("katakamuna-summary").textContent = result.katakamuna.normalizedName
 
-      ? `名前音：${result.katakamuna.normalizedName}${result.katakamuna.unknownSounds.length ? `（未対応：${result.katakamuna.unknownSounds.join("・")}）` : ""}`
+      ? `åå‰éŸ³ï¼š${result.katakamuna.normalizedName}${result.katakamuna.unknownSounds.length ? `ï¼ˆæœªå¯¾å¿œï¼š${result.katakamuna.unknownSounds.join("ãƒ»")}ï¼‰` : ""}`
 
-      : "名前音：未入力";
+      : "åå‰éŸ³ï¼šæœªå…¥åŠ›";
 
   }
 
@@ -770,8 +770,8 @@
 
   function drawFlowerWave(values) {
 
-    // heavenEarth は axis.json の英語IDで保存されています。
-    // 花の循環は一文字キーで管理しているため、ここで対応付けます。
+    // heavenEarth ã¯ axis.json ã®è‹±èªžIDã§ä¿å­˜ã•ã‚Œã¦ã„ã¾ã™ã€‚
+    // èŠ±ã®å¾ªç’°ã¯ä¸€æ–‡å­—ã‚­ãƒ¼ã§ç®¡ç†ã—ã¦ã„ã‚‹ãŸã‚ã€ã“ã“ã§å¯¾å¿œä»˜ã‘ã¾ã™ã€‚
     const axisIdByShort = Object.fromEntries(
       state.data.axis.axes.map((axis) => [axis.short, axis.id])
     );
@@ -835,13 +835,13 @@
 
       const anchor = point.x < cx - 20 ? "end" : point.x > cx + 20 ? "start" : "middle";
 
-      return `<g class="flower-label"><text x="${point.x.toFixed(1)}" y="${(point.y - 4).toFixed(1)}" text-anchor="${anchor}">${id}・${FLOWER_NAMES[id]}</text><text class="flower-label-value" x="${point.x.toFixed(1)}" y="${(point.y + 17).toFixed(1)}" text-anchor="${anchor}">${flowerValues[id].toFixed(1)}</text></g>`;
+      return `<g class="flower-label"><text x="${point.x.toFixed(1)}" y="${(point.y - 4).toFixed(1)}" text-anchor="${anchor}">${id}ãƒ»${FLOWER_NAMES[id]}</text><text class="flower-label-value" x="${point.x.toFixed(1)}" y="${(point.y + 17).toFixed(1)}" text-anchor="${anchor}">${flowerValues[id].toFixed(1)}</text></g>`;
 
     }).join("");
 
-    const dots = points.map((point) => `<circle cx="${point.x.toFixed(1)}" cy="${point.y.toFixed(1)}" r="3.5" class="flower-point"><title>${point.id}・${FLOWER_NAMES[point.id]} ${point.value.toFixed(1)}</title></circle>`).join("");
+    const dots = points.map((point) => `<circle cx="${point.x.toFixed(1)}" cy="${point.y.toFixed(1)}" r="3.5" class="flower-point"><title>${point.id}ãƒ»${FLOWER_NAMES[point.id]} ${point.value.toFixed(1)}</title></circle>`).join("");
 
-    root.innerHTML = `<svg class="flower-svg" viewBox="0 0 ${size} ${size}" role="img" aria-label="12座の花波形">
+    root.innerHTML = `<svg class="flower-svg" viewBox="0 0 ${size} ${size}" role="img" aria-label="12åº§ã®èŠ±æ³¢å½¢">
 
       ${guides}${axes}<path d="${wavePath}" class="flower-wave-shape"/>${dots}${labels}
 
@@ -925,7 +925,7 @@
 
     button.disabled = isBusy;
 
-    button.textContent = isBusy ? "算定しています…" : "12座を算定";
+    button.textContent = isBusy ? "ç®—å®šã—ã¦ã„ã¾ã™â€¦" : "12åº§ã‚’ç®—å®š";
 
   }
 
@@ -935,7 +935,7 @@
 
     if (state.data) return;
 
-    setStatus("engine-status", "算定エンジンを読み込んでいます…");
+    setStatus("engine-status", "ç®—å®šã‚¨ãƒ³ã‚¸ãƒ³ã‚’èª­ã¿è¾¼ã‚“ã§ã„ã¾ã™â€¦");
 
     await loadDependencies();
 
@@ -943,7 +943,7 @@
 
     validateRuleData();
 
-    setStatus("engine-status", "算定エンジンを読み込みました。");
+    setStatus("engine-status", "ç®—å®šã‚¨ãƒ³ã‚¸ãƒ³ã‚’èª­ã¿è¾¼ã¿ã¾ã—ãŸã€‚");
 
   }
 
@@ -953,7 +953,7 @@
 
     if (!byId("studio-form").reportValidity()) {
 
-      setStatus("seat-status", "入力内容を確認してください。", true);
+      setStatus("seat-status", "å…¥åŠ›å†…å®¹ã‚’ç¢ºèªã—ã¦ãã ã•ã„ã€‚", true);
 
       return;
 
@@ -961,7 +961,7 @@
 
     setCalculateBusy(true);
 
-    setStatus("seat-status", "12座を算定しています…");
+    setStatus("seat-status", "12åº§ã‚’ç®—å®šã—ã¦ã„ã¾ã™â€¦");
 
     try {
 
@@ -975,9 +975,14 @@
 
       drawFlowerWave(state.result.heavenEarth);
 
+      document.dispatchEvent(new CustomEvent("jikou:calculated", { detail: {
+        axis: state.result.ranking[0]?.short,
+        birthDate: state.result.person.birthDate
+      } }));
+
       saveResult(state.result);
 
-      setStatus("seat-status", "12座と花波形を表示しました。");
+      setStatus("seat-status", "12åº§ã¨èŠ±æ³¢å½¢ã‚’è¡¨ç¤ºã—ã¾ã—ãŸã€‚");
 
       byId("flower-wave-panel").hidden = false;
 
@@ -987,7 +992,7 @@
 
       console.error(error);
 
-      setStatus("seat-status", error.message || "算定中にエラーが発生しました。", true);
+      setStatus("seat-status", error.message || "ç®—å®šä¸­ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚", true);
 
     } finally {
 
@@ -1003,11 +1008,13 @@
 
     if (!state.result) {
 
-      setStatus("result-status", "先に「12座を算定」を押してください。", true);
+      setStatus("result-status", "å…ˆã«ã€Œ12åº§ã‚’ç®—å®šã€ã‚’æŠ¼ã—ã¦ãã ã•ã„ã€‚", true);
 
       return;
 
     }
+
+    state.result.birthGem = byId("birth-gem").value;
 
     state.result.tarot = readTarot();
 
@@ -1015,7 +1022,7 @@
 
     saveResult(state.result);
 
-    setStatus("result-status", "解析結果を保存しました。結果ページへ移動します。");
+    setStatus("result-status", "è§£æžçµæžœã‚’ä¿å­˜ã—ã¾ã—ãŸã€‚çµæžœãƒšãƒ¼ã‚¸ã¸ç§»å‹•ã—ã¾ã™ã€‚");
 
     window.location.href = "result.html";
 
@@ -1029,7 +1036,7 @@
 
       const value = event.currentTarget.value;
 
-      event.currentTarget.setCustomValidity(value === "" || /^[ぁ-ゖー\s]+$/.test(value) ? "" : "呼び名は、ひらがなで入力してください。");
+      event.currentTarget.setCustomValidity(value === "" || /^[ã-ã‚–ãƒ¼\s]+$/.test(value) ? "" : "å‘¼ã³åã¯ã€ã²ã‚‰ãŒãªã§å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚");
 
     });
 
@@ -1047,13 +1054,19 @@
 
     byId("create-result").addEventListener("click", handleCreateResult);
 
+    byId("birth-gem").addEventListener("change", () => {
+      if (!state.result) return;
+      state.result.birthGem = byId("birth-gem").value;
+      saveResult(state.result);
+    });
+
     try { await prepareEngine(); }
 
     catch (error) {
 
       console.error(error);
 
-      setStatus("engine-status", error.message || "算定エンジンを読み込めませんでした。", true);
+      setStatus("engine-status", error.message || "ç®—å®šã‚¨ãƒ³ã‚¸ãƒ³ã‚’èª­ã¿è¾¼ã‚ã¾ã›ã‚“ã§ã—ãŸã€‚", true);
 
     }
 
