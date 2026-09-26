@@ -279,6 +279,21 @@
       .actions { justify-content: stretch; }
       .actions button { width: 100%; }
     }
+    .ring-years { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .ring-card { padding: 18px; background: #f8f9fb; border: 1px solid #e2e5e9; border-radius: 10px; }
+    .ring-card h3 { margin: 0 0 6px; }
+    .ring-card p { margin: 0 0 12px; color: #535b65; }
+    .ring-card dl { margin: 0; }
+    .ring-card dt { font-weight: 700; margin-top: 10px; }
+    .ring-card dd { margin: 2px 0 0; }
+    #ring-groups p { margin: 8px 0; }
+    #ring-history { margin-top: 20px; }
+    #ring-history summary { cursor: pointer; font-weight: 700; }
+    .ring-history-scroll { overflow-x: auto; margin-top: 12px; }
+    .ring-history-table { border-collapse: collapse; width: 100%; min-width: 640px; }
+    .ring-history-table th, .ring-history-table td { padding: 8px; border-bottom: 1px solid #e2e5e9; text-align: left; }
+    .ring-current-row { background: #f1f4f8; font-weight: 700; }
+    @media (max-width: 700px) { .ring-years { grid-template-columns: 1fr; } }
   </style>
 </head>
 
@@ -308,12 +323,56 @@
 
           <div class="field full">
             <label for="birth-place">出生地</label>
-            <input
-              type="text"
-              id="birth-place"
-              name="birthPlace"
-              placeholder="例：千葉県木更津市"
-            >
+            <select id="birth-place" name="birthPlace">
+              <option value="">未選択</option>
+              <option value="北海道">北海道</option>
+              <option value="青森県">青森県</option>
+              <option value="岩手県">岩手県</option>
+              <option value="宮城県">宮城県</option>
+              <option value="秋田県">秋田県</option>
+              <option value="山形県">山形県</option>
+              <option value="福島県">福島県</option>
+              <option value="茨城県">茨城県</option>
+              <option value="栃木県">栃木県</option>
+              <option value="群馬県">群馬県</option>
+              <option value="埼玉県">埼玉県</option>
+              <option value="千葉県">千葉県</option>
+              <option value="東京都">東京都</option>
+              <option value="神奈川県">神奈川県</option>
+              <option value="新潟県">新潟県</option>
+              <option value="富山県">富山県</option>
+              <option value="石川県">石川県</option>
+              <option value="福井県">福井県</option>
+              <option value="山梨県">山梨県</option>
+              <option value="長野県">長野県</option>
+              <option value="岐阜県">岐阜県</option>
+              <option value="静岡県">静岡県</option>
+              <option value="愛知県">愛知県</option>
+              <option value="三重県">三重県</option>
+              <option value="滋賀県">滋賀県</option>
+              <option value="京都府">京都府</option>
+              <option value="大阪府">大阪府</option>
+              <option value="兵庫県">兵庫県</option>
+              <option value="奈良県">奈良県</option>
+              <option value="和歌山県">和歌山県</option>
+              <option value="鳥取県">鳥取県</option>
+              <option value="島根県">島根県</option>
+              <option value="岡山県">岡山県</option>
+              <option value="広島県">広島県</option>
+              <option value="山口県">山口県</option>
+              <option value="徳島県">徳島県</option>
+              <option value="香川県">香川県</option>
+              <option value="愛媛県">愛媛県</option>
+              <option value="高知県">高知県</option>
+              <option value="福岡県">福岡県</option>
+              <option value="佐賀県">佐賀県</option>
+              <option value="長崎県">長崎県</option>
+              <option value="熊本県">熊本県</option>
+              <option value="大分県">大分県</option>
+              <option value="宮崎県">宮崎県</option>
+              <option value="鹿児島県">鹿児島県</option>
+              <option value="沖縄県">沖縄県</option>
+            </select>
           </div>
 
           <div class="field">
@@ -435,6 +494,33 @@
         </div>
       </section>
 
+      <section class="panel" id="birth-gem-panel" hidden>
+        <h2>出生宝石</h2>
+        <p>天地統合第1位：<strong id="birth-gem-origin"></strong></p>
+        <div class="field">
+          <label for="birth-gem">出生宝石（鑑定者が選択）</label>
+          <select id="birth-gem" name="birthGem"><option value="">未選択</option></select>
+        </div>
+      </section>
+
+      <section class="panel" id="ring-panel" hidden>
+        <h2>年輪</h2>
+        <p class="panel-description">風向きは出す。進路は決めない。</p>
+        <div class="ring-years" id="ring-years"></div>
+        <h3>3年間の流れ</h3>
+        <div id="ring-groups"></div>
+        <details id="ring-history">
+          <summary>これまでの年輪を見る</summary>
+          <div class="ring-history-scroll">
+            <table class="ring-history-table">
+              <thead><tr><th>年齢</th><th>期間</th><th>座</th><th>巡</th><th>宝石</th></tr></thead>
+              <tbody id="ring-history-body"></tbody>
+            </table>
+          </div>
+        </details>
+      </section>
+      <p class="status error" id="ring-error" role="status"></p>
+
       <section class="panel">
         <h2>タロット3枚</h2>
 
@@ -527,6 +613,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lunar-javascript@1.7.7/lunar.js"></script>
-  <script src="js/flower-wave.js?v=20260807-2"></script>
+  <script src="js/resonance-data.js"></script>
+  <script src="js/jikou-ring.js?v=20260926-1"></script>
+  <script src="js/flower-wave.js?v=20260926-1"></script>
 </body>
 </html>
